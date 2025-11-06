@@ -1,0 +1,376 @@
+---
+title: "Philemon R Notebook"
+output: html_notebook
+---
+
+```{r}
+rm(list=ls())
+
+#Importing libraries
+library(MASS)  #Loading Functions for linear and nonlinear modeling (e.g., lda() and qda() for discriminant analysis, glm() for generalized linear models).
+library(lars)  #LARS, LASSO, Forward stagewise regression
+library(boot)
+```
+
+1.a.
+```{r}
+#Loading the housing dataset
+my_data <- read.csv("/home/kweku/philemon/data visualisation/ML/housing.csv") 
+```
+
+```{r}
+#read dimension of dataset
+dim(my_data)
+
+#read column names
+colnames(my_data)
+
+#summary statistics 
+summary(my_data)
+```
+
+```{r}
+#read dataset
+head(my_data)
+
+```
+```{r}
+#check sum of null values in each column
+colSums(is.na(my_data))
+
+```
+
+We perform mean imputation to replace the missing values in the total bedrooms column because the data points in the dataset are kept and some not lost by dropping the columns with null.
+The missing values are replaced by the mean of the column that is total_bedrooms
+
+```{r}
+#mean imputation
+
+#mean of total_bedrooms
+mean_bedrooms <- mean(my_data$total_bedrooms, na.rm = TRUE)
+
+#replacing missing values with mean
+my_data$total_bedrooms[is.na(my_data$total_bedrooms)] <- mean_bedrooms
+
+#summary statistics 
+summary(my_data)
+
+```
+
+1.b.
+1. Plotting the scatterplot of median_income and median_house_value
+```{r}
+#plot data
+plot(my_data$median_income , my_data$median_house_value, xlab = "Median Income" , ylab = "Median House Value")
+```
+From the plot above we can say that the increase in the median income results in fewer median house value.
+
+
+2. Plotting barchart of the values of the ocean_proximity
+```{r}
+attach(my_data)
+
+#Check unique values of categorical column
+unique(ocean_proximity)
+
+#frequency of each value of ocean_proximity
+freq_table <- table(ocean_proximity)  
+
+#plotting barplot
+barplot(freq_table, main = "Boxplot of median_house_value by ocean_proximity", xlab = "ocean_proximity", ylab = "frequency", col = "lightblue")
+
+```
+From the bar chart, most houses less than 1H from the ocean had the highest count with houses on the island having the least count
+
+
+3.Plotting heatmap to find the correlation between numerical columns
+```{r}
+# Select numeric columns
+numeric_cols <- my_data[, sapply(my_data, is.numeric)]
+
+# Compute correlation matrix
+cor_matrix <- cor(numeric_cols, use = "complete.obs")
+
+#plotting heatmap
+heatmap(cor_matrix, Rowv = NA, Colv = NA, col = colorRampPalette(c("blue", "white", "red"))(256), scale = "none", main = "Correlation Matrix Heatmap")
+
+```
+```{r}
+# Extract upper triangle, excluding diagonal
+upper_tri <- upper.tri(cor_matrix, diag = FALSE)
+cor_values <- cor_matrix[upper_tri]
+var_pairs <- which(upper_tri, arr.ind = TRUE)
+var_names <- data.frame(
+  Var1 = rownames(cor_matrix)[var_pairs[, 1]],
+  Var2 = colnames(cor_matrix)[var_pairs[, 2]],
+  Correlation = cor_values
+)
+
+high_cor <- var_names[abs(var_names$Correlation) >= 0.8, ]
+print(high_cor)
+```
+Two variables that are strongly related to each other (e.g., total_bedrooms and households), it struggles to understand which one primarily affects the target variable (median_house_value). This causes the model's coefficients to be unstable and difficult to interpret. 
+
+
+1.c. The median_income will have the strongest predictive power for house value based on the correlation matrix 
+```{r}
+cor_values <- cor_matrix["median_house_value", ]
+cor_values <- cor_values[names(cor_values) != "median_house_value"]
+cor_df <- data.frame(
+  Var1 = "median_house_value",
+  Var2 = names(cor_values),
+  Correlation = cor_values
+)
+
+high_cor <- cor_df[abs(cor_df$Correlation) >= 0.5, ]
+print(high_cor)
+```
+
+
+2.a.
+Fit a simple linear regression model predicting house value using median income. 
+Report the estimated coefficients.
+```{r}
+#fitting the simple linear regression
+lm.fit=lm(median_house_value~median_income)
+lm.fit
+summary(lm.fit)
+coef(lm.fit)
+confint(lm.fit)
+r_squared_slr <- summary(lm.fit)$r.squared
+adj_rsquared_slr <- summary(lm.fit)$adj.r.squared
+```
+R-squared = 0.4734: median income alone explains about 47% of the variation in median house value outcomes. The remaining 53% is due to other predictors or random error.
+
+Residual variation: Large residuals and wide prediction intervals indicate that median income is important but not sufficient for accurate prediction.
+
+
+2.b.
+Intercept = 45085.58: represents that when the median income is 0.
+Slope = 41793.85 : represents that for every one unit increase in the median income, the median house value increases on average about 41793 points.
+
+2.c.
+
+```{r}
+#plot median income and median house value
+plot(median_income,median_house_value)
+
+#regression line
+abline(lm.fit , lwd = 3, col = "red")
+
+```
+The regression line which is a positive slope and most of the data points clustered around the slope indicates a strong relationship betweeen the median income and median house value.
+
+
+3.a.
+Fit a multiple regression model using all available predictors. 
+Report the regression summary.
+```{r}
+#Fit a multiple regression model using all available predictors
+lm.fit=lm(median_house_value~longitude + latitude + housing_median_age + total_rooms + total_bedrooms + population + households + median_income + ocean_proximity)
+lm.fit
+coef(lm.fit)
+summary(lm.fit)
+round(summary(lm.fit)$coefficients,5)
+confint(lm.fit)
+
+r_squared_mlr <- summary(lm.fit)$r.squared
+adj_rsquared_mlr <- summary(lm.fit)$adj.r.squared
+```
+R squared ≈ 0.64: Together, the predictors explain about 64% of the variation in median house value outcomes, substantially better than median income alone.
+
+3.b. 
+All the predictors have a p-value less than 0.05 indicating that all the predictors are significant to the median house value and one unit increase in each predictor increases the median house value by the value of the coefficient of the predictor while holding the other predictors constant.
+
+3.c.
+comparison between simple regression model and multiple regression model using Rsquared and Adjusted R squared
+```{r}
+r_compare <- data.frame(par = c("R-squared","Adjusted R-squared"),slr = c(r_squared_slr,adj_rsquared_slr), mlr = c(r_squared_mlr,adj_rsquared_mlr))
+
+r_compare
+```
+R-squared: The multiple regression has a higher R squared (0.6464638 vs. 0.4738333), indicating it explains more variance in median house value. However, R squared always increases with more predictors, so it’s not enough to judge model quality.
+
+Adjusted R-squared: The multiple regression’s Adjusted R squared (0.6462561) is higher than the simple regression’s (0.4738075), suggesting that the additional predictors contribute meaningfully to explaining median house value, even after adjusting for model complexity.
+
+Conclusion: The multiple regression model is likely better if the Adjusted R squared is significantly higher, as it balances fit and complexity.
+
+
+3.d.
+```{r}
+high_cor <- var_names[abs(var_names$Correlation) >= 0.8, ]
+
+print(high_cor)
+```
+
+When a model sees two variables that are strongly related to each other (total_rooms and household, total_bedrooms and households, etc), it struggles to understand which one primarily affects the target variable (median_house_value). This causes the model's coefficients to be unstable and difficult to interpret. In short, the model becomes confused, which can reduce its performance. For this reason, we will take the average of columns with high correlation.
+
+
+4.a.
+Using median income as the sole predictor, fit polynomial regression models of degree 1, 2, 3, and 4.
+
+```{r}
+#polynomial = 1
+lm.fit=lm(median_house_value~poly(median_income,1))
+lm.fit
+summary(lm.fit)
+coef(lm.fit)
+confint(lm.fit)
+```
+
+
+```{r}
+#polynomial = 2
+lm.fit=lm(median_house_value~poly(median_income,2))
+lm.fit
+summary(lm.fit)
+coef(lm.fit)
+confint(lm.fit)
+```
+
+
+```{r}
+#polynomial = 3
+lm.fit=lm(median_house_value~poly(median_income,3))
+lm.fit
+summary(lm.fit)
+coef(lm.fit)
+confint(lm.fit)
+```
+
+
+
+```{r}
+#polynomial = 4
+lm.fit=lm(median_house_value~poly(median_income,4))
+lm.fit
+summary(lm.fit)
+coef(lm.fit)
+confint(lm.fit)
+```
+
+4.b.
+# This function estimates the train and test errors for simple regressions with polynomials of deg=1:4
+# for a given seed, and returns these values in a 2x4 matrix
+
+```{r}
+myfn <- function(xx,yy,seed){
+	set.seed(seed)
+	train=sample(length(yy),length(yy)/2)
+	out=matrix(,2,4)
+	
+	for(j in 1:4){
+		fit=lm(yy~poly(xx,j),subset=train)
+		out[1,j]=mean(fit$residuals^2)				#training error
+		newdata <- data.frame(xx = xx)
+		out[2,j]=mean((yy-predict(fit,newdata = newdata))[-train]^2)	#test error
+	}
+	
+	return(out)
+}
+
+err.1 = myfn(median_income,median_house_value,1)
+err.2 = myfn(median_income,median_house_value,2)
+
+err.1
+err.2
+```
+
+4.c.
+```{r}
+# Prepare data
+degrees <- 1:4
+train_error <- err.1[1, ]
+test_error <- err.1[2, ]
+
+# Plot
+plot(degrees, train_error, type = "b", col = "blue", pch = 16, 
+     ylim = range(c(train_error, test_error)), 
+     xlab = "Polynomial Degree", ylab = "Mean Squared Error",
+     main = "Training vs Test Error Across Polynomial Degrees")
+lines(degrees, test_error, type = "b", col = "red", pch = 17)
+legend("topright", legend = c("Training Error", "Test Error"), 
+       col = c("blue", "red"), pch = c(16, 17), lty = 1)
+```
+
+```{r}
+# Prepare data
+degrees <- 1:4
+train_error <- err.2[1, ]
+test_error <- err.2[2, ]
+
+# Plot
+plot(degrees, train_error, type = "b", col = "blue", pch = 16, 
+     ylim = range(c(train_error, test_error)), 
+     xlab = "Polynomial Degree", ylab = "Mean Squared Error",
+     main = "Training vs Test Error Across Polynomial Degrees")
+lines(degrees, test_error, type = "b", col = "red", pch = 17)
+legend("topright", legend = c("Training Error", "Test Error"), 
+       col = c("blue", "red"), pch = c(16, 17), lty = 1)
+```
+
+
+The gap between the test error and training error indicates overfitting.
+
+
+4.d.
+Low-degree models (e.g., degree 1) may have high bias (underfitting), with high training and test Mean Squared Error.
+High-degree models (e.g., degree 4) may have low bias but high variance (overfitting), with low training Mean Squared Error but high test Mean Squared Error.
+
+Degree $ has the best trade off bias variance because it has the lowest error among the other degrees.
+
+
+
+5.a.
+10-fold cross-validation to estimate prediction error for models of degree 1-5
+
+```{r}
+dat=data.frame(median_income,median_house_value)
+set.seed(5)
+cv.error.5=numeric(5)
+train.err.5=numeric(5)
+for (i in 1:5){
+ glm.fit=glm(median_house_value~poly(median_income,i),data=dat)
+ cv.error.5[i]=cv.glm(dat,glm.fit,K=10)$delta[1]
+ train.err.5[i]=mean(glm.fit$residuals^2)
+ }
+cv.error.5
+```
+
+5.b.
+Repeat the cross-validation 50 times and present the distribution of errors using boxplots
+```{r}
+dat=data.frame(median_income,median_house_value)
+cv.error.50 = matrix(,50,5)
+for (i in 1:50){
+  	set.seed(i)
+  for (k in 1:5) {
+    glm.fit=glm(median_house_value~poly(median_income,k),data=dat)
+    cv.error.50[i,k]=cv.glm(dat,glm.fit,K=10)$delta[1]
+  }
+ }
+
+boxplot(log(cv.error.50), col=c(4,2), names=c('x','x2','x3','x4','x5'), ylab='error')
+
+```
+
+
+5.c.
+Model 5 generalises best because increase in degree reduces the mean squared error
+
+5.d.
+These results demonstrate the classic bias-variance tradeoff. Increasing model complexity
+reduces training error but increases variance, which in turn increases test and cross-validation
+error. Cross-validation provides a reliable way to estimate generalization error, showing that
+simpler models may outperform overly complex ones in terms of predictive performance.
+
+6.a
+Regression plays a foundational role in real-world predictive modeling by providing a structured framework to understand and quantify relationships between variables. In practice, regression techniques, such as linear, logistic, or more advanced variants like ridge or lasso, allow modelers to predict outcomes based on input features, estimating how changes in predictors influence the target variable.
+
+Error analysis is crucial for assessing and improving model performance in predictive modeling, serving as a diagnostic tool to understand where and why predictions fail. By examining metrics like mean squared error (MSE), mean absolute error (MAE), or confusion matrices, analysts can identify patterns in residuals or misclassifications, such as bias toward certain data subsets or sensitivity to outliers.
+
+Cross-validation complements regression and error analysis by providing a robust method to evaluate model generalization, mitigating risks of overfitting in real-world scenarios. Techniques like k-fold cross-validation divide the data into training and validation sets multiple times, averaging performance metrics to estimate how the model will perform on unseen data.
+
+
+6.b.
+I will choose the model with cross validation which  complements regression and error analysis by providing a robust method to evaluate model generalization, mitigating risks of overfitting.

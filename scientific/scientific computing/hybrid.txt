@@ -1,0 +1,41 @@
+# X	Y_1	Y_2	Y_3	Y_4
+1	Root process has total sum: 334427250916946
+0.261969	Root process has total sum: 1336862896188374
+0.527127	Root process has total sum: 5425375686086241
+1.023694	Root process has total sum: 21802652834263092
+2.220536
+2	Root process has total sum: 342298343557794
+0.117951	Root process has total sum: 1342118881993233
+0.273158	Root process has total sum: 5372960375706878
+0.534794	Root process has total sum: 21912189005285029
+1.087625
+3	Root process has total sum: 120501326884659
+0.687620	Root process has total sum: 433781420052543
+1.103526	Root process has total sum: 2053332198913237
+2.006169	Root process has total sum: 6496782080835172
+3.574289
+4	Root process has total sum: 127083603998595
+0.573020	Root process has total sum: 459675193009680
+1.486052	Root process has total sum: 1610722005577429
+1.623707	Root process has total sum: 5902055306947349
+3.186820
+5	Root process has total sum: 160989070240737
+0.386207	Root process has total sum: 675931152166650
+0.704958	Root process has total sum: 1070655578859793
+1.256578	Root process has total sum: 6265260805163630
+2.480880
+6	Root process has total sum: 182822413954442
+0.433507	Root process has total sum: 760956740680659
+0.749939	Root process has total sum: 1894361030388628
+1.292001	Root process has total sum: 7297823563226548
+2.293409
+7	Root process has total sum: 191382842167687
+0.388102	Root process has total sum: 477714449130439
+0.613922	Root process has total sum: 2410471283624333
+1.198106	Root process has total sum: 8142748005053712
+1.658690
+8	Root process has total sum: 203920477452771
+0.528427	Root process has total sum: 442651180496354
+0.593520	Root process has total sum: 1972798212682628
+1.001542	Root process has total sum: 9286249908365337
+1.861288

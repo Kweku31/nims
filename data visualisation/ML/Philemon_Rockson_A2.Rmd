@@ -1,0 +1,455 @@
+---
+title: "Philemon Rockson Notebook"
+output: html_notebook
+---
+
+
+
+```{r}
+rm(list=ls())
+
+#Importing libraries
+library(MASS)  #Loading Functions for linear and nonlinear modeling (e.g., lda() and qda() for discriminant analysis, glm() for generalized linear models).
+library(lars)  #LARS, LASSO, Forward stagewise regression
+library(boot)
+library(glmnet)
+library(class)
+library(e1071)
+library(ROCR)
+library(randomForest)
+```
+
+Read the dataset for red wine and white wine and combine them to one dataset and add a column specifying the type of wine(red or white)
+```{r}
+#read csv for red and white wine dataset
+red_df <- read.csv("/home/kweku/philemon/data visualisation/ML/winequality-red.csv", sep = ";") 
+white_df <- read.csv("/home/kweku/philemon/data visualisation/ML/winequality-white.csv", sep = ";") 
+
+# Add new column with "red" repeated
+red_df$type <- "red"
+white_df$type <- "white"
+
+# Move "color" to the first position
+red_df <- red_df[, c("type", setdiff(names(red_df), "type"))]
+white_df <- white_df[, c("type", setdiff(names(white_df), "type"))]
+
+# View result
+print(red_df)
+print(white_df)
+
+# Merge row-wise
+wine_df <- rbind(red_df, white_df)
+
+# View result
+print(wine_df)
+# View(wine_df)
+
+```
+QUESTION 1: Exploratory Data Analysis
+
+a.Provide descriptive statistics (mean, variance, range) for all predictors.
+
+Read column names and summary statistics
+```{r}
+#read dimension of dataset
+dim(wine_df)
+
+#read column names
+colnames(wine_df)
+
+#summary statistics 
+summary(wine_df)
+```
+```{r}
+#check sum of null values in each column
+colSums(is.na(wine_df))
+```
+There is no null value in the columns of the dataset.
+
+
+b. Produce at least three visualizations (e.g., histograms, boxplots, correlations).
+
+
+3.Plotting heatmap to find the correlation between numerical columns
+```{r}
+# Select numeric columns
+numeric_cols <- wine_df[, sapply(wine_df, is.numeric)]
+
+# Compute correlation matrix
+cor_matrix <- cor(numeric_cols, use = "complete.obs")
+
+#plotting heatmap
+heatmap(cor_matrix, Rowv = NA, Colv = NA, col = colorRampPalette(c("blue", "white", "red"))(256), scale = "none", main = "Correlation Matrix Heatmap")
+
+```
+The heatmap shows the correlation of the numeric columns, showing that total and free sulfur dioxide highly correlated. Wine quality and alcohol are also highly correlated.
+
+
+Histogram chart for the numeric columns in the dataset
+```{r}
+#plotting the histogram of the numeric columns in the dataset
+for (col in names(wine_df)) {
+  if (is.numeric(wine_df[[col]])) {
+    hist(wine_df[[col]], main = paste("Histogram of", col), xlab = col, col = "lightblue", border = "black")
+  }
+}
+```
+
+
+Boxplot of the class of the type column in the dataset
+```{r}
+#plotting boxplot of the classes of the type
+boxplot(quality ~ type, data = wine_df, 
+        main = "Boxplot by Type", 
+        xlab = "Type", ylab = "Value", 
+        col = c("red", "blue"), 
+        border = "black")
+```
+The boxplot shows that the two classes of the type has the same or similar median, with the white having a few outliers.
+
+c. Interpret what you observe about potential relationships between predictors and wine quality.
+
+Checking the correlation of the predictors against the wine quality
+
+```{r}
+cor_values <- cor_matrix["quality", ]
+cor_values <- cor_values[names(cor_values) != "quality"]
+cor_df <- data.frame(
+  Var1 = "quality",
+  Var2 = names(cor_values),
+  Correlation = cor_values
+)
+
+high_cor <- cor_df[abs(cor_df$Correlation) >= 0.0, ]
+print(high_cor)
+```
+From the above result, we can say that fixed.acidity, volatile.acidity, residual.sugar, chlorides, total.sulfur.dioxide, density are negatively correlated and the other columns have a positive correlation with alcohol having the strongest positive correlation.
+
+
+
+Question 2. Regression Models
+Fit at least two predictive models for wine quality (numeric score):
+
+a. Linear Regression.
+
+Fitting linear regression using multiple linear regression
+```{r}
+#fitting the model for linear regression
+lm.fit=lm(quality~fixed.acidity + volatile.acidity + citric.acid + residual.sugar + chlorides + free.sulfur.dioxide + total.sulfur.dioxide + density + pH + sulphates + alcohol)
+lm.fit
+#coefficient for the model
+coef(lm.fit)
+#summary for the model
+summary(lm.fit)
+#rounding the coefficient to 5 decimal places for better readability 
+round(summary(lm.fit)$coefficients,5)
+#confidence interval for model
+confint(lm.fit)
+
+#Root mean squared, R-squared and Adjusted R-squared for the model
+predictions <- predict(lm.fit)
+
+lm_rmse <- sqrt(mean((quality - predictions)^2))
+print(paste("RMSE:", round(lm_rmse, 2)))
+r_squared_mlr <- summary(lm.fit)$r.squared
+adj_rsquared_mlr <- summary(lm.fit)$adj.r.squared
+```
+
+
+(b) One machine learning model of your choice (e.g., Lasso regression, k-Nearest Neighbors, Support Vector
+Machines).
+
+Using Lasso regression
+```{r}
+#defining x and y
+x = as.matrix(wine_df[,c(2:12)])
+y = wine_df[,13]
+dat = wine_df[,c(2:13)]
+
+#defining test and train data
+set.seed(1)
+train=sample(1:nrow(x), nrow(x)/3)
+test=(-train)
+y.test=y[test]
+
+# Fit Lasso model with cross-validation
+set.seed(1)
+lasso_cv.mod=cv.glmnet(x[train,],y[train],alpha=1)
+
+# Summary of cross-validation results
+print(lasso_cv.mod)
+
+#Best lambda
+bestlam=lasso_cv.mod$lambda.min
+
+#lasso prediction model
+lasso_cv.pred=predict(lasso_cv.mod,s=bestlam,newx=x[test,])
+
+#mean squared for prediction
+mean((lasso_cv.pred-y.test)^2)
+
+#root mean squared for prediction
+lasso_rmse <- sqrt(mean((lasso_cv.pred-y.test)^2))
+print(paste("RMSE:", round(lasso_rmse, 2)))
+
+
+# R-squared (approximate)
+lasso_rsquared <- cor(y.test, lasso_cv.pred)^2
+print(paste("R-squared:", round(lasso_rsquared, 2)))
+```
+
+
+(c) Compare model performance using suitable metrics (e.g., RMSE, R-squared).
+
+```{r}
+r_compare <- data.frame(par = c("R-squared","RMSE"),linear_regression = c(r_squared_mlr,lm_rmse), lasso_regression = c(lasso_rsquared,lasso_rmse))
+
+r_compare
+```
+R-squared:
+
+The linear regression model has an R-squared of 0.2921, meaning approximately 29.21% of the variance in the dependent variable is explained by the model, indicating a moderate fit with considerable unexplained variability.
+The Lasso regression model has a slightly lower R-squared of 0.2855, suggesting it explains about 28.55% of the variance. The small decrease from linear regression reflects the regularization effect of Lasso, which may have excluded some predictors, introducing a slight bias but potentially improving generalization by reducing overfitting.
+The similarity in R-squared values indicates that both models capture a comparable amount of the data's variability, though Lasso's regularization slightly reduces its explanatory power.
+
+RMSE:
+
+The linear regression model has an RMSE of 0.7347, indicating an average prediction error of approximately 0.7347 units, which provides a measure of the model's accuracy in the original scale of the dependent variable.
+The Lasso regression model has a slightly higher RMSE of 0.7399, suggesting an average prediction error of about 0.7399 units. The marginal increase suggests that Lasso's regularization and feature selection may introduce a small amount of bias, but the difference is minimal, indicating comparable predictive performance.
+The close RMSE values imply that both models have similar accuracy, with Lasso potentially offering better generalization on unseen data due to its variable selection, despite the slight error increase.
+
+
+Question 3: Classification Approach
+Recode wine quality into binary classes: ”Good” (quality ≥ 7) vs ”Not Good” (quality ≤ 6).
+(a) Fit a Logistic Regression model.
+
+Recoding wine quality
+```{r}
+wine_df$quality_class <- ifelse(wine_df$quality >= 7, "Good", "Not Good")
+
+print(wine_df)
+```
+Fitting the logistic model
+
+```{r}
+#defining test and train data
+set.seed(123)
+train=sample(1:nrow(x), nrow(x)*0.7)
+test=(-train)
+train_data <- wine_df[train, ]
+test_data <- wine_df[-train, ]
+y.test=y[test]
+
+#convert quality_class to be a factor
+y_quality = as.factor(train_data$quality_class)
+
+glm.fit=glm(y_quality~fixed.acidity + volatile.acidity + citric.acid + residual.sugar + chlorides + free.sulfur.dioxide + total.sulfur.dioxide + density + pH + sulphates + alcohol,data=train_data,family=binomial)
+
+summary(glm.fit)
+coef(glm.fit)
+summary(glm.fit)$coef
+
+```
+
+Predictions using the test data
+```{r}
+#dim(test_data)
+glm.probs=predict(glm.fit,test_data,type="response")
+glm.pred=rep("Good",1950)
+glm.pred[glm.probs>.5]="Not Good"
+
+#confusion matrix
+confusion_matrix <- table(Predicted = glm.pred, Actual = test_data$quality_class)
+print(confusion_matrix)
+
+#accuracy
+accuracy_lr <- mean(glm.pred == test_data$quality_class)
+print(paste("Test Accuracy:", round(accuracy_lr, 2)))
+
+#precision and recall
+TP <- confusion_matrix["Good", "Good"]
+FP <- confusion_matrix["Good", "Not Good"]
+FN <- confusion_matrix["Not Good", "Good"]
+precision_lr <- TP / (TP + FP)
+recall_lr <- TP / (TP + FN)
+print(paste("Precision:", round(precision_lr, 2)))
+print(paste("Recall:", round(recall_lr, 2)))
+```
+
+
+
+(b) Fit a tree-based model (Random Forest or XGBoost).
+
+Fitting Random Forest
+```{r}
+set.seed(123)
+#convert quality_class to be a factor
+y_quality = as.factor(train_data$quality_class)
+
+#fit random forest
+rf.mod <- randomForest(y_quality~fixed.acidity + volatile.acidity + citric.acid + residual.sugar + chlorides + free.sulfur.dioxide + total.sulfur.dioxide + density + pH + sulphates + alcohol, data = train_data, importance = TRUE)
+
+#print(rf.mod)
+#predicting using the test data
+rf_pred <- predict(rf.mod, newdata = test_data)
+
+#confusion matrix
+confusion_matrix_rf <- table(Predicted = rf_pred, Actual = test_data$quality_class)
+print(confusion_matrix_rf)
+
+#accuracy
+accuracy_rf <- mean(rf_pred == test_data$quality_class)
+print(paste("Test Accuracy:",round(accuracy_rf , 2)))
+
+TP <- confusion_matrix_rf["Good", "Good"]
+FP <- confusion_matrix_rf["Good", "Not Good"]
+FN <- confusion_matrix_rf["Not Good", "Good"]
+precision_rf <- TP / (TP + FP)
+recall_rf <- TP / (TP + FN)
+print(paste("Precision:", round(precision_rf, 2)))
+print(paste("Recall:", round(recall_rf, 2)))
+```
+
+
+
+(c) Compare classification results (Accuracy, Precision, Recall, ROC curve).
+
+
+```{r}
+#preparing the roc curve
+par(mfrow=c(1,2))
+
+pred <- prediction(glm.probs, test_data$quality_class)
+perf <- performance(pred, "tpr", "fpr")
+
+
+test_probabilities <- predict(rf.mod, newdata = test_data, type = "prob")[, "Good"]  # Use "Good" probability
+pred_rf <- prediction(test_probabilities, test_data$quality_class == "Good")
+auc_perf <- performance(pred_rf, measure = "auc")
+roc_pref <- performance(pred_rf, "tpr", "fpr")
+auc_rf  <- auc_perf@y.values[[1]]
+#print(paste("AUC:", round(auc_perf@y.values[[1]], 2)))
+
+auc_perf <- performance(pred, measure = "auc")
+auc_value <- auc_perf@y.values[[1]]
+#print(paste("AUC:", round(auc_value, 2)))
+
+classification_compare <- data.frame(par = c("Accuracy","Precision","Recall","AUC"),logistic_regression = c(accuracy_lr,precision_lr,recall_lr,auc_value), random_forest = c(accuracy_rf,precision_rf,recall_rf,auc_rf))
+
+classification_compare
+
+plot(perf, main = "ROC curve for logistic regression")
+plot(roc_pref, main = "ROC curve for random forest")
+```
+Accuracy:
+
+The logistic regression model achieves an accuracy of 0.8164 (81.64%), meaning it correctly classifies approximately 81.6% of the wines in the test set, indicating a reasonable overall performance.
+The Random Forest model has a higher accuracy of 0.8928 (89.28%), suggesting it correctly classifies about 89.3% of the wines, demonstrating superior overall predictive power compared to logistic regression.
+The difference (about 7.6%) highlights Random Forest's better generalization, likely due to its ensemble nature and ability to capture complex patterns.
+
+
+Precision:
+
+Logistic regression has a precision of 0.5596 (55.96%), indicating that only about 56% of the wines predicted as "Good" are actually "Good," suggesting a moderate rate of false positives.
+Random Forest shows a higher precision of 0.7867 (78.67%), meaning about 79% of predicted "Good" wines are correct, reflecting a lower false positive rate and more reliable positive predictions.
+The improvement (about 23%) suggests Random Forest is better at avoiding incorrect "Good" classifications.
+
+
+Recall:
+
+Logistic regression has a recall of 0.2835 (28.35%), meaning it identifies only about 28% of the actual "Good" wines, indicating a high rate of false negatives and poor sensitivity to the "Good" class.
+Random Forest significantly improves recall to 0.6194 (61.94%), capturing about 62% of actual "Good" wines, showing better sensitivity and fewer missed "Good" instances.
+The increase (about 34%) indicates Random Forest is more effective at detecting the positive class.
+
+
+AUC (Area Under the Curve):
+
+Logistic regression has an AUC of 0.7994 (79.94%), suggesting a good ability to discriminate between "Good" and "Not Good" wines, with a 80% chance of ranking a random "Good" wine higher than a "Not Good" one.
+Random Forest achieves a higher AUC of 0.9187 (91.87%), indicating excellent discriminative power, with a 92% chance of correct ranking, reflecting a stronger overall classification performance.
+The difference (about 12%) underscores Random Forest's superior ability to distinguish classes across thresholds.
+
+
+
+Question 4. High-Dimensional Inference and Feature Selection
+(a) Apply Lasso regression or another feature selection method.
+
+```{r}
+#defining x and y
+x = as.matrix(wine_df[,c(2:12)])
+y = wine_df[,13]
+dat = wine_df[,c(2:13)]
+
+grid=10^seq(5,-2,length=100)
+#defining test and train data
+set.seed(1)
+train=sample(1:nrow(x), nrow(x)/3)
+test=(-train)
+y.test=y[test]
+
+# Fit Lasso model with cross-validation
+set.seed(1)
+lasso_cv.mod=cv.glmnet(x[train,],y[train],alpha=1)
+
+# Summary of cross-validation results
+print(lasso_cv.mod)
+
+#Best lambda
+bestlam=lasso_cv.mod$lambda.min
+
+#lasso prediction model
+lasso_cv.pred=predict(lasso_cv.mod,s=bestlam,newx=x[test,])
+
+
+out=glmnet(x,y,alpha=1,lambda=grid)
+lasso.coef=predict(out,type="coefficients",s=bestlam)[1:11,]
+lasso.coef
+lasso.coef[lasso.coef!=0]
+
+#mean squared for prediction
+mean((lasso_cv.pred-y.test)^2)
+
+#root mean squared for prediction
+lasso_rmse <- sqrt(mean((lasso_cv.pred-y.test)^2))
+print(paste("RMSE:", round(lasso_rmse, 2)))
+
+
+# R-squared (approximate)
+lasso_rsquared <- cor(y.test, lasso_cv.pred)^2
+print(paste("R-squared:", round(lasso_rsquared, 2)))
+```
+
+
+(b) Report which predictors are most consistently important.
+
+```{r}
+lasso.coef[lasso.coef!=0]
+```
+
+The predictors most consistently important are volatile.acidity, residual.sugar, chlorides, free.sulfur.dioxide, total.sulfur.dioxide, pH, and sulphates. 
+
+(c) Discuss if feature selection improves model performance.
+
+The Lasso regression model has a slightly lower R-squared of 0.2855, suggesting it explains about 28.55% of the variance. The small decrease from linear regression reflects the regularization effect of Lasso, which may have excluded some predictors, introducing a slight bias but potentially improving generalization by reducing overfitting.
+
+The Lasso regression model has a slightly higher RMSE of 0.7399, suggesting an average prediction error of about 0.7399 units. The marginal increase suggests that Lasso's regularization and feature selection may introduce a small amount of bias, but the difference is minimal, indicating comparable predictive performance.
+
+With this the feature selection improves the model performance.
+
+
+Question 5: 
+
+ Which modeling approach worked best and why?
+ 
+ For the regression model, the lasso regression with cross validation worked best, which produced a low R-squared, indicating that only a modest portion of the variance in the dependent variable was explained, possibly due to the regularization shrinking some coefficients to zero. It also resulted in a slightly higher RMSE compared to linear regression, suggesting a small trade-off in prediction accuracy for the benefit of feature selection and reduced overfitting. This performance reflects lasso's strength in handling multicollinearity and selecting relevant predictors, as seen in the context of the wine quality dataset. Overall, the model's effectiveness highlights the importance of balancing interpretability and predictive power when dealing with complex datasets.
+ 
+For the classification model, the random forest worked best, which produced a better accuracy of 89.28% compared to logistic regression's 81.64%, demonstrating its superior ability to correctly classify wines as "Good" or "Not Good" across the test set. It also achieved a higher precision of 78.67% and recall of 61.94%, indicating fewer false positives and a better detection rate of "Good" wines, respectively, as observed at 07:40 PM GMT on Monday, September 01, 2025. Additionally, the random forest's AUC of 91.87% outperformed logistic regression's 79.94%, reflecting enhanced discriminative power across various thresholds. This overall performance underscores the random forest's effectiveness in capturing complex patterns in the wine quality dataset, making it the preferred choice for this classification task. 
+ 
+ Which predictors are most consistently important?
+ 
+The most consistently important predictors are volatile.acidity, residual.sugar, chlorides, free.sulfur.dioxide, total.sulfur.dioxide, pH, and sulphates.
+ 
+ Practical insights: If you were a wine producer, what advice would you give?
+
+As a wine producer, integrate the Lasso regression model into your quality control system, emphasizing optimization of volatile.acidity, residual.sugar, chlorides, free.sulfur.dioxide, total.sulfur.dioxide, pH, and sulphates based on its selected predictors. Enhance data collection to address the low R-squared and improve predictive accuracy, use the model’s RMSE-guided predictions as a starting point for expert validation, and leverage its efficiency to streamline production. Continuously monitor and update the model to maintain its relevance, ensuring a data-driven approach to sustaining wine quality and operational effectiveness.
+
+As a wine producer, integrate the Random Forest model into your quality assurance workflow, emphasizing optimization of volatile.acidity, residual.sugar, chlorides, free.sulfur.dioxide, total.sulfur.dioxide, pH, and sulphates based on its insights. Enhance data collection to boost recall, validate predictions with human expertise to maintain precision, and use the model’s high accuracy and AUC to strategically allocate resources. Regularly update the model with new production data to adapt to changing conditions, ensuring consistent quality and market competitiveness.
