@@ -1,0 +1,152 @@
+% !TeX program = pdflatex
+\documentclass[aspectratio=169,11pt]{beamer}
+\usepackage{amsmath,amssymb,booktabs}
+\input{results}
+\definecolor{forest}{HTML}{174638}
+\definecolor{gold}{HTML}{D6A948}
+\setbeamercolor{structure}{fg=forest}
+\setbeamercolor{frametitle}{fg=forest}
+\setbeamercolor{normal text}{fg=black!88,bg=white}
+\setbeamercolor{block title}{fg=forest,bg=forest!12}
+\setbeamercolor{block body}{fg=black!88,bg=forest!4}
+\setbeamerfont{frametitle}{size=\Large,series=\bfseries}
+\setbeamertemplate{navigation symbols}{}
+\setbeamersize{text margin left=8mm,text margin right=8mm}
+\setbeamertemplate{footline}{\hspace{8mm}\color{forest}\scriptsize Philemon Rockson\quad$\cdot$\quad KNUST Department of Mathematics\hfill\insertframenumber/8\hspace{8mm}\vspace{2.3mm}}
+\newcommand{\phase}[1]{{\small\color{forest}#1}\par\medskip}
+\newcommand{\takeaway}[1]{\par\medskip{\color{gold}\rule{8mm}{1.6pt}}\enspace\textbf{#1}\par}
+\title{Efficient Dimensionality Reduction and Compression Strategies for Large-Scale Clinical Data Transfer Between Hospitals and University Data Centers.}
+\author{Philemon Rockson}
+\institute{Department of Mathematics, Kwame Nkrumah University of Science and Technology}
+\date{}
+\begin{document}
+
+\begin{frame}
+\phase{MPhil thesis defence \enspace/\enspace Scientific Computing and Industrial Modeling}
+{\LARGE\bfseries\color{forest}\inserttitle\par}
+\medskip
+{\large Philemon Rockson}\par
+National Institute for Mathematical Sciences, Ghana\par
+Department of Mathematics, KNUST, Kumasi
+\takeaway{What should the sender transmit when time and fidelity both matter?}
+\end{frame}
+
+\begin{frame}{The unit of observation changes the question}
+\phase{Phase 1 \enspace/\enspace Profile the source}
+Training Set A, PhysioNet 2019 sepsis challenge: 20,336 patients, \studyRows{} hourly records, 43 columns. Overall, \studyMissing\% of cells were missing.
+\begin{block}{For variable $j$, let $M_{ij}=1$ when hourly row $i$ has a recorded value.}
+\[
+ m_j=1-\frac{1}{n}\sum_{i=1}^{n}M_{ij},\qquad
+ c_j=\frac{1}{|U|}\sum_{u\in U}\mathbf{1}\!\left\{\sum_{i:\,u(i)=u} M_{ij}>0\right\}.
+\]
+\end{block}
+$m_j$ measures missing hours. $c_j$ measures the share of patients with at least one observation. $U$ is the patient set.
+\takeaway{Lactate was missing in 96.57\% of hours. Dropping the column would discard every lactate measurement.}
+\end{frame}
+
+\begin{frame}{Two ways to save bytes have different consequences}
+\phase{Phases 2 and 3 \enspace/\enspace Benchmark the whole table, then select columns}
+\begin{columns}[T,onlytextwidth]
+\column{.46\textwidth}
+\begin{block}{Change the format}
+\centering\begin{tabular}{lr}\toprule
+Direct file & Size (MB)\\\midrule
+Source CSV & \studyCsvMB\\
+Parquet & \studyParquetMB\\\bottomrule
+\end{tabular}\par\medskip
+Same source information in a columnar representation. Sizes use decimal MB.
+\end{block}
+\column{.50\textwidth}
+\begin{block}{Change the feature set}
+\centering\begin{tabular}{lr}\toprule
+80\% missingness cutoff & Kept of 40\\\midrule
+Missingness only & \studyKept\\
+With protection rules & \studyProtected\\\bottomrule
+\end{tabular}\par\medskip
+Protection included patient coverage and named variables such as Lactate.
+\end{block}
+\end{columns}
+\takeaway{A lossless file format can preserve a selected table exactly even after selection has removed source measurements.}
+\end{frame}
+
+\begin{frame}{What does a $k$-dimensional code represent?}
+\phase{Phase 4 \enspace/\enspace Fit PCA and an autoencoder at feasible widths $k\in\{2,4,8,16\}$}
+Let $Z$ be the centred and scaled modelling matrix after imputation.
+\begin{block}{Principal component analysis}
+\[
+ S=\frac{Z^{\mathsf T}Z}{n-1},\quad Sv_j=\lambda_jv_j,\quad
+ H=ZV_k,\quad \widehat Z=HV_k^{\mathsf T}.
+\]
+$V_k$ holds the $k$ leading orthonormal eigenvectors.
+\end{block}
+\begin{block}{Autoencoder}
+\[
+ h_i=f_\theta(z_i),\quad \hat z_i=g_\phi(h_i),\quad
+ \min_{\theta,\phi}\;\frac{1}{np}\sum_{i=1}^n\lVert z_i-\hat z_i\rVert_2^2 .
+\]
+The encoder and decoder learn nonlinear maps through a bottleneck of width $k$.
+\end{block}
+\end{frame}
+
+\begin{frame}{How much observed variation and local structure survive?}
+\phase{Phase 5 \enspace/\enspace Evaluate reconstructed records in a common feature space}
+\[
+ R^2_{\rm obs}=1-\frac{\sum_j\sum_{i\in\Omega_j}[(x_{ij}-\hat x_{ij})/s_j]^2}
+ {\sum_j\sum_{i\in\Omega_j}[(x_{ij}-\bar x_j)/s_j]^2},
+ \qquad J_i=\frac{|N_5(i)\cap\widehat N_5(i)|}{5}.
+\]
+$\Omega_j$ contains observed rows for feature $j$, $s_j$ is its fitted scale, and $\bar x_j$ its observed mean. $N_5(i)$ is the set of five nearest records.\par
+\medskip
+\centering\begin{tabular}{lrr}\toprule
+Original feature set, $k=16$ & $R^2_{\rm obs}$ & Mean $J_i$\\\midrule
+PCA & \studyPcaRSq & \studyPcaOverlap\\
+Autoencoder & \studyAeRSq & \studyAeOverlap\\\bottomrule
+\end{tabular}\par\raggedright
+\takeaway{The autoencoder preserved more variation and more neighbours here. Variable-level range checks still matter.}
+\end{frame}
+
+\begin{frame}{When does preparation dominate delivery time?}
+\phase{Phase 6 \enspace/\enspace Package, verify and recover at the KNUST receiver}
+\[
+ T_{\rm delivery}=T_{\rm package}+T_{\rm transmit}+T_{\rm verify}
+                  +T_{\rm unpack}+T_{\rm recover}.
+\]
+Fresh data also incurs initial encoding or file creation as applicable, and a fit cost of $T_{\rm fit}/q$ for $q$ model uses. Here $q=1$.\par
+\medskip
+\centering\begin{tabular}{lrr}\toprule
+Original feature set, $k=2$ & Existing payload (s) & Fresh data (s)\\\midrule
+PCA & \studyPcaExisting & \studyPcaFresh\\
+Autoencoder & \studyAeExisting & \studyAeFresh\\\bottomrule
+\end{tabular}\par\raggedright
+\takeaway{An already encoded payload and a newly arrived table present different timing decisions.}
+\end{frame}
+
+\begin{frame}{What did the paired transport tests establish?}
+\phase{Phase 6 follow-up \enspace/\enspace SCP and rsync on the same workstation--KNUST route}
+\begin{itemize}
+\item \textbf{Direct files.} \studyDirect{} verified transfers over five baseline files. Parquet led the three-format TOPSIS ranking for each transport.
+\item \textbf{Prepared archives.} \studyArchives{} verified deliveries. The largest archive (AE-16, 42.91 MB) was interrupted in \studyPairs{} matched pairs. SCP restarted the copy and rsync could reuse the partial file.
+\end{itemize}
+\begin{block}{Within-block difference in time to verified publication}
+\[
+ d_b=t_{\mathrm{rsync},b}-t_{\mathrm{SCP},b},\qquad
+ \operatorname{median}_{b}(d_b)=\studyDelta\ \mathrm{s}.
+\]
+\end{block}
+The negative sign favours rsync under this interruption. Timing stopped before unpacking and reconstruction.
+\end{frame}
+
+\begin{frame}{Which configuration would I recommend?}
+\phase{Final decision \enspace/\enspace \studyPackages{} recovered packages and \studyTransfers{} verified SCP trials}
+For eligible candidates in one fidelity group and delivery scenario, vector-normalise each criterion and apply weights. Let $v^+$ and $v^-$ denote the best and worst weighted criterion values.
+\[
+ D_i^{\pm}=\lVert v_i-v^{\pm}\rVert_2,\qquad
+ C_i=\frac{D_i^-}{D_i^++D_i^-}.
+\]
+\begin{itemize}
+\item Minimise bytes, time and new range flags. Maximise $R^2$, neighbour overlap, predictor retention and observed-measurement retention.
+\item With equal weights and approximation allowed, Parquet ranked first for fresh data in \studyParquetWins{} of \studyGroups{} feature sets. Existing payloads produced three different winning formats.
+\end{itemize}
+\takeaway{For fresh tables on this route, start with Parquet. For interrupted large archives, test rsync with partial-file recovery.}
+\end{frame}
+\end{document}

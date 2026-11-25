@@ -1,0 +1,92 @@
+test_no_ssh_preflight_without_host (test_core_decision.PipelineTests.test_no_ssh_preflight_without_host) ... ok
+test_resume_and_checksum_invalidation (test_core_decision.PipelineTests.test_resume_and_checksum_invalidation) ... START phase1: executing
+COMPLETE phase1: 0.000s
+SKIP phase1: verified completed checkpoint
+START phase1: executing
+COMPLETE phase1: 0.000s
+START phase1: executing
+COMPLETE phase1: 0.000s
+ok
+test_scenarios_exclude_lossy_from_exact (test_core_decision.PipelineTests.test_scenarios_exclude_lossy_from_exact) ... ok
+test_topsis_rank_and_constant_columns (test_core_decision.PipelineTests.test_topsis_rank_and_constant_columns) ... ok
+test_config_output_used_before_validation_failure (test_early_output_initialization.EarlyOutputInitializationTests.test_config_output_used_before_validation_failure) ... ok
+test_created_before_phase1_and_preserved_after_failure (test_early_output_initialization.EarlyOutputInitializationTests.test_created_before_phase1_and_preserved_after_failure) ... ok
+test_success_publishes_results_and_status (test_early_output_initialization.EarlyOutputInitializationTests.test_success_publishes_results_and_status) ... ok
+test_cli_overrides_and_normalizes_json (test_percentage_configuration.PercentageConfigurationTests.test_cli_overrides_and_normalizes_json) ... ok
+test_decision_optional_cutoffs_and_custom_profile (test_percentage_configuration.PercentageConfigurationTests.test_decision_optional_cutoffs_and_custom_profile) ... ok
+test_percentage_equivalence (test_percentage_configuration.PercentageConfigurationTests.test_percentage_equivalence) ... ok
+test_phase3_passes_thresholds_to_engine (test_percentage_configuration.PercentageConfigurationTests.test_phase3_passes_thresholds_to_engine) ... ok
+test_reject_bad_percentage (test_percentage_configuration.PercentageConfigurationTests.test_reject_bad_percentage) ... ok
+test_console_unchanged_log_formatted_and_separate (test_separate_console_and_reports.ConsoleAndReportTests.test_console_unchanged_log_formatted_and_separate) ... ok
+test_copy_failure_does_not_publish_partial_snapshot (test_separate_console_and_reports.ConsoleAndReportTests.test_copy_failure_does_not_publish_partial_snapshot) ... ok
+test_publish_failure_does_not_create_incomplete_report_folder (test_separate_console_and_reports.ConsoleAndReportTests.test_publish_failure_does_not_create_incomplete_report_folder) ... ok
+test_publish_timestamped_reports_preserves_previous_runs_even_at_same_time (test_separate_console_and_reports.ConsoleAndReportTests.test_publish_timestamped_reports_preserves_previous_runs_even_at_same_time) ... ok
+test_all_phases_append_and_resume_same_log (test_unified_logging.UnifiedLoggingTests.test_all_phases_append_and_resume_same_log) ... START phase1: executing
+hello from phase one
+COMPLETE phase1: 0.000s
+SKIP phase1: verified completed checkpoint
+ok
+test_failed_child_and_traceback_still_logged (test_unified_logging.UnifiedLoggingTests.test_failed_child_and_traceback_still_logged) ... RUN: /run/user/1000/thesis-v7-validation/bin/python -c 'print('"'"'pre-failure'"'"'); raise RuntimeError('"'"'sample failure'"'"')'
+pre-failure
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+RuntimeError: sample failure
+ok
+test_live_child_output_in_unified_and_phase_log (test_unified_logging.UnifiedLoggingTests.test_live_child_output_in_unified_and_phase_log) ... RUN: /run/user/1000/thesis-v7-validation/bin/python -c 'print('"'"'hello from child'"'"'); print('"'"'next line'"'"')'
+hello from child
+next line
+ok
+test_duplicate_custom_is_not_new_sensitivity_profile (test_validation_v6.ValidationV6Tests.test_duplicate_custom_is_not_new_sensitivity_profile) ... ok
+test_simulation_not_empirical (test_validation_v6.ValidationV6Tests.test_simulation_not_empirical) ... ok
+test_ssh_requires_remote_hash_and_trials (test_validation_v6.ValidationV6Tests.test_ssh_requires_remote_hash_and_trials) ... ok
+test_strict_ssh_main_creates_log_and_failed_status_before_phase1 (test_validation_v6.ValidationV6Tests.test_strict_ssh_main_creates_log_and_failed_status_before_phase1) ... LOG FILE: /tmp/tmpvucx95at/thesis_runs/pipeline.log
+ok
+test_strict_ssh_phase2_fails_not_simulates (test_validation_v6.ValidationV6Tests.test_strict_ssh_phase2_fails_not_simulates) ... ok
+test_violation_gates_and_sensitivity_report (test_validation_v6.ValidationV6Tests.test_violation_gates_and_sensitivity_report) ... ok
+test_adapter_artifacts_include_selected_payloads_and_sidecars (test_validation_v7.ValidationV7Tests.test_adapter_artifacts_include_selected_payloads_and_sidecars) ... ok
+test_all_nonfinite_and_out_of_range_criteria_excluded (test_validation_v7.ValidationV7Tests.test_all_nonfinite_and_out_of_range_criteria_excluded) ... ok
+test_checkpoint_invalidates_dependents_after_same_path_rebuild (test_validation_v7.ValidationV7Tests.test_checkpoint_invalidates_dependents_after_same_path_rebuild) ... START phase4: executing
+COMPLETE phase4: 0.001s
+START phase5: executing
+COMPLETE phase5: 0.000s
+START phase6: executing
+COMPLETE phase6: 0.000s
+SKIP phase4: verified completed checkpoint
+SKIP phase5: verified completed checkpoint
+SKIP phase6: verified completed checkpoint
+START phase4: executing
+COMPLETE phase4: 0.000s
+START phase5: executing
+COMPLETE phase5: 0.000s
+START phase6: executing
+COMPLETE phase6: 0.000s
+START phase4: executing
+COMPLETE phase4: 0.000s
+START phase5: executing
+COMPLETE phase5: 0.000s
+START phase6: executing
+COMPLETE phase6: 0.000s
+ok
+test_code_fingerprint_includes_runner_and_path_names (test_validation_v7.ValidationV7Tests.test_code_fingerprint_includes_runner_and_path_names) ... ok
+test_complete_report_generation_with_no_packages (test_validation_v7.ValidationV7Tests.test_complete_report_generation_with_no_packages) ... ok
+test_delivery_costs_and_separate_ranks (test_validation_v7.ValidationV7Tests.test_delivery_costs_and_separate_ranks) ... ok
+test_empty_rankings_have_readable_schema (test_validation_v7.ValidationV7Tests.test_empty_rankings_have_readable_schema) ... ok
+test_negative_r2_and_large_finite_values_are_valid (test_validation_v7.ValidationV7Tests.test_negative_r2_and_large_finite_values_are_valid) ... ok
+test_orchestrator_tracks_upstream_content_for_every_dependent (test_validation_v7.ValidationV7Tests.test_orchestrator_tracks_upstream_content_for_every_dependent) ... ok
+test_phase2_expansion_allowed_but_invalid_times_rejected (test_validation_v7.ValidationV7Tests.test_phase2_expansion_allowed_but_invalid_times_rejected) ... ok
+test_preflight_respects_disabled_fallback_before_building (test_validation_v7.ValidationV7Tests.test_preflight_respects_disabled_fallback_before_building) ... ok
+test_ssh_trial_count_and_separate_network_pools (test_validation_v7.ValidationV7Tests.test_ssh_trial_count_and_separate_network_pools) ... ok
+test_unverified_ssh_never_ranked_or_recommended (test_validation_v7.ValidationV7Tests.test_unverified_ssh_never_ranked_or_recommended) ... ok
+
+----------------------------------------------------------------------
+Ran 38 tests in 5.665s
+
+OK
+
+DONE: /tmp/tmpz41n88ug
+  FINAL_REPORT.md
+  01_integrated_evidence.csv
+  02_decision_rankings.csv
+  03_phase_overview.csv
+  04_network_trials.csv
+  run_manifest.json

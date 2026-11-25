@@ -1,0 +1,74 @@
+{
+  "dataset": "REPLACE_WITH_ACTUAL_DATASET.csv",
+  "output_dir": "thesis_runs",
+  "feature_sets": [
+    "FS_95_clinical_review"
+  ],
+  "k": [
+    2,
+    4,
+    8
+  ],
+  "ae_max_iter": 500,
+  "distance_samples": 200,
+  "neighbor_k": [
+    5,
+    10
+  ],
+  "missingness_thresholds": [
+    80,
+    90,
+    95
+  ],
+  "patient_coverage_min": 75,
+  "clinically_protected": [
+    "Lactate"
+  ],
+  "compare_npz_codecs": false,
+  "model_reuse_count": 1,
+  "delivery_scenarios": [
+    "fresh_data",
+    "existing_payload"
+  ],
+  "transfer_mode": "auto",
+  "remote": null,
+  "remote_dir": "/tmp/thesis_transfer/phase6",
+  "transfer_trials": 10,
+  "phase6_repeat_threshold_seconds": 10.0,
+  "phase2_transfer_trials": 10,
+  "phase2_repeat_threshold_seconds": 10.0,
+  "packaging_runs": 3,
+  "bandwidth_mbps": 100,
+  "fallback_simulated": true,
+  "strict_dependencies": true,
+  "continue_independent_errors": true,
+  "correlation_threshold": 95,
+  "phase1_correlation_threshold": null,
+  "correlation_action": "flag",
+  "min_correlation_observations": 200,
+  "min_correlation_patients": 30,
+  "minimum_feature_retention_pct": null,
+  "minimum_measurement_retention_pct": null,
+  "maximum_new_violation_pct": null,
+  "violation_sensitivity": [
+    "0%",
+    "0.1%",
+    "0.5%",
+    "1%",
+    "5%"
+  ],
+  "topsis_weights": null,
+  "ssh_max_attempts": 3,
+  "ssh_retry_delay": 2.0,
+  "ssh_connect_timeout": 15,
+  "ssh_command_timeout": 60,
+  "ssh_transfer_timeout": 300,
+  "ssh_keepalive_interval": 15,
+  "ssh_keepalive_count": 3,
+  "ae_tol": 0.0001,
+  "ae_patience": 20,
+  "ae_backend": "cpu",
+  "ae_batch_size": 256,
+  "ae_cpu_threads": 0,
+  "ae_progress_interval": 10
+}

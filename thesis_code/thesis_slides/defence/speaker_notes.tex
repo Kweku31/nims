@@ -1,0 +1,55 @@
+% !TeX program = pdflatex
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{xcolor}
+\input{results}
+\definecolor{forest}{HTML}{174638}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\newcommand{\cue}[3]{\section*{\color{forest}#1\quad #2}\textbf{Clock #3}\par}
+\begin{document}
+{\Large\bfseries Mathematics Department defence}\par
+Philemon Rockson \hfill Ten-minute speaking script
+\cue{1}{The question}{0:00--0:45}
+Chair, members of the Department, good morning. Suppose a clinical data manager has an hourly observations table ready for a research group in Kumasi. The sender asks how small the file can be. The receiver wants to know which measurements will come back and how long they will take to arrive. Those questions led to this thesis. I study how to describe the source, reduce it, verify its recovery, and recommend a representation for a stated purpose. The patient records come from PhysioNet. The transfer measurements come from a workstation sending files to the KNUST server.
+
+\cue{2}{Count hours or count people?}{0:45--1:55}
+There are 20,336 patients but nearly eight hundred thousand rows, because one person can contribute many hours. Think of the observation mask as a table of ones and zeros. In the first expression I sum one column across hours, divide by the number of rows, and subtract from one. This measures how often a value is absent. In the second expression each patient contributes at most one vote. A patient counts if the variable was recorded even once.
+
+Consider Lactate. Its hourly missingness was 96.57 per cent. Deleting that column would remove even the measurements that someone took the trouble to record. Another example comes from the correlation analysis. Direct and total bilirubin had a correlation of about 0.96, but only 892 jointly observed rows supported it. I flagged such pairs for review. Correlation alone did not tell me which measurement the receiver could afford to lose.
+
+\newpage
+\cue{3}{Establish a lossless benchmark}{1:55--3:10}
+Before training a model I asked what a conventional file format could achieve on the entire table. The source CSV occupied \studyCsvMB{} decimal megabytes. Parquet required \studyParquetMB. That is nearly an 88 per cent saving while retaining the values. The rewritten CSV was actually larger than the source. We timed preparation and copying separately because a fast copy might otherwise conceal an expensive preparation step.
+
+Now look at the right-hand side. Here we change the information available to the receiver. At the 80 per cent hourly missingness cutoff the ordinary selection retained \studyKept{} of 40 predictors. The rule using coverage and explicit protection retained \studyProtected. Identifiers, time and the outcome had separate structural roles. Even a perfectly verified transfer of the smaller table cannot bring back an excluded column. That is why the decision includes retention alongside reconstruction accuracy.
+
+\cue{4}{Two meanings of dimension reduction}{3:10--4:35}
+The two methods see the same scaled modelling matrix. For PCA, read the first line from left to right. Form a covariance matrix, order its eigenvalues, and keep the eigenvectors associated with the largest values. Projecting onto them gives the scores we can send. Multiplying by the transpose maps those scores back into the original feature coordinates. For centred data this is a least-squares rank-$k$ linear reconstruction. That optimality concerns the modelling matrix, which includes imputed entries.
+
+The autoencoder also produces $k$ numbers per row, but learns the mapping to those numbers and the mapping back by minimising reconstruction error. Its hidden layers allow nonlinear relationships. Learning those maps costs time. The experiment used GPU acceleration for the autoencoder and CPU fitting for PCA, so the timings describe these implementations. At the receiving end both methods need their reconstruction parameters. The payload also carries the observation mask. Counting the latent coordinates alone would understate the transmitted size.
+
+\newpage
+\cue{5}{Test the recovered information}{4:35--5:55}
+Here I bring the missing-data mask back into the evaluation. The numerator adds squared reconstruction errors only where values were originally observed. Dividing each error by its variable's scale prevents a large measurement unit from dominating the sum. The denominator asks what the error would be if I always used each variable's observed mean. Perfect reconstruction scores one. A model that does worse than that mean can score below zero.
+
+The second test asks whether the five nearest records before reconstruction stay near afterwards. An overlap of one means the two sets coincide. I used one hourly row per sampled patient to limit the influence of repeated hours. At sixteen dimensions the autoencoder reached \studyAeRSq{} on observed variation and \studyAeOverlap{} on overlap. The corresponding PCA values were \studyPcaRSq{} and \studyPcaOverlap. A newly out-of-range laboratory value can still matter even when both scores are high. Establishing clinical acceptability would require a downstream clinical task.
+
+\cue{6}{Start the delivery clock at the right point}{5:55--7:10}
+Suppose the receiver asks for the data this morning. An existing payload means that the compressed file or latent representation already exists. We still package it for dispatch, transmit it, verify its checksum, unpack it and recover the table. Those are the five terms on the slide. For fresh data we also have to create the payload. If a model is fitted once and reused $q$ times, each delivery can be charged one $q$th of the fit cost. Here we used one use.
+
+Look at two dimensions this time. The autoencoder changes from \studyAeExisting{} seconds when its payload exists to \studyAeFresh{} seconds for fresh data. Fitting alone took about 609 seconds. The corresponding fresh PCA estimate was \studyPcaFresh{} seconds. These are additive estimates based on measured components. Timing the copy alone would miss much of the wait for a usable table.
+
+\newpage
+\cue{7}{Compare transports within a block}{7:10--8:40}
+There were two transport follow-ups. First, both transports sent each of five baseline files in four paired blocks. All \studyDirect{} direct transfers passed remote verification. Parquet led the separate ranking of compressed formats for each transport. A TOPSIS score of one in both rankings does not mean the copies took the same number of seconds.
+
+The archive study asked what happens if a connection breaks. We sent three representative prepared archives. For the largest, we interrupted the first copy at a controlled point. SCP restarted. Rsync could use what was already in its staging directory. The endpoint was the verified archive and checksum published at the receiver. All 24 clean deliveries passed on the first attempt. The eight interrupted deliveries passed on the second.
+
+Why take differences within blocks? Conditions can change between sessions. I subtract SCP time from rsync time within each block before taking the median. Across four interrupted pairs the result favoured rsync by about ten and a half seconds. Subtracting two separate medians need not give that answer. Four pairs on one route support a specific recovery result.
+
+\cue{8}{Choose for the receiver}{8:40--10:00}
+I first ask whether the receiver needs every source value, exact selected columns, or can accept an approximation. I compare eligible candidates within a feature set and preparation scenario. I divide each criterion by its column norm and apply the weight. The ideal takes the smallest costs and largest benefits. I measure each candidate's Euclidean distance to both ideals. Larger closeness means a better compromise under those weights. Constant criteria cannot distinguish the candidates.
+
+With seven equal starting weights, Parquet led all eight fresh-data groups when approximation was allowed. For existing payloads, the protected 80 and 90 per cent groups favoured gzip, while the protected 95 per cent group favoured Zstandard. That is a practical reason to ask the sender what already exists. I recommend Parquet as a starting point for fresh tables on this route, and testing resumable rsync where large transfers can be interrupted. The \studyPackages{}-package ranking uses SCP evidence. Extending it to rsync and testing downstream clinical tasks are concrete next experiments. Thank you.
+\end{document}

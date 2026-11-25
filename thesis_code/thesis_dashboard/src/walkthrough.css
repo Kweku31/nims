@@ -1,0 +1,32 @@
+.walk {max-width:1100px}
+.walk-source {display:flex;align-items:center;flex-wrap:wrap;gap:.6rem;font-size:.88rem;color:#42584e}
+.walk-source strong {background:#dfece4;color:#24533e;padding:.35rem .7rem;border-radius:4px}
+.walk-steps {margin:1rem 0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.walk-steps button {flex-direction:column;align-items:flex-start;gap:.25rem;padding:.7rem .55rem;border:1px solid var(--border);border-radius:5px;background:white;color:#4d6257;font-size:.75rem}
+.walk-steps button b {font-size:.92rem}
+.walk-steps button[aria-current] {background:#245d4c;border-color:#245d4c;color:white}
+.walk-panel {padding:clamp(1rem,3vw,2rem)}
+.walk-panel header p {color:var(--green);font-weight:600;margin:0 0 .4rem;font-size:.85rem}
+.walk-panel h2 {font-size:clamp(1.25rem,2.4vw,1.8rem);margin:0 0 1rem}
+.walk-panel p,.walk-provenance p {line-height:1.55}
+.walk-table {overflow-x:auto;margin:.85rem 0 1rem}
+.walk-table table {border-collapse:collapse;width:100%;font-size:.92rem}
+.walk-table caption {text-align:left;font-weight:650;padding:.4rem 0 .7rem}
+.walk-table th,.walk-table td {padding:.58rem .75rem;border-bottom:1px solid var(--border);text-align:right;font-variant-numeric:tabular-nums}
+.walk-table th:first-child {text-align:left}
+.walk-table thead {background:#eef3ee}
+.walk-table tbody th {font-weight:500}
+.walk-insight {padding:.85rem 1rem;border-left:3px solid #397b5c;background:#eff5ef;margin:1rem 0}
+.walk-insight p {margin:.2rem 0 0}
+.walk footer,.walk-controls {display:flex;gap:.8rem;align-items:center;flex-wrap:wrap}
+.walk footer {justify-content:space-between;margin-top:1.4rem;border-top:1px solid var(--border);padding-top:1rem}
+.walk footer span {font-size:.8rem}
+.walk button:disabled {opacity:.5;cursor:default}
+.walk-choice {display:inline-flex;flex-direction:column;gap:.3rem;font-size:.85rem;font-weight:600}
+.walk-choice select {background:white;padding:.4rem .65rem;border:1px solid #a7b8ae;border-radius:4px;color:var(--ink)}
+.walk summary {cursor:pointer;color:var(--green);font-weight:600}
+.walk-provenance {margin:1rem 0;font-size:.85rem}
+.walk-provenance code {overflow-wrap:anywhere}
+.walk-provenance li {margin:.3rem 0}
+.walk-equation {font-weight:600}
+@media(max-width:760px){.walk-steps {grid-template-columns:repeat(4,minmax(0,1fr))}.walk-table th,.walk-table td{padding:.5rem .35rem}}

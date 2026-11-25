@@ -1,0 +1,17 @@
+Lossless baseline: gzip
+Lossless baseline: zstd
+Lossless baseline: parquet
+Input : /tmp/thesis-gpu-synthetic-20261118/synthetic.csv
+Rows  : 64
+Encoded numerical predictors: 10
+Preserved exactly: ['patient_id', 'time', 'SepsisLabel', 'Age', 'ICULOS', 'HospAdmTime']
+Exact clinical variables present: ['Age', 'HospAdmTime', 'ICULOS']
+CSV   : 12,057 bytes; smallest verified lossless: zstd (5,707 bytes)
+Output: /tmp/thesis-gpu-standalone-20261118/synthetic_20261118_213335_816516_UTC
+Running autoencoder, k=2 ...
+AE gpu: epoch 1/2, loss=0.55289072, elapsed=0.1s, remaining_to_epoch_limit~0.1s (may stop earlier)
+AE gpu: epoch 2/2, loss=0.54406780, elapsed=0.2s, remaining_to_epoch_limit~0.0s (may stop earlier)
+  WARNING: AE k=2 reached 2 iterations without optimizer stopping by tolerance. Treat result as preliminary.
+  Payload 7,096 bytes; normalized RMSE 1.0377992800911853
+
+COMPLETE. Main result: /tmp/thesis-gpu-standalone-20261118/synthetic_20261118_213335_816516_UTC/phase4_comparison.csv

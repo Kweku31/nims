@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "rows": 64,
+  "patients": 16,
+  "packages": 18,
+  "evidence_rows": 36,
+  "ranking_rows": 162,
+  "checkpoint_resume_verified": true,
+  "real_ssh_attempts": 0,
+  "timestamped_report_snapshots": 2,
+  "previous_reports_preserved": true,
+  "report_directory": "/tmp/thesis-v7-timestamp-smoke/run/results/20261113_234302_811632_UTC_fa4wrslt"
+}

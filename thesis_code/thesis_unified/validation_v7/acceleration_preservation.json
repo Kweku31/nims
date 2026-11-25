@@ -1,0 +1,38 @@
+{
+  "baseline_archive_sha256": "b3da44a19fef836e9fc8b576dafd83261121ae2ac6e2bcbe769b88e9acaedb34",
+  "changed_definitions": [
+    "AutoencoderCompressor",
+    "run_experiment",
+    "main"
+  ],
+  "unchanged_definitions": [
+    "TransferTiming",
+    "simulated_transmission_time",
+    "sha256_file",
+    "checksum_sidecar_path",
+    "create_checksum_sidecar",
+    "verify_payload_checksum",
+    "verify_gzip_content",
+    "elapsed_gzip_baseline",
+    "MissingOptionalDependency",
+    "write_zstd_lossless",
+    "verify_zstd_roundtrip",
+    "write_verify_parquet",
+    "measure_lossless_baselines",
+    "json_safe_float",
+    "PCACompressor",
+    "choose_columns",
+    "fit_input",
+    "create_payload",
+    "load_bundle_arrays",
+    "reconstruct_arrays",
+    "reconstruct_bundle",
+    "evaluate_reconstruction",
+    "exact_preservation_audit"
+  ],
+  "note": "AST comparison against pre-acceleration v7 archive. AE execution wrapper, experiment dispatch and CLI changed; PCA, clinical-screen functions and payload/decoder functions are unchanged.",
+  "unchanged_clinical_constants": [
+    "PHYSIOLOGICAL_SCREEN_RANGES",
+    "DEFAULT_EXACT_CLINICAL_COLUMNS"
+  ]
+}

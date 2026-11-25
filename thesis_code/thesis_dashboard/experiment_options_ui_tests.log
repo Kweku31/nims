@@ -1,0 +1,21 @@
+
+> thesis-observatory@1.0.0 test:ui
+> playwright test
+
+
+Running 12 tests using 1 worker
+
+  ✓   1 tests/dashboard.spec.js:6:1 › demo overview, all phases and scoped rankings (813ms)
+  ✓   2 tests/dashboard.spec.js:27:1 › configuration form, focus preservation and strict SSH fields (3.8s)
+  ✓   3 tests/dashboard.spec.js:46:1 › mobile navigation and responsive layout (682ms)
+  ✓   4 tests/dashboard.spec.js:58:1 › imported reports and download (477ms)
+  ✓   5 tests/dashboard.spec.js:72:1 › launch a synthetic experiment through the UI and publish results (1.4m)
+  ✓   6 tests/dashboard.spec.js:127:1 › dataset viewer pages records and preserves text (2.1s)
+  ✓   7 tests/dashboard.spec.js:140:1 › CSV upload previews leading zeros and lets users choose coverage (2.5s)
+  ✓   8 tests/dashboard.spec.js:154:1 › selecting a four-pair summary lists all four saved pairs (765ms)
+  ✓   9 tests/dashboard.spec.js:172:1 › old server preview endpoint gives restart guidance, not a missing CSV claim (458ms)
+  ✓  10 tests/dashboard.spec.js:184:1 › SSH recovery states and resume keep the same experiment (621ms)
+  ✓  11 tests/dashboard.spec.js:203:2 › TOPSIS equal defaults, custom totals and reset (635ms)
+  ✓  12 tests/dashboard.spec.js:225:1 › required labels, optional defaults and conditional SSH fields (1.1s)
+
+  12 passed (1.7m)

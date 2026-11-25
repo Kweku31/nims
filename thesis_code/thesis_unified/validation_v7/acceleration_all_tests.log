@@ -1,0 +1,156 @@
+test_adapter_forwards_execution_settings (test_ae_acceleration.AccelerationTests.test_adapter_forwards_execution_settings) ... ok
+test_array_optimizer_matches_sklearn_with_partial_final_batch (test_ae_acceleration.AccelerationTests.test_array_optimizer_matches_sklearn_with_partial_final_batch) ... ok
+test_cpu_progress_preserves_original_training_and_decoder (test_ae_acceleration.AccelerationTests.test_cpu_progress_preserves_original_training_and_decoder) ... ok
+test_gpu_training_matches_cpu_float32_and_decoder_is_portable (test_ae_acceleration.AccelerationTests.test_gpu_training_matches_cpu_float32_and_decoder_is_portable) ... skipped 'opt-in real CUDA test'
+test_invalid_execution_settings (test_ae_acceleration.AccelerationTests.test_invalid_execution_settings) ... ok
+test_requested_gpu_failure_is_not_silently_cpu (test_ae_acceleration.AccelerationTests.test_requested_gpu_failure_is_not_silently_cpu) ... ok
+test_unavailable_gpu_fails_before_pipeline_work (test_ae_acceleration.AccelerationTests.test_unavailable_gpu_fails_before_pipeline_work) ... ok
+test_no_ssh_preflight_without_host (test_core_decision.PipelineTests.test_no_ssh_preflight_without_host) ... ok
+test_resume_and_checksum_invalidation (test_core_decision.PipelineTests.test_resume_and_checksum_invalidation) ... START phase1: executing
+COMPLETE phase1: 0.000s
+SKIP phase1: verified completed checkpoint
+START phase1: executing
+COMPLETE phase1: 0.000s
+START phase1: executing
+COMPLETE phase1: 0.000s
+ok
+test_scenarios_exclude_lossy_from_exact (test_core_decision.PipelineTests.test_scenarios_exclude_lossy_from_exact) ... ok
+test_topsis_rank_and_constant_columns (test_core_decision.PipelineTests.test_topsis_rank_and_constant_columns) ... ok
+test_config_output_used_before_validation_failure (test_early_output_initialization.EarlyOutputInitializationTests.test_config_output_used_before_validation_failure) ... ok
+test_created_before_phase1_and_preserved_after_failure (test_early_output_initialization.EarlyOutputInitializationTests.test_created_before_phase1_and_preserved_after_failure) ... ok
+test_success_publishes_results_and_status (test_early_output_initialization.EarlyOutputInitializationTests.test_success_publishes_results_and_status) ... ok
+test_cli_overrides_and_normalizes_json (test_percentage_configuration.PercentageConfigurationTests.test_cli_overrides_and_normalizes_json) ... ok
+test_decision_optional_cutoffs_and_custom_profile (test_percentage_configuration.PercentageConfigurationTests.test_decision_optional_cutoffs_and_custom_profile) ... ok
+test_percentage_equivalence (test_percentage_configuration.PercentageConfigurationTests.test_percentage_equivalence) ... ok
+test_phase3_passes_thresholds_to_engine (test_percentage_configuration.PercentageConfigurationTests.test_phase3_passes_thresholds_to_engine) ... ok
+test_reject_bad_percentage (test_percentage_configuration.PercentageConfigurationTests.test_reject_bad_percentage) ... ok
+test_adapter_applies_phase2_policy_on_fallback_and_keeps_metadata (test_phase2_repetition.Phase2RepetitionTests.test_adapter_applies_phase2_policy_on_fallback_and_keeps_metadata) ... ok
+test_defaults_overrides_and_invalid_configuration (test_phase2_repetition.Phase2RepetitionTests.test_defaults_overrides_and_invalid_configuration) ... ok
+test_first_transfer_alone_controls_count_in_both_modes (test_phase2_repetition.Phase2RepetitionTests.test_first_transfer_alone_controls_count_in_both_modes) ... ok
+test_terminal_failure_aborts_instead_of_counting_a_trial (test_phase2_repetition.Phase2RepetitionTests.test_terminal_failure_aborts_instead_of_counting_a_trial) ... ok
+test_decision_accepts_only_complete_adaptive_counts (test_phase6_repetition.Phase6RepetitionTests.test_decision_accepts_only_complete_adaptive_counts) ... ok
+test_failed_later_trial_keeps_partial_report_ineligible (test_phase6_repetition.Phase6RepetitionTests.test_failed_later_trial_keeps_partial_report_ineligible) ... ok
+test_report_rejects_forged_count_sequence_checksum_and_threshold (test_phase6_repetition.Phase6RepetitionTests.test_report_rejects_forged_count_sequence_checksum_and_threshold) ... ok
+test_sender_boundary_later_slow_trials_and_csv_policy (test_phase6_repetition.Phase6RepetitionTests.test_sender_boundary_later_slow_trials_and_csv_policy) ... ok
+test_trial_policy_rejects_invalid_inputs (test_phase6_repetition.Phase6RepetitionTests.test_trial_policy_rejects_invalid_inputs) ... ok
+test_ae_stopping_controls_forwarded_without_changing_engine (test_selected_weights.SelectedWeightsTests.test_ae_stopping_controls_forwarded_without_changing_engine) ... ok
+test_custom_weights_control_sensitivity_winner_and_report (test_selected_weights.SelectedWeightsTests.test_custom_weights_control_sensitivity_winner_and_report) ... ok
+test_equal_default_and_duplicate_profile_selection (test_selected_weights.SelectedWeightsTests.test_equal_default_and_duplicate_profile_selection) ... ok
+test_percentages_include_one_percent_and_zero (test_selected_weights.SelectedWeightsTests.test_percentages_include_one_percent_and_zero) ... ok
+test_console_unchanged_log_formatted_and_separate (test_separate_console_and_reports.ConsoleAndReportTests.test_console_unchanged_log_formatted_and_separate) ... ok
+test_copy_failure_does_not_publish_partial_snapshot (test_separate_console_and_reports.ConsoleAndReportTests.test_copy_failure_does_not_publish_partial_snapshot) ... ok
+test_publish_failure_does_not_create_incomplete_report_folder (test_separate_console_and_reports.ConsoleAndReportTests.test_publish_failure_does_not_create_incomplete_report_folder) ... ok
+test_publish_timestamped_reports_preserves_previous_runs_even_at_same_time (test_separate_console_and_reports.ConsoleAndReportTests.test_publish_timestamped_reports_preserves_previous_runs_even_at_same_time) ... ok
+test_actual_command_timeout_is_bounded_without_network (test_ssh_recovery.RecoveryTests.test_actual_command_timeout_is_bounded_without_network) ... ok
+test_directory_names_safe_bounded_and_unique_even_at_same_timestamp (test_ssh_recovery.RecoveryTests.test_directory_names_safe_bounded_and_unique_even_at_same_timestamp) ... ok
+test_keepalive_and_deadline_settings_and_input_validation (test_ssh_recovery.RecoveryTests.test_keepalive_and_deadline_settings_and_input_validation) ... ok
+test_permanent_errors_never_retry (test_ssh_recovery.RecoveryTests.test_permanent_errors_never_retry) ... NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T21:32:20.708459+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "needs_attention", "updated_utc": "2026-11-18T21:32:20.712566+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3, "error": "Permission denied (publickey)", "transient": false, "failed_attempt_seconds": 0.000481159000628395, "failed_attempts": 1, "cumulative_failed_attempt_seconds": 0.000481159000628395, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.000481159000628395, "delivery_wall_seconds": 0.004106502998183714, "retry_in_seconds": 0, "next_attempt": null}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T21:32:20.720740+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "needs_attention", "updated_utc": "2026-11-18T21:32:20.722543+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3, "error": "Host key verification failed", "transient": false, "failed_attempt_seconds": 6.775899964850396e-05, "failed_attempts": 1, "cumulative_failed_attempt_seconds": 6.775899964850396e-05, "backoff_seconds": 0.0, "recovery_overhead_seconds": 6.775899964850396e-05, "delivery_wall_seconds": 0.0018555360002210364, "retry_in_seconds": 0, "next_attempt": null}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T21:32:20.723793+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "needs_attention", "updated_utc": "2026-11-18T21:32:20.724471+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3, "error": "No space left on device", "transient": false, "failed_attempt_seconds": 6.836899774498306e-05, "failed_attempts": 1, "cumulative_failed_attempt_seconds": 6.836899774498306e-05, "backoff_seconds": 0.0, "recovery_overhead_seconds": 6.836899774498306e-05, "delivery_wall_seconds": 0.0006777140006306581, "retry_in_seconds": 0, "next_attempt": null}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T21:32:20.725494+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "needs_attention", "updated_utc": "2026-11-18T21:32:20.726102+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3, "error": "Disk quota exceeded", "transient": false, "failed_attempt_seconds": 5.191500167711638e-05, "failed_attempts": 1, "cumulative_failed_attempt_seconds": 5.191500167711638e-05, "backoff_seconds": 0.0, "recovery_overhead_seconds": 5.191500167711638e-05, "delivery_wall_seconds": 0.0006095170028856955, "retry_in_seconds": 0, "next_attempt": null}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T21:32:20.727122+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "needs_attention", "updated_utc": "2026-11-18T21:32:20.727830+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3, "error": "unknown failure", "transient": false, "failed_attempt_seconds": 0.00011272399933659472, "failed_attempts": 1, "cumulative_failed_attempt_seconds": 0.00011272399933659472, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.00011272399933659472, "delivery_wall_seconds": 0.0007078519993228838, "retry_in_seconds": 0, "next_attempt": null}
+ok
+test_preflight_is_not_cached_after_disconnect (test_ssh_recovery.RecoveryTests.test_preflight_is_not_cached_after_disconnect) ... ok
+test_real_subprocess_delivery_with_fake_ssh_and_scp (test_ssh_recovery.RecoveryTests.test_real_subprocess_delivery_with_fake_ssh_and_scp)
+Exercise argv, checksums and rename with local stand-ins for OpenSSH. ... NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T21:32:20.736019+00:00", "operation": "delivery", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T21:32:20.736529+00:00", "operation": "delivery", "remote_pending_directory": "/tmp/tmpnh17ngai/remote/payload.csv_unverified_20261118_213220_736474_UTC_dbddca5d94504bcab754fcf98732444b", "remote_verified_directory": "/tmp/tmpnh17ngai/remote/payload.csv_verified_20261118_213220_736474_UTC_dbddca5d94504bcab754fcf98732444b"}
+NETWORK: {"status": "connection_lost", "updated_utc": "2026-11-18T21:32:20.904449+00:00", "operation": "delivery", "attempt": 1, "max_attempts": 3, "error": "Connection reset by peer", "transient": true, "failed_attempt_seconds": 0.1679667900025379, "failed_attempts": 1, "cumulative_failed_attempt_seconds": 0.1679667900025379, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.1679667900025379, "delivery_wall_seconds": 0.16842889599865885, "retry_in_seconds": 0, "next_attempt": 2}
+NETWORK: {"status": "retrying", "updated_utc": "2026-11-18T21:32:20.905955+00:00", "operation": "delivery", "attempt": 2, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T21:32:20.913636+00:00", "operation": "delivery", "remote_pending_directory": "/tmp/tmpnh17ngai/remote/payload.csv_unverified_20261118_213220_913358_UTC_442631a5b5ab4ce0b77c3a93142ae4f8", "remote_verified_directory": "/tmp/tmpnh17ngai/remote/payload.csv_verified_20261118_213220_913358_UTC_442631a5b5ab4ce0b77c3a93142ae4f8"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T21:32:21.363225+00:00", "operation": "delivery", "attempts": 2, "failed_attempts": 1, "failed_attempt_seconds": 0.1679667900025379, "backoff_seconds": 7.097400157363154e-05, "recovery_overhead_seconds": 0.16803776400411152, "delivery_wall_seconds": 0.6271960109988868}
+ok
+test_retry_budget_exponential_delay_and_timeout_classification (test_ssh_recovery.RecoveryTests.test_retry_budget_exponential_delay_and_timeout_classification) ... NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T21:32:21.388277+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connection_lost", "updated_utc": "2026-11-18T21:32:21.392961+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3, "error": "Command exceeded its 60s deadline", "transient": true, "failed_attempt_seconds": 0.0005905990001338068, "failed_attempts": 1, "cumulative_failed_attempt_seconds": 0.0005905990001338068, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0005905990001338068, "delivery_wall_seconds": 0.004663167001126567, "retry_in_seconds": 2, "next_attempt": 2}
+NETWORK: {"status": "retrying", "updated_utc": "2026-11-18T21:32:21.399658+00:00", "operation": "ssh preflight/setup", "attempt": 2, "max_attempts": 3}
+NETWORK: {"status": "connection_lost", "updated_utc": "2026-11-18T21:32:21.405464+00:00", "operation": "ssh preflight/setup", "attempt": 2, "max_attempts": 3, "error": "Command exceeded its 60s deadline", "transient": true, "failed_attempt_seconds": 0.0003684920011437498, "failed_attempts": 2, "cumulative_failed_attempt_seconds": 0.0009590910012775566, "backoff_seconds": 0.0033139560000563506, "recovery_overhead_seconds": 0.004273047001333907, "delivery_wall_seconds": 0.017150686999229947, "retry_in_seconds": 4, "next_attempt": 3}
+NETWORK: {"status": "retrying", "updated_utc": "2026-11-18T21:32:21.411714+00:00", "operation": "ssh preflight/setup", "attempt": 3, "max_attempts": 3}
+NETWORK: {"status": "needs_attention", "updated_utc": "2026-11-18T21:32:21.414998+00:00", "operation": "ssh preflight/setup", "attempt": 3, "max_attempts": 3, "error": "Command exceeded its 60s deadline", "transient": true, "failed_attempt_seconds": 0.0003587379978853278, "failed_attempts": 3, "cumulative_failed_attempt_seconds": 0.0013178289991628844, "backoff_seconds": 0.0035337490007805172, "recovery_overhead_seconds": 0.004851577999943402, "delivery_wall_seconds": 0.026691160001064418, "retry_in_seconds": 0, "next_attempt": null}
+ok
+test_root_and_unified_senders_use_identical_send_logic (test_ssh_recovery.RecoveryTests.test_root_and_unified_senders_use_identical_send_logic) ... ok
+test_sidecar_corruption_is_terminal_and_never_published (test_ssh_recovery.RecoveryTests.test_sidecar_corruption_is_terminal_and_never_published) ... NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T21:32:21.446658+00:00", "operation": "delivery", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T21:32:21.447332+00:00", "operation": "delivery", "remote_pending_directory": "/tmp/test/payload.csv_unverified_20261118_213221_447268_UTC_f4435d29a6814ebc861f5a167fca6789", "remote_verified_directory": "/tmp/test/payload.csv_verified_20261118_213221_447268_UTC_f4435d29a6814ebc861f5a167fca6789"}
+NETWORK: {"status": "needs_attention", "updated_utc": "2026-11-18T21:32:21.448919+00:00", "operation": "delivery", "attempt": 1, "max_attempts": 3, "error": "Remote SHA-256 mismatch; delivery remains unpublished", "transient": false, "failed_attempt_seconds": 0.001651671998843085, "failed_attempts": 1, "cumulative_failed_attempt_seconds": 0.001651671998843085, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.001651671998843085, "delivery_wall_seconds": 0.002258275999338366, "retry_in_seconds": 0, "next_attempt": null}
+ok
+test_transient_upload_restarts_trial_and_publishes_only_verified_set (test_ssh_recovery.RecoveryTests.test_transient_upload_restarts_trial_and_publishes_only_verified_set) ... NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T21:32:21.456669+00:00", "operation": "delivery", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T21:32:21.457416+00:00", "operation": "delivery", "remote_pending_directory": "/tmp/test/payload.csv_unverified_20261118_213221_457358_UTC_e3bd3e29f8174f5f90c0bfed766d5c7a", "remote_verified_directory": "/tmp/test/payload.csv_verified_20261118_213221_457358_UTC_e3bd3e29f8174f5f90c0bfed766d5c7a"}
+NETWORK: {"status": "connection_lost", "updated_utc": "2026-11-18T21:32:21.458278+00:00", "operation": "delivery", "attempt": 1, "max_attempts": 3, "error": "Connection reset by peer", "transient": true, "failed_attempt_seconds": 0.0009139609974226914, "failed_attempts": 1, "cumulative_failed_attempt_seconds": 0.0009139609974226914, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0009139609974226914, "delivery_wall_seconds": 0.0016094919992610812, "retry_in_seconds": 0, "next_attempt": 2}
+NETWORK: {"status": "retrying", "updated_utc": "2026-11-18T21:32:21.459153+00:00", "operation": "delivery", "attempt": 2, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T21:32:21.460014+00:00", "operation": "delivery", "remote_pending_directory": "/tmp/test/payload.csv_unverified_20261118_213221_459907_UTC_94272c0422944daa9d6fdda3c495e75d", "remote_verified_directory": "/tmp/test/payload.csv_verified_20261118_213221_459907_UTC_94272c0422944daa9d6fdda3c495e75d"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T21:32:21.461472+00:00", "operation": "delivery", "attempts": 2, "failed_attempts": 1, "failed_attempt_seconds": 0.0009139609974226914, "backoff_seconds": 7.00919990777038e-05, "recovery_overhead_seconds": 0.0009840529965003952, "delivery_wall_seconds": 0.004801128998224158}
+ok
+test_truncated_journal_is_explicitly_reported (test_ssh_recovery.RecoveryTests.test_truncated_journal_is_explicitly_reported) ... ok
+test_all_phases_append_and_resume_same_log (test_unified_logging.UnifiedLoggingTests.test_all_phases_append_and_resume_same_log) ... START phase1: executing
+hello from phase one
+COMPLETE phase1: 0.003s
+SKIP phase1: verified completed checkpoint
+ok
+test_failed_child_and_traceback_still_logged (test_unified_logging.UnifiedLoggingTests.test_failed_child_and_traceback_still_logged) ... RUN: /home/kweku/philemon/thesis_code/thesis_unified/../thesis/bin/python -c 'print('"'"'pre-failure'"'"'); raise RuntimeError('"'"'sample failure'"'"')'
+pre-failure
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+RuntimeError: sample failure
+ok
+test_live_child_output_in_unified_and_phase_log (test_unified_logging.UnifiedLoggingTests.test_live_child_output_in_unified_and_phase_log) ... RUN: /home/kweku/philemon/thesis_code/thesis_unified/../thesis/bin/python -c 'print('"'"'hello from child'"'"'); print('"'"'next line'"'"')'
+hello from child
+next line
+ok
+test_duplicate_custom_is_not_new_sensitivity_profile (test_validation_v6.ValidationV6Tests.test_duplicate_custom_is_not_new_sensitivity_profile) ... ok
+test_simulation_not_empirical (test_validation_v6.ValidationV6Tests.test_simulation_not_empirical) ... ok
+test_ssh_requires_remote_hash_and_trials (test_validation_v6.ValidationV6Tests.test_ssh_requires_remote_hash_and_trials) ... ok
+test_strict_ssh_main_creates_log_and_failed_status_before_phase1 (test_validation_v6.ValidationV6Tests.test_strict_ssh_main_creates_log_and_failed_status_before_phase1) ... LOG FILE: /tmp/tmpije104ki/thesis_runs/pipeline.log
+NETWORK: {"status": "idle", "updated_utc": "2026-11-18T21:32:22.318246+00:00", "operation": "Experiment starting"}
+ok
+test_strict_ssh_phase2_fails_not_simulates (test_validation_v6.ValidationV6Tests.test_strict_ssh_phase2_fails_not_simulates) ... ok
+test_violation_gates_and_sensitivity_report (test_validation_v6.ValidationV6Tests.test_violation_gates_and_sensitivity_report) ... ok
+test_adapter_artifacts_include_selected_payloads_and_sidecars (test_validation_v7.ValidationV7Tests.test_adapter_artifacts_include_selected_payloads_and_sidecars) ... ok
+test_all_nonfinite_and_out_of_range_criteria_excluded (test_validation_v7.ValidationV7Tests.test_all_nonfinite_and_out_of_range_criteria_excluded) ... ok
+test_checkpoint_invalidates_dependents_after_same_path_rebuild (test_validation_v7.ValidationV7Tests.test_checkpoint_invalidates_dependents_after_same_path_rebuild) ... START phase4: executing
+COMPLETE phase4: 0.000s
+START phase5: executing
+COMPLETE phase5: 0.000s
+START phase6: executing
+COMPLETE phase6: 0.000s
+SKIP phase4: verified completed checkpoint
+SKIP phase5: verified completed checkpoint
+SKIP phase6: verified completed checkpoint
+START phase4: executing
+COMPLETE phase4: 0.000s
+START phase5: executing
+COMPLETE phase5: 0.001s
+START phase6: executing
+COMPLETE phase6: 0.000s
+START phase4: executing
+COMPLETE phase4: 0.001s
+START phase5: executing
+COMPLETE phase5: 0.001s
+START phase6: executing
+COMPLETE phase6: 0.001s
+ok
+test_code_fingerprint_includes_runner_and_path_names (test_validation_v7.ValidationV7Tests.test_code_fingerprint_includes_runner_and_path_names) ... ok
+test_complete_report_generation_with_no_packages (test_validation_v7.ValidationV7Tests.test_complete_report_generation_with_no_packages) ... ok
+test_delivery_costs_and_separate_ranks (test_validation_v7.ValidationV7Tests.test_delivery_costs_and_separate_ranks) ... ok
+test_empty_rankings_have_readable_schema (test_validation_v7.ValidationV7Tests.test_empty_rankings_have_readable_schema) ... ok
+test_negative_r2_and_large_finite_values_are_valid (test_validation_v7.ValidationV7Tests.test_negative_r2_and_large_finite_values_are_valid) ... ok
+test_orchestrator_tracks_upstream_content_for_every_dependent (test_validation_v7.ValidationV7Tests.test_orchestrator_tracks_upstream_content_for_every_dependent) ... ok
+test_phase2_expansion_allowed_but_invalid_times_rejected (test_validation_v7.ValidationV7Tests.test_phase2_expansion_allowed_but_invalid_times_rejected) ... ok
+test_preflight_respects_disabled_fallback_before_building (test_validation_v7.ValidationV7Tests.test_preflight_respects_disabled_fallback_before_building) ... ok
+test_ssh_trial_count_and_separate_network_pools (test_validation_v7.ValidationV7Tests.test_ssh_trial_count_and_separate_network_pools) ... ok
+test_unverified_ssh_never_ranked_or_recommended (test_validation_v7.ValidationV7Tests.test_unverified_ssh_never_ranked_or_recommended) ... ok
+
+----------------------------------------------------------------------
+Ran 69 tests in 21.041s
+
+OK (skipped=1)
+
+DONE: /tmp/tmpqrg4a9ga
+  FINAL_REPORT.md
+  01_integrated_evidence.csv
+  02_decision_rankings.csv
+  03_phase_overview.csv
+  04_network_trials.csv
+  run_manifest.json

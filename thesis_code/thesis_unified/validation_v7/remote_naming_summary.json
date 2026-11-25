@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "packages": 10,
+  "injected_network_failures": 2,
+  "real_ssh_attempts": 0,
+  "transport": "LOCAL COMMAND STAND-INS; NOT REAL SSH EVIDENCE",
+  "report_directory": "/tmp/thesis-named-ssh-20261118/run/results/20261118_050803_235045_UTC_8mkkvd78",
+  "verified_directories": 15,
+  "unverified_directories": 2,
+  "filename_and_timestamp_checks": "passed"
+}

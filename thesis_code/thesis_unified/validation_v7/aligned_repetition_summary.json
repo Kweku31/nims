@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "packages": 10,
+  "injected_network_failures": 2,
+  "phase2_trials_per_artifact": 10,
+  "phase2_artifacts": 5,
+  "phase6_trials_per_package": 10,
+  "real_ssh_attempts": 0,
+  "transport": "LOCAL COMMAND STAND-INS; NOT REAL SSH EVIDENCE",
+  "report_directory": "/tmp/thesis-aligned-trials-20261118/run/results/20261118_054207_607743_UTC_ps1woq30"
+}

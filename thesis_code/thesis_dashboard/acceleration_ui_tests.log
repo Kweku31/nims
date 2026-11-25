@@ -1,0 +1,62 @@
+
+> thesis-observatory@1.0.0 test:ui
+> playwright test
+
+
+Running 13 tests using 1 worker
+
+  ✓   1 tests/dashboard.spec.js:6:1 › demo overview, all phases and scoped rankings (2.8s)
+  ✓   2 tests/dashboard.spec.js:27:1 › configuration form, focus preservation and strict SSH fields (5.2s)
+  ✓   3 tests/dashboard.spec.js:46:1 › mobile navigation and responsive layout (1.6s)
+  ✓   4 tests/dashboard.spec.js:58:1 › imported reports and download (1.9s)
+  ✘   5 tests/dashboard.spec.js:72:1 › launch a synthetic experiment through the UI and publish results (3.4m)
+  ✓   6 tests/dashboard.spec.js:127:1 › dataset viewer pages records and preserves text (2.4s)
+  ✓   7 tests/dashboard.spec.js:140:1 › CSV upload previews leading zeros and lets users choose coverage (2.2s)
+  ✓   8 tests/dashboard.spec.js:154:1 › selecting a four-pair summary lists all four saved pairs (1.8s)
+  ✓   9 tests/dashboard.spec.js:172:1 › old server preview endpoint gives restart guidance, not a missing CSV claim (1.6s)
+  ✓  10 tests/dashboard.spec.js:184:1 › SSH recovery states and resume keep the same experiment (2.4s)
+  ✓  11 tests/dashboard.spec.js:203:2 › TOPSIS equal defaults, custom totals and reset (2.4s)
+  ✓  12 tests/dashboard.spec.js:225:1 › required labels, optional defaults and conditional SSH fields (3.7s)
+  ✓  13 tests/dashboard.spec.js:246:2 › AE device and batch controls retain CPU defaults and reset (2.7s)
+
+
+  1) tests/dashboard.spec.js:72:1 › launch a synthetic experiment through the UI and publish results 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('.experiment-meta .badge.complete')
+    Expected: visible
+    Timeout: 200000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('.experiment-meta .badge.complete') with timeout 200000ms
+      - waiting for locator('.experiment-meta .badge.complete')
+
+
+      102 |   await expect(dialog).not.toBeVisible();
+      103 |   await expect(page.locator('.experiment-meta .badge.running')).toBeVisible();
+    > 104 |   await expect(page.locator('.experiment-meta .badge.complete')).toBeVisible({timeout:200000});
+          |                                                                  ^
+      105 |   await expect(page.locator('.phase-card.complete')).toHaveCount(6);
+      106 |   await expect(page.locator('.stat-card').nth(1)).toContainText('10');
+      107 |   const key=await page.getByLabel('Current experiment').inputValue();
+        at /home/kweku/philemon/thesis_code/thesis_dashboard/tests/dashboard.spec.js:104:66
+
+    Error Context: test-results/dashboard-launch-a-synthet-2a8c0--the-UI-and-publish-results/error-context.md
+
+  1 failed
+    tests/dashboard.spec.js:72:1 › launch a synthetic experiment through the UI and publish results 
+  12 passed (4.1m)
+
+RERUN: increased only the full-pipeline browser wait budget on the loaded test host.
+
+> thesis-observatory@1.0.0 test:ui
+> playwright test --grep launch a synthetic experiment through the UI
+
+
+Running 1 test using 1 worker
+
+  ✓  1 tests/dashboard.spec.js:72:1 › launch a synthetic experiment through the UI and publish results (3.4m)
+
+  1 passed (3.5m)

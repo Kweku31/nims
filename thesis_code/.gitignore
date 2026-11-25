@@ -1,0 +1,37 @@
+# Installed dependencies and interpreter caches
+node_modules/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+/thesis/
+
+# Local datasets, experiment runs, and backups
+/input/
+/output/
+/reports/
+/physionet.org/
+/challenge-2019-1.0.0/
+/backup_before_remote/
+/*.csv
+/*.csv.gz
+/*.csv.zst
+/*.parquet
+/thesis_unified/*.csv
+/thesis_dashboard/data/
+/thesis_dashboard/dist/
+/thesis_dashboard/test-results/
+/thesis_dashboard/playwright-report/
+/*.zip
+/*.zip.sha256
+
+# Editor and LaTeX build intermediates
+.~lock.*#
+*.aux
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.toc
+*.nav
+*.snm
+*.vrb

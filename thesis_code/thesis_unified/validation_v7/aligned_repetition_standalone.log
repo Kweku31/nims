@@ -1,0 +1,5 @@
+Wrote /tmp/thesis-aligned-trials-20261118/standalone_summary/phase6_ssh_comparison.csv (10 packages)
+Wrote /tmp/thesis-aligned-trials-20261118/standalone_summary/phase6_all_ssh_trials.csv (100 SSH trials)
+original: smallest native package = pca k=2 (30839 bytes)
+original: fastest SCP+checksum = zstd k= (0.064846s)
+These are descriptive results, not conclusions about clinical utility or full receiver recovery.

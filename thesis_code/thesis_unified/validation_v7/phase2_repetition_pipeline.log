@@ -1,0 +1,759 @@
+LOG FILE: /tmp/thesis-adaptive-phase2-20261118/run/pipeline.log
+NETWORK: {"status": "idle", "updated_utc": "2026-11-18T05:29:11.313526+00:00", "operation": "Experiment starting"}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:11.314206+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:11.352776+00:00", "operation": "ssh preflight/setup", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.038566878996789455}
+RUN 5d440d784d7da0248afd: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd
+START phase1: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/01_profiling_updated.py /tmp/thesis-adaptive-phase2-20261118/synthetic.csv --output-dir /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase1 --threshold 0.95
+========================================================================
+PHASE 1 -- BASELINE DATASET PROFILING
+========================================================================
+Dataset: /tmp/thesis-adaptive-phase2-20261118/synthetic.csv
+Rows: 64
+Columns: 15
+Source size: 12.31 KB (12,605 bytes)
+Load time: 0.005904 s
+
+========================================================================
+BASELINE PROFILE RESULTS
+========================================================================
+Rows: 64 | Columns: 15
+Input size: 12.31 KB | DataFrame memory: 7.63 KB
+Load: 0.005904s | Profiling: 0.178652s
+
+Identifiers
+  Automatic: patient_id
+  Manual:    None
+  Combined:  patient_id
+
+Correlation variables: time, SepsisLabel, Age, ICULOS, HospAdmTime, HR, O2Sat, Temp, SBP, MAP, DBP, Resp, Lactate, Glucose
+Unique pairs: 91 | Threshold: |r| >= 0.95
+   column_a    column_b     pearson_r  absolute_pearson_correlation  pairwise_n
+       time      ICULOS  1.000000e+00                  1.000000e+00          64
+        Age HospAdmTime -4.573244e-01                  4.573244e-01          64
+SepsisLabel         Age  4.290717e-01                  4.290717e-01          64
+        Age     Lactate  3.097860e-01                  3.097860e-01          64
+       time     Glucose -2.972502e-01                  2.972502e-01          64
+     ICULOS     Glucose -2.972502e-01                  2.972502e-01          64
+       Temp     Lactate -2.839113e-01                  2.839113e-01          64
+        Age        Resp  2.522468e-01                  2.522468e-01          64
+        MAP     Glucose -2.296446e-01                  2.296446e-01          64
+    Lactate     Glucose -2.279306e-01                  2.279306e-01          64
+HospAdmTime        Resp -2.257556e-01                  2.257556e-01          64
+SepsisLabel         SBP -2.149773e-01                  2.149773e-01          64
+         HR         MAP  2.010958e-01                  2.010958e-01          64
+SepsisLabel          HR -1.863112e-01                  1.863112e-01          64
+        Age        Temp -1.809770e-01                  1.809770e-01          64
+         HR        Temp  1.686334e-01                  1.686334e-01          64
+         HR         DBP -1.652397e-01                  1.652397e-01          64
+       Temp         MAP  1.623923e-01                  1.623923e-01          64
+         HR     Lactate -1.496505e-01                  1.496505e-01          64
+      O2Sat         MAP  1.476202e-01                  1.476202e-01          64
+SepsisLabel     Glucose -1.449257e-01                  1.449257e-01          64
+        DBP        Resp -1.399888e-01                  1.399888e-01          64
+      O2Sat        Temp  1.394487e-01                  1.394487e-01          64
+       time          HR  1.393747e-01                  1.393747e-01          64
+     ICULOS          HR  1.393747e-01                  1.393747e-01          64
+         HR         SBP -1.390273e-01                  1.390273e-01          64
+HospAdmTime         SBP  1.369697e-01                  1.369697e-01          64
+      O2Sat     Lactate -1.309367e-01                  1.309367e-01          64
+        DBP     Glucose -1.305811e-01                  1.305811e-01          64
+       time     Lactate  1.277402e-01                  1.277402e-01          64
+     ICULOS     Lactate  1.277402e-01                  1.277402e-01          64
+        MAP         DBP  1.260734e-01                  1.260734e-01          64
+       Resp     Glucose -1.241471e-01                  1.241471e-01          64
+        Age     Glucose -1.168835e-01                  1.168835e-01          64
+        DBP     Lactate  1.141159e-01                  1.141159e-01          64
+SepsisLabel        Resp -1.133243e-01                  1.133243e-01          64
+SepsisLabel         MAP -1.121638e-01                  1.121638e-01          64
+       time         SBP -9.913259e-02                  9.913259e-02          64
+     ICULOS         SBP -9.913259e-02                  9.913259e-02          64
+SepsisLabel     Lactate  9.781346e-02                  9.781346e-02          64
+HospAdmTime         DBP  9.770644e-02                  9.770644e-02          64
+        SBP     Glucose  9.657829e-02                  9.657829e-02          64
+        Age       O2Sat -9.550791e-02                  9.550791e-02          64
+HospAdmTime     Glucose -9.432096e-02                  9.432096e-02          64
+        SBP     Lactate -8.988128e-02                  8.988128e-02          64
+        Age          HR -8.854026e-02                  8.854026e-02          64
+        MAP     Lactate -8.126199e-02                  8.126199e-02          64
+HospAdmTime        Temp  7.833750e-02                  7.833750e-02          64
+        SBP         DBP  7.608987e-02                  7.608987e-02          64
+        SBP        Resp  7.400766e-02                  7.400766e-02          64
+SepsisLabel HospAdmTime  7.302335e-02                  7.302335e-02          64
+       time         MAP  7.213009e-02                  7.213009e-02          64
+     ICULOS         MAP  7.213009e-02                  7.213009e-02          64
+       Temp         SBP  5.876404e-02                  5.876404e-02          64
+        SBP         MAP -5.783204e-02                  5.783204e-02          64
+        MAP        Resp  5.755787e-02                  5.755787e-02          64
+SepsisLabel        Temp -5.645829e-02                  5.645829e-02          64
+         HR       O2Sat -4.566181e-02                  4.566181e-02          64
+         HR        Resp -4.474416e-02                  4.474416e-02          64
+       time         DBP  4.464725e-02                  4.464725e-02          64
+     ICULOS         DBP  4.464725e-02                  4.464725e-02          64
+       time        Resp  4.092629e-02                  4.092629e-02          64
+     ICULOS        Resp  4.092629e-02                  4.092629e-02          64
+       Temp        Resp -3.544045e-02                  3.544045e-02          64
+HospAdmTime     Lactate -3.383461e-02                  3.383461e-02          64
+HospAdmTime       O2Sat  3.234322e-02                  3.234322e-02          64
+       Resp     Lactate -3.204872e-02                  3.204872e-02          64
+      O2Sat         DBP -3.032071e-02                  3.032071e-02          64
+        Age         SBP  2.848610e-02                  2.848610e-02          64
+HospAdmTime          HR -2.771040e-02                  2.771040e-02          64
+       Temp     Glucose  2.595823e-02                  2.595823e-02          64
+        Age         DBP  2.304289e-02                  2.304289e-02          64
+HospAdmTime         MAP -2.279776e-02                  2.279776e-02          64
+      O2Sat     Glucose -2.266019e-02                  2.266019e-02          64
+       Temp         DBP  2.166500e-02                  2.166500e-02          64
+         HR     Glucose -2.153899e-02                  2.153899e-02          64
+       time        Temp  1.613605e-02                  1.613605e-02          64
+     ICULOS        Temp  1.613605e-02                  1.613605e-02          64
+      O2Sat         SBP -1.478171e-02                  1.478171e-02          64
+      O2Sat        Resp -1.458733e-02                  1.458733e-02          64
+SepsisLabel       O2Sat  1.337822e-02                  1.337822e-02          64
+       time       O2Sat -1.208952e-02                  1.208952e-02          64
+     ICULOS       O2Sat -1.208952e-02                  1.208952e-02          64
+SepsisLabel         DBP -8.220674e-03                  8.220674e-03          64
+        Age         MAP -4.938238e-03                  4.938238e-03          64
+       time HospAdmTime -2.334864e-18                  2.334864e-18          64
+     ICULOS HospAdmTime -2.334864e-18                  2.334864e-18          64
+       time SepsisLabel  0.000000e+00                  0.000000e+00          64
+       time         Age  0.000000e+00                  0.000000e+00          64
+SepsisLabel      ICULOS  0.000000e+00                  0.000000e+00          64
+        Age      ICULOS  0.000000e+00                  0.000000e+00          64
+
+Pairs above threshold: 1
+column_a column_b  pearson_r  absolute_pearson_correlation
+    time   ICULOS        1.0                           1.0
+
+========================================================================
+PHASE 1 COMPLETED SUCCESSFULLY
+========================================================================
+Results saved to: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase1/synthetic_20261118_052911
+Outputs: column_profile.csv, numeric_variable_profile.csv, correlation_all_pairs.csv, redundant_pairs.csv, duplicate_columns.csv, dataset_summary.csv, profile_metadata.json
+COMPLETE phase1: 0.711s
+START phase2: executing
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:12.071874+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:12.105299+00:00", "operation": "ssh preflight/setup", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.033419624029193074}
+NETWORK: Phase 2 mode=ssh; requested=ssh; reason=none
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/02_transfer_benchmark.py /tmp/thesis-adaptive-phase2-20261118/synthetic.csv --transfer-mode ssh --packaging-runs 1 --transfer-runs 10 --repeat-threshold-seconds 10.0 --bandwidth-mbps 100 --output-dir /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase2 --host stand-in --user offline --port 22 --remote-dir /tmp/thesis-adaptive-phase2-20261118/remote
+====================================================================================================
+PHASE 2 - BASELINE TRANSFER BENCHMARK
+====================================================================================================
+
+Reading dataset into memory once...
+
+Dataset:
+  /tmp/thesis-adaptive-phase2-20261118/synthetic.csv
+Rows        : 64
+Columns     : 15
+Source size : 12.31 KB
+DataFrame   : 7.63 KB
+Load time   : 0.005040 s
+
+Calculating source SHA-256...
+SHA-256: 0d2cbe0bf1e5f836276d8ff6bd69f3688fcb419b08bed3d8be37515aeca96875
+
+==========================================================================================
+PACKAGING BENCHMARK
+==========================================================================================
+
+original_source: 12.31 KB (no packaging)
+
+CSV
+  Run 01: 0.003422 s
+
+CSV + gzip
+  Run 01: 0.002538 s
+
+Parquet
+  Run 01: 0.014274 s
+
+CSV + Zstandard
+  Run 01: 0.002305 s
+
+Checking remote endpoint...
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:12.587037+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:12.617883+00:00", "operation": "ssh preflight/setup", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.030843171989545226}
+Remote endpoint ready.
+
+==========================================================================================
+TRANSFER BENCHMARK
+==========================================================================================
+
+Transfer: original_source
+Artifact size: 12.31 KB
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:12.618863+00:00", "operation": "Phase 2 original_source", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:12.619297+00:00", "operation": "Phase 2 original_source", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_synthetic.csv_unverified_20261118_052912_619267_UTC_d228174dcc95427691a19d9a9ce4bed6", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_synthetic.csv_verified_20261118_052912_619267_UTC_d228174dcc95427691a19d9a9ce4bed6"}
+NETWORK: {"status": "connection_lost", "updated_utc": "2026-11-18T05:29:12.681678+00:00", "operation": "Phase 2 original_source", "attempt": 1, "max_attempts": 3, "error": "Connection reset by peer", "transient": true, "failed_attempt_seconds": 0.06247545103542507, "failed_attempts": 1, "cumulative_failed_attempt_seconds": 0.06247545103542507, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.06247545103542507, "delivery_wall_seconds": 0.06281320803100243, "retry_in_seconds": 0, "next_attempt": 2}
+NETWORK: {"status": "retrying", "updated_utc": "2026-11-18T05:29:12.682648+00:00", "operation": "Phase 2 original_source", "attempt": 2, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:12.683097+00:00", "operation": "Phase 2 original_source", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_synthetic.csv_unverified_20261118_052912_683062_UTC_78c6e6fc1afd4e7990492366875f6d2f", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_synthetic.csv_verified_20261118_052912_683062_UTC_78c6e6fc1afd4e7990492366875f6d2f"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:12.806170+00:00", "operation": "Phase 2 original_source", "attempts": 2, "failed_attempts": 1, "failed_attempt_seconds": 0.06247545103542507, "backoff_seconds": 6.0650985687971115e-05, "recovery_overhead_seconds": 0.06253610202111304, "delivery_wall_seconds": 0.18730463203974068}
+  Run 01: transfer=0.032172s, throughput=3.134 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:12.806918+00:00", "operation": "Phase 2 original_source", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:12.813293+00:00", "operation": "Phase 2 original_source", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_synthetic.csv_unverified_20261118_052912_813261_UTC_b6e2928682d14441b96e932f9f1c3062", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_synthetic.csv_verified_20261118_052912_813261_UTC_b6e2928682d14441b96e932f9f1c3062"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:12.934844+00:00", "operation": "Phase 2 original_source", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.12792241998249665}
+  Run 02: transfer=0.030051s, throughput=3.356 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:12.935606+00:00", "operation": "Phase 2 original_source", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:12.941998+00:00", "operation": "Phase 2 original_source", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_synthetic.csv_unverified_20261118_052912_941947_UTC_e1c12abe67284b1b9d29bcd3e67f2a67", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_synthetic.csv_verified_20261118_052912_941947_UTC_e1c12abe67284b1b9d29bcd3e67f2a67"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:13.063462+00:00", "operation": "Phase 2 original_source", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.12785403698217124}
+  Run 03: transfer=0.030792s, throughput=3.275 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:13.064200+00:00", "operation": "Phase 2 original_source", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:13.070586+00:00", "operation": "Phase 2 original_source", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_synthetic.csv_unverified_20261118_052913_070551_UTC_9d1f77988e9c49dd882c21b941c015dc", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_synthetic.csv_verified_20261118_052913_070551_UTC_9d1f77988e9c49dd882c21b941c015dc"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:13.221811+00:00", "operation": "Phase 2 original_source", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.15760794404195622}
+  Run 04: transfer=0.039296s, throughput=2.566 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:13.222571+00:00", "operation": "Phase 2 original_source", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:13.228903+00:00", "operation": "Phase 2 original_source", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_synthetic.csv_unverified_20261118_052913_228874_UTC_6ab6f31f307f42369fb3ae651eeb0fc6", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_synthetic.csv_verified_20261118_052913_228874_UTC_6ab6f31f307f42369fb3ae651eeb0fc6"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:13.342141+00:00", "operation": "Phase 2 original_source", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.11956824501976371}
+  Run 05: transfer=0.024704s, throughput=4.082 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:13.342831+00:00", "operation": "Phase 2 original_source", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:13.349216+00:00", "operation": "Phase 2 original_source", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_synthetic.csv_unverified_20261118_052913_349190_UTC_c37a26e9694d4d9cb8da2b0a08156579", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_synthetic.csv_verified_20261118_052913_349190_UTC_c37a26e9694d4d9cb8da2b0a08156579"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:13.457439+00:00", "operation": "Phase 2 original_source", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.11460538598475978}
+  Run 06: transfer=0.025803s, throughput=3.908 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:13.458094+00:00", "operation": "Phase 2 original_source", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:13.464617+00:00", "operation": "Phase 2 original_source", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_synthetic.csv_unverified_20261118_052913_464590_UTC_de69d7f002444c07a9034c2bd5499a7e", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_synthetic.csv_verified_20261118_052913_464590_UTC_de69d7f002444c07a9034c2bd5499a7e"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:13.567715+00:00", "operation": "Phase 2 original_source", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.10961831698659807}
+  Run 07: transfer=0.024794s, throughput=4.067 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:13.568374+00:00", "operation": "Phase 2 original_source", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:13.574923+00:00", "operation": "Phase 2 original_source", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_synthetic.csv_unverified_20261118_052913_574895_UTC_25b6b429607d4ee89c7498d6ab2c2b7e", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_synthetic.csv_verified_20261118_052913_574895_UTC_25b6b429607d4ee89c7498d6ab2c2b7e"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:13.679926+00:00", "operation": "Phase 2 original_source", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.11154960101703182}
+  Run 08: transfer=0.025779s, throughput=3.912 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:13.680595+00:00", "operation": "Phase 2 original_source", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:13.687052+00:00", "operation": "Phase 2 original_source", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_synthetic.csv_unverified_20261118_052913_686978_UTC_70d70cececec4281a23c186eac08defa", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_synthetic.csv_verified_20261118_052913_686978_UTC_70d70cececec4281a23c186eac08defa"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:13.817025+00:00", "operation": "Phase 2 original_source", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.13642601802712306}
+  Run 09: transfer=0.034494s, throughput=2.923 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:13.817740+00:00", "operation": "Phase 2 original_source", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:13.824221+00:00", "operation": "Phase 2 original_source", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_synthetic.csv_unverified_20261118_052913_824193_UTC_83ad363437854d2e8fb8624b21f413b2", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_synthetic.csv_verified_20261118_052913_824193_UTC_83ad363437854d2e8fb8624b21f413b2"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:13.939113+00:00", "operation": "Phase 2 original_source", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.12135627900715917}
+  Run 10: transfer=0.027004s, throughput=3.734 Mbps, integrity=PASS
+
+Transfer: csv
+Artifact size: 12.26 KB
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:13.940399+00:00", "operation": "Phase 2 csv", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:13.946307+00:00", "operation": "Phase 2 csv", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv_unverified_20261118_052913_946270_UTC_606373a1247c4d7fa72e748a8b5fbdc9", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv_verified_20261118_052913_946270_UTC_606373a1247c4d7fa72e748a8b5fbdc9"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:14.065564+00:00", "operation": "Phase 2 csv", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.12516247999155894}
+  Run 01: transfer=0.031776s, throughput=3.160 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:14.066232+00:00", "operation": "Phase 2 csv", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:14.072621+00:00", "operation": "Phase 2 csv", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv_unverified_20261118_052914_072594_UTC_c72fea3e1fd44cd88544552dbe45f832", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv_verified_20261118_052914_072594_UTC_c72fea3e1fd44cd88544552dbe45f832"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:14.188639+00:00", "operation": "Phase 2 csv", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.12240507605019957}
+  Run 02: transfer=0.028554s, throughput=3.517 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:14.189309+00:00", "operation": "Phase 2 csv", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:14.195796+00:00", "operation": "Phase 2 csv", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv_unverified_20261118_052914_195772_UTC_c6a6e1e246a649b3aa14c749ae47d74e", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv_verified_20261118_052914_195772_UTC_c6a6e1e246a649b3aa14c749ae47d74e"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:14.310312+00:00", "operation": "Phase 2 csv", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.12100201402790844}
+  Run 03: transfer=0.027808s, throughput=3.611 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:14.311007+00:00", "operation": "Phase 2 csv", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:14.317452+00:00", "operation": "Phase 2 csv", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv_unverified_20261118_052914_317426_UTC_644c5d8c83ca41c1b3f57005a2365b85", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv_verified_20261118_052914_317426_UTC_644c5d8c83ca41c1b3f57005a2365b85"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:14.433275+00:00", "operation": "Phase 2 csv", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.12226516997907311}
+  Run 04: transfer=0.026841s, throughput=3.741 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:14.433948+00:00", "operation": "Phase 2 csv", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:14.434772+00:00", "operation": "Phase 2 csv", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv_unverified_20261118_052914_434746_UTC_34406d97aa47402c83c36b1f8c916625", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv_verified_20261118_052914_434746_UTC_34406d97aa47402c83c36b1f8c916625"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:14.540816+00:00", "operation": "Phase 2 csv", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.10686538001755252}
+  Run 05: transfer=0.026124s, throughput=3.844 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:14.541483+00:00", "operation": "Phase 2 csv", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:14.547961+00:00", "operation": "Phase 2 csv", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv_unverified_20261118_052914_547934_UTC_afa8855dcd7d483285e16bbfa1e31b6c", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv_verified_20261118_052914_547934_UTC_afa8855dcd7d483285e16bbfa1e31b6c"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:14.655859+00:00", "operation": "Phase 2 csv", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.11437294300412759}
+  Run 06: transfer=0.026116s, throughput=3.845 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:14.656573+00:00", "operation": "Phase 2 csv", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:14.663067+00:00", "operation": "Phase 2 csv", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv_unverified_20261118_052914_663039_UTC_bb448c7a88d2440f98b5a7c89fa4aac5", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv_verified_20261118_052914_663039_UTC_bb448c7a88d2440f98b5a7c89fa4aac5"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:14.770091+00:00", "operation": "Phase 2 csv", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.11351570900296792}
+  Run 07: transfer=0.026394s, throughput=3.804 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:14.770911+00:00", "operation": "Phase 2 csv", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:14.777265+00:00", "operation": "Phase 2 csv", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv_unverified_20261118_052914_777237_UTC_7e11b5606344436c9e80e6a6cf74ffdc", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv_verified_20261118_052914_777237_UTC_7e11b5606344436c9e80e6a6cf74ffdc"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:14.883779+00:00", "operation": "Phase 2 csv", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.11286499601555988}
+  Run 08: transfer=0.027640s, throughput=3.633 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:14.884503+00:00", "operation": "Phase 2 csv", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:14.891454+00:00", "operation": "Phase 2 csv", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv_unverified_20261118_052914_891332_UTC_d9d8dac505b44e179b29a31de0b12ac1", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv_verified_20261118_052914_891332_UTC_d9d8dac505b44e179b29a31de0b12ac1"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:15.028390+00:00", "operation": "Phase 2 csv", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.14388472301652655}
+  Run 09: transfer=0.029211s, throughput=3.438 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:15.029069+00:00", "operation": "Phase 2 csv", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:15.035471+00:00", "operation": "Phase 2 csv", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv_unverified_20261118_052915_035445_UTC_03d20defe4b64cefa55ec7099595e550", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv_verified_20261118_052915_035445_UTC_03d20defe4b64cefa55ec7099595e550"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:15.140018+00:00", "operation": "Phase 2 csv", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.1109461790183559}
+  Run 10: transfer=0.028564s, throughput=3.515 Mbps, integrity=PASS
+
+Transfer: csv_gzip
+Artifact size: 6.08 KB
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:15.141049+00:00", "operation": "Phase 2 csv_gzip", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:15.147165+00:00", "operation": "Phase 2 csv_gzip", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.gz_unverified_20261118_052915_147139_UTC_47f016fabd6942ef9b7a3a99e02e665e", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.gz_verified_20261118_052915_147139_UTC_47f016fabd6942ef9b7a3a99e02e665e"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:15.258973+00:00", "operation": "Phase 2 csv_gzip", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.11792095802957192}
+  Run 01: transfer=0.027698s, throughput=1.798 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:15.259628+00:00", "operation": "Phase 2 csv_gzip", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:15.266199+00:00", "operation": "Phase 2 csv_gzip", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.gz_unverified_20261118_052915_266158_UTC_ce91faf59d3b4a5796c85b35e31247ec", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.gz_verified_20261118_052915_266158_UTC_ce91faf59d3b4a5796c85b35e31247ec"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:15.377585+00:00", "operation": "Phase 2 csv_gzip", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.11795391701161861}
+  Run 02: transfer=0.026105s, throughput=1.908 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:15.378250+00:00", "operation": "Phase 2 csv_gzip", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:15.384668+00:00", "operation": "Phase 2 csv_gzip", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.gz_unverified_20261118_052915_384630_UTC_5faff58c1a9a43d599935d3e3f60898d", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.gz_verified_20261118_052915_384630_UTC_5faff58c1a9a43d599935d3e3f60898d"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:15.502499+00:00", "operation": "Phase 2 csv_gzip", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.12424600997474045}
+  Run 03: transfer=0.027750s, throughput=1.795 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:15.503214+00:00", "operation": "Phase 2 csv_gzip", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:15.504129+00:00", "operation": "Phase 2 csv_gzip", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.gz_unverified_20261118_052915_504106_UTC_146c949ae1da46d8bc7ab384cda493e7", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.gz_verified_20261118_052915_504106_UTC_146c949ae1da46d8bc7ab384cda493e7"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:15.623099+00:00", "operation": "Phase 2 csv_gzip", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.11988209100672975}
+  Run 04: transfer=0.034477s, throughput=1.444 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:15.623779+00:00", "operation": "Phase 2 csv_gzip", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:15.630282+00:00", "operation": "Phase 2 csv_gzip", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.gz_unverified_20261118_052915_630254_UTC_0e8d3b65317c4fb19a0908c8a3baf218", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.gz_verified_20261118_052915_630254_UTC_0e8d3b65317c4fb19a0908c8a3baf218"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:15.740605+00:00", "operation": "Phase 2 csv_gzip", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.11682288895826787}
+  Run 05: transfer=0.026029s, throughput=1.913 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:15.741286+00:00", "operation": "Phase 2 csv_gzip", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:15.747757+00:00", "operation": "Phase 2 csv_gzip", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.gz_unverified_20261118_052915_747734_UTC_2c6a8dcffaf4437285fcaab27d379b6a", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.gz_verified_20261118_052915_747734_UTC_2c6a8dcffaf4437285fcaab27d379b6a"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:15.852718+00:00", "operation": "Phase 2 csv_gzip", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.11142723495140672}
+  Run 06: transfer=0.025772s, throughput=1.932 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:15.853870+00:00", "operation": "Phase 2 csv_gzip", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:15.860078+00:00", "operation": "Phase 2 csv_gzip", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.gz_unverified_20261118_052915_860050_UTC_332721f3b3264ab08f739b4d4ff6613b", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.gz_verified_20261118_052915_860050_UTC_332721f3b3264ab08f739b4d4ff6613b"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:15.967661+00:00", "operation": "Phase 2 csv_gzip", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.11379041097825393}
+  Run 07: transfer=0.026170s, throughput=1.903 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:15.968275+00:00", "operation": "Phase 2 csv_gzip", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:15.974780+00:00", "operation": "Phase 2 csv_gzip", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.gz_unverified_20261118_052915_974756_UTC_7c7dec04ae414e43b9163995afcc6195", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.gz_verified_20261118_052915_974756_UTC_7c7dec04ae414e43b9163995afcc6195"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:16.080772+00:00", "operation": "Phase 2 csv_gzip", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.11249466199660674}
+  Run 08: transfer=0.026111s, throughput=1.907 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:16.081396+00:00", "operation": "Phase 2 csv_gzip", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:16.087872+00:00", "operation": "Phase 2 csv_gzip", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.gz_unverified_20261118_052916_087841_UTC_5694f73138684d0a9328028e864b8193", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.gz_verified_20261118_052916_087841_UTC_5694f73138684d0a9328028e864b8193"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:16.218244+00:00", "operation": "Phase 2 csv_gzip", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.13684418000048026}
+  Run 09: transfer=0.029660s, throughput=1.679 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:16.218942+00:00", "operation": "Phase 2 csv_gzip", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:16.225347+00:00", "operation": "Phase 2 csv_gzip", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.gz_unverified_20261118_052916_225319_UTC_047cef8cb7a446d49dce9d99b9380ed7", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.gz_verified_20261118_052916_225319_UTC_047cef8cb7a446d49dce9d99b9380ed7"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:16.332504+00:00", "operation": "Phase 2 csv_gzip", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.11355960101354867}
+  Run 10: transfer=0.027256s, throughput=1.827 Mbps, integrity=PASS
+
+Transfer: parquet
+Artifact size: 14.00 KB
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:16.333496+00:00", "operation": "Phase 2 parquet", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:16.339591+00:00", "operation": "Phase 2 parquet", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.parquet_unverified_20261118_052916_339564_UTC_0f0d40bff8514760943969f8b788b313", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.parquet_verified_20261118_052916_339564_UTC_0f0d40bff8514760943969f8b788b313"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:16.448634+00:00", "operation": "Phase 2 parquet", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.1151353950263001}
+  Run 01: transfer=0.027329s, throughput=4.196 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:16.449335+00:00", "operation": "Phase 2 parquet", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:16.450361+00:00", "operation": "Phase 2 parquet", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.parquet_unverified_20261118_052916_450333_UTC_47ee3e9ff3844b76946f4c08f5bb8b71", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.parquet_verified_20261118_052916_450333_UTC_47ee3e9ff3844b76946f4c08f5bb8b71"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:16.561594+00:00", "operation": "Phase 2 parquet", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.1122560509829782}
+  Run 02: transfer=0.026052s, throughput=4.402 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:16.562378+00:00", "operation": "Phase 2 parquet", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:16.568649+00:00", "operation": "Phase 2 parquet", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.parquet_unverified_20261118_052916_568620_UTC_5e7e6cb75f084c7fa7cd6119f80901ee", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.parquet_verified_20261118_052916_568620_UTC_5e7e6cb75f084c7fa7cd6119f80901ee"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:16.672196+00:00", "operation": "Phase 2 parquet", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.10981594200711697}
+  Run 03: transfer=0.027634s, throughput=4.150 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:16.672948+00:00", "operation": "Phase 2 parquet", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:16.679570+00:00", "operation": "Phase 2 parquet", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.parquet_unverified_20261118_052916_679449_UTC_ce95210df83a4876923bfb880d27e9b0", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.parquet_verified_20261118_052916_679449_UTC_ce95210df83a4876923bfb880d27e9b0"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:16.807110+00:00", "operation": "Phase 2 parquet", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.13415959401754662}
+  Run 04: transfer=0.031557s, throughput=3.634 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:16.807821+00:00", "operation": "Phase 2 parquet", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:16.814270+00:00", "operation": "Phase 2 parquet", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.parquet_unverified_20261118_052916_814247_UTC_5ea3a94b2d714860bae897b6bddeb071", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.parquet_verified_20261118_052916_814247_UTC_5ea3a94b2d714860bae897b6bddeb071"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:16.928738+00:00", "operation": "Phase 2 parquet", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.12091363401850685}
+  Run 05: transfer=0.026179s, throughput=4.380 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:16.929524+00:00", "operation": "Phase 2 parquet", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:16.935891+00:00", "operation": "Phase 2 parquet", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.parquet_unverified_20261118_052916_935849_UTC_33f22b31f5664f78a2785780f8b3e6b8", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.parquet_verified_20261118_052916_935849_UTC_33f22b31f5664f78a2785780f8b3e6b8"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:17.054121+00:00", "operation": "Phase 2 parquet", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.12459224602207541}
+  Run 06: transfer=0.030804s, throughput=3.723 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:17.055181+00:00", "operation": "Phase 2 parquet", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:17.061481+00:00", "operation": "Phase 2 parquet", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.parquet_unverified_20261118_052917_061444_UTC_2bbef86fc68a436cac51d9ad62a5d505", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.parquet_verified_20261118_052917_061444_UTC_2bbef86fc68a436cac51d9ad62a5d505"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:17.168696+00:00", "operation": "Phase 2 parquet", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.11351267399732023}
+  Run 07: transfer=0.026444s, throughput=4.336 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:17.169359+00:00", "operation": "Phase 2 parquet", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:17.175757+00:00", "operation": "Phase 2 parquet", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.parquet_unverified_20261118_052917_175731_UTC_c5d20b70447f4895b7ce98a755929381", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.parquet_verified_20261118_052917_175731_UTC_c5d20b70447f4895b7ce98a755929381"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:17.308424+00:00", "operation": "Phase 2 parquet", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.13906144903739914}
+  Run 08: transfer=0.029240s, throughput=3.922 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:17.309312+00:00", "operation": "Phase 2 parquet", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:17.315584+00:00", "operation": "Phase 2 parquet", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.parquet_unverified_20261118_052917_315550_UTC_83d1c4b574b24233a7915852c323f713", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.parquet_verified_20261118_052917_315550_UTC_83d1c4b574b24233a7915852c323f713"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:17.467883+00:00", "operation": "Phase 2 parquet", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.15856521297246218}
+  Run 09: transfer=0.031574s, throughput=3.632 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:17.468913+00:00", "operation": "Phase 2 parquet", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:17.475210+00:00", "operation": "Phase 2 parquet", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.parquet_unverified_20261118_052917_475176_UTC_93f669dfce3844f597c72bda6c9709e2", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.parquet_verified_20261118_052917_475176_UTC_93f669dfce3844f597c72bda6c9709e2"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:17.612292+00:00", "operation": "Phase 2 parquet", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.14337684103520587}
+  Run 10: transfer=0.035065s, throughput=3.270 Mbps, integrity=PASS
+
+Transfer: csv_zstd
+Artifact size: 5.73 KB
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:17.613476+00:00", "operation": "Phase 2 csv_zstd", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:17.619495+00:00", "operation": "Phase 2 csv_zstd", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.zst_unverified_20261118_052917_619461_UTC_e4e852a513134a28bd8aca7d83868fba", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.zst_verified_20261118_052917_619461_UTC_e4e852a513134a28bd8aca7d83868fba"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:17.738566+00:00", "operation": "Phase 2 csv_zstd", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.1250869210343808}
+  Run 01: transfer=0.031413s, throughput=1.495 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:17.739239+00:00", "operation": "Phase 2 csv_zstd", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:17.739528+00:00", "operation": "Phase 2 csv_zstd", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.zst_unverified_20261118_052917_739502_UTC_aa5f8626b56347d7a8eda01ab6c26abb", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.zst_verified_20261118_052917_739502_UTC_aa5f8626b56347d7a8eda01ab6c26abb"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:17.853056+00:00", "operation": "Phase 2 csv_zstd", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.11381087498739362}
+  Run 02: transfer=0.028239s, throughput=1.663 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:17.854218+00:00", "operation": "Phase 2 csv_zstd", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:17.854710+00:00", "operation": "Phase 2 csv_zstd", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.zst_unverified_20261118_052917_854669_UTC_bb73c5a929014545a5a89108d29faf7b", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.zst_verified_20261118_052917_854669_UTC_bb73c5a929014545a5a89108d29faf7b"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:17.970079+00:00", "operation": "Phase 2 csv_zstd", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.11586014798376709}
+  Run 03: transfer=0.032777s, throughput=1.433 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:17.970680+00:00", "operation": "Phase 2 csv_zstd", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:17.977205+00:00", "operation": "Phase 2 csv_zstd", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.zst_unverified_20261118_052917_977182_UTC_83e85fc787e74e9da0feb5d686f3fb7e", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.zst_verified_20261118_052917_977182_UTC_83e85fc787e74e9da0feb5d686f3fb7e"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:18.079091+00:00", "operation": "Phase 2 csv_zstd", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.1084079320426099}
+  Run 04: transfer=0.026129s, throughput=1.798 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:18.079696+00:00", "operation": "Phase 2 csv_zstd", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:18.086553+00:00", "operation": "Phase 2 csv_zstd", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.zst_unverified_20261118_052918_086519_UTC_b5a0397e0cf9415390acc55586713510", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.zst_verified_20261118_052918_086519_UTC_b5a0397e0cf9415390acc55586713510"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:18.195310+00:00", "operation": "Phase 2 csv_zstd", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.11561123101273552}
+  Run 05: transfer=0.026400s, throughput=1.779 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:18.195941+00:00", "operation": "Phase 2 csv_zstd", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:18.202485+00:00", "operation": "Phase 2 csv_zstd", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.zst_unverified_20261118_052918_202424_UTC_0dab10f85dbe40e381f2c8c1911983d9", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.zst_verified_20261118_052918_202424_UTC_0dab10f85dbe40e381f2c8c1911983d9"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:18.311652+00:00", "operation": "Phase 2 csv_zstd", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.11570784798823297}
+  Run 06: transfer=0.026850s, throughput=1.749 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:18.312430+00:00", "operation": "Phase 2 csv_zstd", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:18.318826+00:00", "operation": "Phase 2 csv_zstd", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.zst_unverified_20261118_052918_318788_UTC_6f913da864724537857fd1319473f40b", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.zst_verified_20261118_052918_318788_UTC_6f913da864724537857fd1319473f40b"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:18.433998+00:00", "operation": "Phase 2 csv_zstd", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.12156519194832072}
+  Run 07: transfer=0.031355s, throughput=1.498 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:18.434647+00:00", "operation": "Phase 2 csv_zstd", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:18.441116+00:00", "operation": "Phase 2 csv_zstd", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.zst_unverified_20261118_052918_441093_UTC_8d0b8f005d92471bbb58a02175c158b5", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.zst_verified_20261118_052918_441093_UTC_8d0b8f005d92471bbb58a02175c158b5"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:18.568983+00:00", "operation": "Phase 2 csv_zstd", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.13433254999108613}
+  Run 08: transfer=0.037631s, throughput=1.248 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:18.569699+00:00", "operation": "Phase 2 csv_zstd", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:18.576226+00:00", "operation": "Phase 2 csv_zstd", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.zst_unverified_20261118_052918_576199_UTC_3fd4d523792a4bec80883cd82127accf", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.zst_verified_20261118_052918_576199_UTC_3fd4d523792a4bec80883cd82127accf"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:18.691914+00:00", "operation": "Phase 2 csv_zstd", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.12221141799818724}
+  Run 09: transfer=0.027602s, throughput=1.702 Mbps, integrity=PASS
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:18.692846+00:00", "operation": "Phase 2 csv_zstd", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:18.699223+00:00", "operation": "Phase 2 csv_zstd", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.zst_unverified_20261118_052918_699188_UTC_744aa0f4906d47119b7f73cb21404571", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/dataset.csv.zst_verified_20261118_052918_699188_UTC_744aa0f4906d47119b7f73cb21404571"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:18.808868+00:00", "operation": "Phase 2 csv_zstd", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.1160195370321162}
+  Run 10: transfer=0.026321s, throughput=1.784 Mbps, integrity=PASS
+
+==============================================================================================================
+PHASE 2 SUMMARY
+==============================================================================================================
+
+Transfer mode    : ssh
+Packaging runs   : 1
+Maximum transfer trials: 10
+
+         format  file_mb  size_reduction_pct  packaging_mean_seconds  packaging_std_seconds  transfer_mean_seconds  transfer_std_seconds  throughput_mean_mbps  throughput_std_mbps  integrity_verified
+original_source 0.012021            0.000000                0.000000               0.000000               0.029489              0.004818              3.495754             0.522868                True
+            csv 0.011971            0.420468                0.003422               0.000000               0.027903              0.001745              3.610846             0.214796                True
+       csv_gzip 0.005937           50.614835                0.002538               0.000000               0.027703              0.002664              1.810666             0.150824                True
+        parquet 0.013670          -13.716779                0.014274               0.000000               0.029188              0.002995              3.964431             0.387654                True
+       csv_zstd 0.005599           53.423245                0.002305               0.000000               0.029472              0.003760              1.614935             0.186376                True
+
+====================================================================================================
+PHASE 2 COMPLETED
+====================================================================================================
+
+Results:
+  Summary : /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase2/synthetic_20261118_052912/transfer_benchmark.csv
+  Trials  : /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase2/synthetic_20261118_052912/transfer_trials.csv
+  Metadata: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase2/synthetic_20261118_052912/transfer_metadata.json
+  Artifacts: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase2/synthetic_20261118_052912/artifacts
+COMPLETE phase2: 6.801s
+START phase2_topsis: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/topsis_transfer_decision.py /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase2/synthetic_20261118_052912/transfer_benchmark.csv --formats csv_gzip parquet csv_zstd --output-dir /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase2_topsis
+TOPSIS criterion setup:
+  size_reduction_pct       (benefit, maximize)
+  packaging_mean_seconds   (cost, minimize)
+  transfer_mean_seconds    (cost, minimize)
+Normalized weights: 0.3333, 0.3333, 0.3333
+
+Ranking:
+  format size_reduction_pct packaging_mean_seconds transfer_mean_seconds distance_to_ideal_best distance_to_ideal_worst topsis_score  rank
+csv_zstd             53.423               0.002305              0.029472               0.011822                0.404029     0.971571     1
+csv_gzip             50.615               0.002538              0.027703               0.013581                0.391418     0.966468     2
+ parquet            -13.717               0.014274              0.029188               0.404151                0.001898     0.004673     3
+
+Saved TOPSIS matrices and ranking to: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase2_topsis
+Note: TOPSIS ranking depends on the chosen alternatives and criterion weights.
+COMPLETE phase2_topsis: 0.427s
+START phase3: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/03_feature_selection_all_thresholds_clinical.py /tmp/thesis-adaptive-phase2-20261118/synthetic.csv --output-dir /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase3 --correlation-action flag --correlation-threshold 0.95 --min-correlation-observations 200 --min-correlation-patients 30 --patient-coverage-min 0.75 --missingness-thresholds 0.8 0.9 0.95 --clinically-protected Lactate
+Source dataset: /tmp/thesis-adaptive-phase2-20261118/synthetic.csv
+Rows: 64; patients: 16; columns: 15
+Selection statistics: ALL patients and observations (no split)
+Protected structural/ID columns: ['SepsisLabel', 'patient_id', 'time']
+Results: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase3/synthetic_20261118_052919_646570_UTC
+
+Running FS_00_no_missingness_filter ...
+  Columns: 15 -> 15; file: 12,552 bytes; selection: 0.007s; flagged correlations: 0
+
+Running FS_80_missingness ...
+  Columns: 15 -> 15; file: 12,552 bytes; selection: 0.008s; flagged correlations: 0
+
+Running FS_80_clinical_review ...
+  Columns: 15 -> 15; file: 12,552 bytes; selection: 0.012s; flagged correlations: 0
+
+Running FS_90_missingness ...
+  Columns: 15 -> 15; file: 12,552 bytes; selection: 0.008s; flagged correlations: 0
+
+Running FS_90_clinical_review ...
+  Columns: 15 -> 15; file: 12,552 bytes; selection: 0.008s; flagged correlations: 0
+
+Running FS_95_missingness ...
+  Columns: 15 -> 15; file: 12,552 bytes; selection: 0.009s; flagged correlations: 0
+
+Running FS_95_clinical_review ...
+  Columns: 15 -> 15; file: 12,552 bytes; selection: 0.009s; flagged correlations: 0
+
+Completed 7 experiments. Comparison: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase3/synthetic_20261118_052919_646570_UTC/threshold_comparison.csv
+Matched comparison: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase3/synthetic_20261118_052919_646570_UTC/clinical_impact_comparison.csv
+NOTE: 75.0% patient coverage is a study-defined sensitivity threshold, not a published clinical cutoff.
+COMPLETE phase3: 0.536s
+START phase4_original: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/04_dimensionality_reduction_updated.py /tmp/thesis-adaptive-phase2-20261118/synthetic.csv --output-dir /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase4/original --methods pca autoencoder --k 2 --ae-max-iter 10 --seed 42 --lossless-formats gzip zstd parquet --bandwidth-mbps 100 --strict-lossless
+Lossless baseline: gzip
+Lossless baseline: zstd
+Lossless baseline: parquet
+Input : /tmp/thesis-adaptive-phase2-20261118/synthetic.csv
+Rows  : 64
+Encoded numerical predictors: 9
+Preserved exactly: ['patient_id', 'time', 'SepsisLabel', 'Age', 'ICULOS', 'HospAdmTime']
+Exact clinical variables present: ['Age', 'HospAdmTime', 'ICULOS']
+CSV   : 12,605 bytes; smallest verified lossless: zstd (5,994 bytes)
+Output: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase4/original/synthetic_20261118_052921_063801_UTC
+Running pca, k=2 ...
+  Payload 5,024 bytes; normalized RMSE 0.8148963128831529
+Running autoencoder, k=2 ...
+  WARNING: AE k=2 reached 10 iterations without optimizer stopping by tolerance. Treat result as preliminary.
+  Payload 6,792 bytes; normalized RMSE 1.0630298587569187
+
+COMPLETE. Main result: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase4/original/synthetic_20261118_052921_063801_UTC/phase4_comparison.csv
+COMPLETE phase4_original: 1.419s
+START phase4_FS_95_clinical_review: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/04_dimensionality_reduction_updated.py /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase3/synthetic_20261118_052919_646570_UTC/FS_95_clinical_review/selected_dataset.csv --output-dir /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase4/FS_95_clinical_review --methods pca autoencoder --k 2 --ae-max-iter 10 --seed 42 --lossless-formats gzip zstd parquet --bandwidth-mbps 100 --strict-lossless
+Lossless baseline: gzip
+Lossless baseline: zstd
+Lossless baseline: parquet
+Input : /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase3/synthetic_20261118_052919_646570_UTC/FS_95_clinical_review/selected_dataset.csv
+Rows  : 64
+Encoded numerical predictors: 9
+Preserved exactly: ['patient_id', 'time', 'SepsisLabel', 'Age', 'ICULOS', 'HospAdmTime']
+Exact clinical variables present: ['Age', 'HospAdmTime', 'ICULOS']
+CSV   : 12,552 bytes; smallest verified lossless: zstd (5,966 bytes)
+Output: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase4/FS_95_clinical_review/selected_dataset_20261118_052922_607329_UTC
+Running pca, k=2 ...
+  Payload 5,024 bytes; normalized RMSE 0.8148963128831529
+Running autoencoder, k=2 ...
+  WARNING: AE k=2 reached 10 iterations without optimizer stopping by tolerance. Treat result as preliminary.
+  Payload 6,792 bytes; normalized RMSE 1.0630298587569185
+
+COMPLETE. Main result: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase4/FS_95_clinical_review/selected_dataset_20261118_052922_607329_UTC/phase4_comparison.csv
+COMPLETE phase4_FS_95_clinical_review: 1.594s
+START phase5: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_utility_evaluation_updated.py --output-dir /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase5 --full-reference /tmp/thesis-adaptive-phase2-20261118/synthetic.csv --distance-samples 16 --neighbor-k 5 10 --seed 42 --experiment /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase4/original/synthetic_20261118_052921_063801_UTC /tmp/thesis-adaptive-phase2-20261118/synthetic.csv --experiment /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase4/FS_95_clinical_review/selected_dataset_20261118_052922_607329_UTC /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase3/synthetic_20261118_052919_646570_UTC/FS_95_clinical_review/selected_dataset.csv
+Evaluating: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase4/original/synthetic_20261118_052921_063801_UTC  |  Source: /tmp/thesis-adaptive-phase2-20261118/synthetic.csv
+  Evaluated 5 method/packaging rows; 18 feature metrics
+Evaluating: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase4/FS_95_clinical_review/selected_dataset_20261118_052922_607329_UTC  |  Source: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase3/synthetic_20261118_052919_646570_UTC/FS_95_clinical_review/selected_dataset.csv
+  Evaluated 5 method/packaging rows; 18 feature metrics
+
+Phase 5 complete: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase5/phase5_20261118_052924_205453_UTC
+  - phase5_utility_summary.csv
+  - phase5_per_feature_utility.csv
+  - phase5_feature_retention.csv
+  - phase5_sampled_patient_rows.csv
+  - phase5_nearest_neighbor_overlap.csv
+  - phase5_metadata.json
+COMPLETE phase5: 1.559s
+START phase6_original_gzip_n_native: executing
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:24.442529+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:24.468661+00:00", "operation": "ssh preflight/setup", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.026127496035769582}
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase4/original/synthetic_20261118_052921_063801_UTC --source-csv /tmp/thesis-adaptive-phase2-20261118/synthetic.csv --method gzip --output-dir /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_gzip_none_native --package-name original_gzip_none_native
+PACKAGE CREATED: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_gzip_none_native/original_gzip_none_native_20261118_052925_736097_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,843
+Payload alone: 6,267 bytes; package seconds: 0.0255
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_gzip_none_native/original_gzip_none_native_20261118_052925_736097_UTC.tar
+VERIFIED: original_gzip_none_native_20261118_052925_736097_UTC gzip
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_gzip_none_native/original_gzip_none_native_20261118_052925_736097_UTC.tar --output-dir /tmp/thesis_receiver_7mqoq30u
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_7mqoq30u/original_gzip_none_native_20261118_052925_736097_UTC
+Method: gzip
+NETWORK: Phase 6 original_gzip_none_native mode=ssh; requested=ssh; reason=none
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py send /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_gzip_none_native/original_gzip_none_native_20261118_052925_736097_UTC.tar --remote offline@stand-in --remote-dir /tmp/thesis-adaptive-phase2-20261118/remote --trials 1 --ssh-port 22 --report-csv /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_gzip_none_native/transfer_trials.csv
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:29.810073+00:00", "operation": "Phase 6 original_gzip_none_native_20261118_052925_736097_UTC trial 1", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:29.810490+00:00", "operation": "Phase 6 original_gzip_none_native_20261118_052925_736097_UTC trial 1", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_gzip_none_native_20261118_052925_736097_UTC.tar_unverified_20261118_052929_810461_UTC_06b51b36dd9d4b2298b15e6a5167cae6", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_gzip_none_native_20261118_052925_736097_UTC.tar_verified_20261118_052929_810461_UTC_06b51b36dd9d4b2298b15e6a5167cae6"}
+NETWORK: {"status": "connection_lost", "updated_utc": "2026-11-18T05:29:29.870340+00:00", "operation": "Phase 6 original_gzip_none_native_20261118_052925_736097_UTC trial 1", "attempt": 1, "max_attempts": 3, "error": "Connection reset by peer", "transient": true, "failed_attempt_seconds": 0.059931082010734826, "failed_attempts": 1, "cumulative_failed_attempt_seconds": 0.059931082010734826, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.059931082010734826, "delivery_wall_seconds": 0.060268461995292455, "retry_in_seconds": 0, "next_attempt": 2}
+NETWORK: {"status": "retrying", "updated_utc": "2026-11-18T05:29:29.870828+00:00", "operation": "Phase 6 original_gzip_none_native_20261118_052925_736097_UTC trial 1", "attempt": 2, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:29.872088+00:00", "operation": "Phase 6 original_gzip_none_native_20261118_052925_736097_UTC trial 1", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_gzip_none_native_20261118_052925_736097_UTC.tar_unverified_20261118_052929_872059_UTC_c3dcc8f6085944baafd2da65d6ba66fb", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_gzip_none_native_20261118_052925_736097_UTC.tar_verified_20261118_052929_872059_UTC_c3dcc8f6085944baafd2da65d6ba66fb"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:30.016375+00:00", "operation": "Phase 6 original_gzip_none_native_20261118_052925_736097_UTC trial 1", "attempts": 2, "failed_attempts": 1, "failed_attempt_seconds": 0.059931082010734826, "backoff_seconds": 5.8800040278583765e-05, "recovery_overhead_seconds": 0.05998988205101341, "delivery_wall_seconds": 0.2063009159755893}
+Trial 1: verified and published; 2 attempt(s)
+Transfer trial report: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_gzip_none_native/transfer_trials.csv
+COMPLETE phase6_original_gzip_n_native: 5.714s
+START phase6_original_zstd_n_native: executing
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:30.163718+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:30.187129+00:00", "operation": "ssh preflight/setup", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.023408111999742687}
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase4/original/synthetic_20261118_052921_063801_UTC --source-csv /tmp/thesis-adaptive-phase2-20261118/synthetic.csv --method zstd --output-dir /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_zstd_none_native --package-name original_zstd_none_native
+PACKAGE CREATED: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_zstd_none_native/original_zstd_none_native_20261118_052931_486492_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,843
+Payload alone: 5,903 bytes; package seconds: 0.0145
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_zstd_none_native/original_zstd_none_native_20261118_052931_486492_UTC.tar
+VERIFIED: original_zstd_none_native_20261118_052931_486492_UTC zstd
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_zstd_none_native/original_zstd_none_native_20261118_052931_486492_UTC.tar --output-dir /tmp/thesis_receiver_4kjv6dvy
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_4kjv6dvy/original_zstd_none_native_20261118_052931_486492_UTC
+Method: zstd
+NETWORK: Phase 6 original_zstd_none_native mode=ssh; requested=ssh; reason=none
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py send /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_zstd_none_native/original_zstd_none_native_20261118_052931_486492_UTC.tar --remote offline@stand-in --remote-dir /tmp/thesis-adaptive-phase2-20261118/remote --trials 1 --ssh-port 22 --report-csv /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_zstd_none_native/transfer_trials.csv
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:35.677152+00:00", "operation": "Phase 6 original_zstd_none_native_20261118_052931_486492_UTC trial 1", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:35.677633+00:00", "operation": "Phase 6 original_zstd_none_native_20261118_052931_486492_UTC trial 1", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_zstd_none_native_20261118_052931_486492_UTC.tar_unverified_20261118_052935_677604_UTC_5cc699e714f84ae79a86c470c57de1ff", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_zstd_none_native_20261118_052931_486492_UTC.tar_verified_20261118_052935_677604_UTC_5cc699e714f84ae79a86c470c57de1ff"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:35.799092+00:00", "operation": "Phase 6 original_zstd_none_native_20261118_052931_486492_UTC trial 1", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.12193747697165236}
+Trial 1: verified and published; 1 attempt(s)
+Transfer trial report: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_zstd_none_native/transfer_trials.csv
+COMPLETE phase6_original_zstd_n_native: 5.803s
+START phase6_original_parquet_n_native: executing
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:35.974314+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:35.998399+00:00", "operation": "ssh preflight/setup", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.02408122201450169}
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase4/original/synthetic_20261118_052921_063801_UTC --source-csv /tmp/thesis-adaptive-phase2-20261118/synthetic.csv --method parquet --output-dir /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_parquet_none_native --package-name original_parquet_none_native
+PACKAGE CREATED: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_parquet_none_native/original_parquet_none_native_20261118_052937_240184_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,846
+Payload alone: 14,452 bytes; package seconds: 0.0326
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_parquet_none_native/original_parquet_none_native_20261118_052937_240184_UTC.tar
+VERIFIED: original_parquet_none_native_20261118_052937_240184_UTC parquet
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_parquet_none_native/original_parquet_none_native_20261118_052937_240184_UTC.tar --output-dir /tmp/thesis_receiver_5mpoiewh
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_5mpoiewh/original_parquet_none_native_20261118_052937_240184_UTC
+Method: parquet
+NETWORK: Phase 6 original_parquet_none_native mode=ssh; requested=ssh; reason=none
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py send /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_parquet_none_native/original_parquet_none_native_20261118_052937_240184_UTC.tar --remote offline@stand-in --remote-dir /tmp/thesis-adaptive-phase2-20261118/remote --trials 1 --ssh-port 22 --report-csv /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_parquet_none_native/transfer_trials.csv
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:41.495612+00:00", "operation": "Phase 6 original_parquet_none_native_20261118_052937_240184_UTC trial 1", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:41.496097+00:00", "operation": "Phase 6 original_parquet_none_native_20261118_052937_240184_UTC trial 1", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_parquet_none_native_20261118_052937_240184_UTC.tar_unverified_20261118_052941_496063_UTC_38b6414c235d42a5888101bcbb467322", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_parquet_none_native_20261118_052937_240184_UTC.tar_verified_20261118_052941_496063_UTC_38b6414c235d42a5888101bcbb467322"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:41.601275+00:00", "operation": "Phase 6 original_parquet_none_native_20261118_052937_240184_UTC trial 1", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.10566306504188105}
+Trial 1: verified and published; 1 attempt(s)
+Transfer trial report: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_parquet_none_native/transfer_trials.csv
+COMPLETE phase6_original_parquet_n_native: 5.749s
+START phase6_original_pca_2_native: executing
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:41.731121+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:41.753381+00:00", "operation": "ssh preflight/setup", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.022257034957874566}
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase4/original/synthetic_20261118_052921_063801_UTC --source-csv /tmp/thesis-adaptive-phase2-20261118/synthetic.csv --method pca --output-dir /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_pca_2_native --package-name original_pca_2_native --k 2 --codec native
+PACKAGE CREATED: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_pca_2_native/original_pca_2_native_20261118_052943_056154_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,839
+Payload alone: 5,024 bytes; package seconds: 0.0173
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_pca_2_native/original_pca_2_native_20261118_052943_056154_UTC.tar
+VERIFIED: original_pca_2_native_20261118_052943_056154_UTC pca
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_pca_2_native/original_pca_2_native_20261118_052943_056154_UTC.tar --output-dir /tmp/thesis_receiver_4q0gkesp --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_4q0gkesp/original_pca_2_native_20261118_052943_056154_UTC_recovered/pca_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_4q0gkesp/original_pca_2_native_20261118_052943_056154_UTC
+Method: pca
+NETWORK: Phase 6 original_pca_2_native mode=ssh; requested=ssh; reason=none
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py send /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_pca_2_native/original_pca_2_native_20261118_052943_056154_UTC.tar --remote offline@stand-in --remote-dir /tmp/thesis-adaptive-phase2-20261118/remote --trials 1 --ssh-port 22 --report-csv /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_pca_2_native/transfer_trials.csv
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:48.185756+00:00", "operation": "Phase 6 original_pca_2_native_20261118_052943_056154_UTC trial 1", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:48.186231+00:00", "operation": "Phase 6 original_pca_2_native_20261118_052943_056154_UTC trial 1", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_pca_2_native_20261118_052943_056154_UTC.tar_unverified_20261118_052948_186200_UTC_da3f30986e0d45669b7523ef0274bbe2", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_pca_2_native_20261118_052943_056154_UTC.tar_verified_20261118_052948_186200_UTC_da3f30986e0d45669b7523ef0274bbe2"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:48.297770+00:00", "operation": "Phase 6 original_pca_2_native_20261118_052943_056154_UTC trial 1", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.11201235302723944}
+Trial 1: verified and published; 1 attempt(s)
+Transfer trial report: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_pca_2_native/transfer_trials.csv
+COMPLETE phase6_original_pca_2_native: 6.707s
+START phase6_original_autoencoder_2_native: executing
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:48.446527+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:48.470256+00:00", "operation": "ssh preflight/setup", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.023725429957266897}
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase4/original/synthetic_20261118_052921_063801_UTC --source-csv /tmp/thesis-adaptive-phase2-20261118/synthetic.csv --method autoencoder --output-dir /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_autoencoder_2_native --package-name original_autoencoder_2_native --k 2 --codec native
+PACKAGE CREATED: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_autoencoder_2_native/original_autoencoder_2_native_20261118_052949_732297_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,847
+Payload alone: 6,792 bytes; package seconds: 0.0209
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_autoencoder_2_native/original_autoencoder_2_native_20261118_052949_732297_UTC.tar
+VERIFIED: original_autoencoder_2_native_20261118_052949_732297_UTC autoencoder
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_autoencoder_2_native/original_autoencoder_2_native_20261118_052949_732297_UTC.tar --output-dir /tmp/thesis_receiver_u5n0q2fq --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_u5n0q2fq/original_autoencoder_2_native_20261118_052949_732297_UTC_recovered/autoencoder_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_u5n0q2fq/original_autoencoder_2_native_20261118_052949_732297_UTC
+Method: autoencoder
+NETWORK: Phase 6 original_autoencoder_2_native mode=ssh; requested=ssh; reason=none
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py send /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_autoencoder_2_native/original_autoencoder_2_native_20261118_052949_732297_UTC.tar --remote offline@stand-in --remote-dir /tmp/thesis-adaptive-phase2-20261118/remote --trials 1 --ssh-port 22 --report-csv /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_autoencoder_2_native/transfer_trials.csv
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:53.995306+00:00", "operation": "Phase 6 original_autoencoder_2_native_20261118_052949_732297_UTC trial 1", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:53.995799+00:00", "operation": "Phase 6 original_autoencoder_2_native_20261118_052949_732297_UTC trial 1", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_autoencoder_2_native_20261118_052949_732297_UTC.tar_unverified_20261118_052953_995766_UTC_8087d74f86e448a39cda77dd29b4ae28", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/original_autoencoder_2_native_20261118_052949_732297_UTC.tar_verified_20261118_052953_995766_UTC_8087d74f86e448a39cda77dd29b4ae28"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:54.107011+00:00", "operation": "Phase 6 original_autoencoder_2_native_20261118_052949_732297_UTC trial 1", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.11170660698553547}
+Trial 1: verified and published; 1 attempt(s)
+Transfer trial report: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/original_autoencoder_2_native/transfer_trials.csv
+COMPLETE phase6_original_autoencoder_2_native: 5.786s
+START phase6_FS_95_clinical_review_gzip_n_native: executing
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:54.237155+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:29:54.263606+00:00", "operation": "ssh preflight/setup", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.026448247954249382}
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase4/FS_95_clinical_review/selected_dataset_20261118_052922_607329_UTC --source-csv /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase3/synthetic_20261118_052919_646570_UTC/FS_95_clinical_review/selected_dataset.csv --method gzip --output-dir /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_gzip_none_native --package-name FS_95_clinical_review_gzip_none_native --full-reference-csv /tmp/thesis-adaptive-phase2-20261118/synthetic.csv --feature-selection-label FS_95_clinical_review
+PACKAGE CREATED: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_gzip_none_native/FS_95_clinical_review_gzip_none_native_20261118_052955_577200_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,856
+Payload alone: 6,227 bytes; package seconds: 0.0180
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_gzip_none_native/FS_95_clinical_review_gzip_none_native_20261118_052955_577200_UTC.tar
+VERIFIED: FS_95_clinical_review_gzip_none_native_20261118_052955_577200_UTC gzip
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_gzip_none_native/FS_95_clinical_review_gzip_none_native_20261118_052955_577200_UTC.tar --output-dir /tmp/thesis_receiver_a2694yr_
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_a2694yr_/FS_95_clinical_review_gzip_none_native_20261118_052955_577200_UTC
+Method: gzip
+NETWORK: Phase 6 FS_95_clinical_review_gzip_none_native mode=ssh; requested=ssh; reason=none
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py send /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_gzip_none_native/FS_95_clinical_review_gzip_none_native_20261118_052955_577200_UTC.tar --remote offline@stand-in --remote-dir /tmp/thesis-adaptive-phase2-20261118/remote --trials 1 --ssh-port 22 --report-csv /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_gzip_none_native/transfer_trials.csv
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:59.894510+00:00", "operation": "Phase 6 FS_95_clinical_review_gzip_none_native_20261118_052955_577200_UTC trial 1", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:29:59.895695+00:00", "operation": "Phase 6 FS_95_clinical_review_gzip_none_native_20261118_052955_577200_UTC trial 1", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/FS_95_clinical_review_gzip_none_native_20261118_052955_577200_UTC.tar_unverified_20261118_052959_895571_UTC_273e67cd9349458da851fefaa3ec78ea", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/FS_95_clinical_review_gzip_none_native_20261118_052955_577200_UTC.tar_verified_20261118_052959_895571_UTC_273e67cd9349458da851fefaa3ec78ea"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:30:00.021167+00:00", "operation": "Phase 6 FS_95_clinical_review_gzip_none_native_20261118_052955_577200_UTC trial 1", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.12666393897961825}
+Trial 1: verified and published; 1 attempt(s)
+Transfer trial report: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_gzip_none_native/transfer_trials.csv
+COMPLETE phase6_FS_95_clinical_review_gzip_n_native: 5.909s
+START phase6_FS_95_clinical_review_zstd_n_native: executing
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:30:00.154099+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:30:00.177972+00:00", "operation": "ssh preflight/setup", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.023870643984992057}
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase4/FS_95_clinical_review/selected_dataset_20261118_052922_607329_UTC --source-csv /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase3/synthetic_20261118_052919_646570_UTC/FS_95_clinical_review/selected_dataset.csv --method zstd --output-dir /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_zstd_none_native --package-name FS_95_clinical_review_zstd_none_native --full-reference-csv /tmp/thesis-adaptive-phase2-20261118/synthetic.csv --feature-selection-label FS_95_clinical_review
+PACKAGE CREATED: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_zstd_none_native/FS_95_clinical_review_zstd_none_native_20261118_053001_419388_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,856
+Payload alone: 5,875 bytes; package seconds: 0.0166
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_zstd_none_native/FS_95_clinical_review_zstd_none_native_20261118_053001_419388_UTC.tar
+VERIFIED: FS_95_clinical_review_zstd_none_native_20261118_053001_419388_UTC zstd
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_zstd_none_native/FS_95_clinical_review_zstd_none_native_20261118_053001_419388_UTC.tar --output-dir /tmp/thesis_receiver_sg732lnk
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_sg732lnk/FS_95_clinical_review_zstd_none_native_20261118_053001_419388_UTC
+Method: zstd
+NETWORK: Phase 6 FS_95_clinical_review_zstd_none_native mode=ssh; requested=ssh; reason=none
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py send /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_zstd_none_native/FS_95_clinical_review_zstd_none_native_20261118_053001_419388_UTC.tar --remote offline@stand-in --remote-dir /tmp/thesis-adaptive-phase2-20261118/remote --trials 1 --ssh-port 22 --report-csv /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_zstd_none_native/transfer_trials.csv
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:30:05.385134+00:00", "operation": "Phase 6 FS_95_clinical_review_zstd_none_native_20261118_053001_419388_UTC trial 1", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:30:05.385653+00:00", "operation": "Phase 6 FS_95_clinical_review_zstd_none_native_20261118_053001_419388_UTC trial 1", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/FS_95_clinical_review_zstd_none_native_20261118_053001_419388_UTC.tar_unverified_20261118_053005_385621_UTC_292685e6710b4ebe83dd7478ce7b6a9c", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/FS_95_clinical_review_zstd_none_native_20261118_053001_419388_UTC.tar_verified_20261118_053005_385621_UTC_292685e6710b4ebe83dd7478ce7b6a9c"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:30:05.508920+00:00", "operation": "Phase 6 FS_95_clinical_review_zstd_none_native_20261118_053001_419388_UTC trial 1", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.12378476496087387}
+Trial 1: verified and published; 1 attempt(s)
+Transfer trial report: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_zstd_none_native/transfer_trials.csv
+COMPLETE phase6_FS_95_clinical_review_zstd_n_native: 5.479s
+START phase6_FS_95_clinical_review_parquet_n_native: executing
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:30:05.640703+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:30:05.663973+00:00", "operation": "ssh preflight/setup", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.023266646021511406}
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase4/FS_95_clinical_review/selected_dataset_20261118_052922_607329_UTC --source-csv /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase3/synthetic_20261118_052919_646570_UTC/FS_95_clinical_review/selected_dataset.csv --method parquet --output-dir /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_parquet_none_native --package-name FS_95_clinical_review_parquet_none_native --full-reference-csv /tmp/thesis-adaptive-phase2-20261118/synthetic.csv --feature-selection-label FS_95_clinical_review
+PACKAGE CREATED: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_parquet_none_native/FS_95_clinical_review_parquet_none_native_20261118_053006_833977_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,859
+Payload alone: 14,452 bytes; package seconds: 0.0421
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_parquet_none_native/FS_95_clinical_review_parquet_none_native_20261118_053006_833977_UTC.tar
+VERIFIED: FS_95_clinical_review_parquet_none_native_20261118_053006_833977_UTC parquet
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_parquet_none_native/FS_95_clinical_review_parquet_none_native_20261118_053006_833977_UTC.tar --output-dir /tmp/thesis_receiver_y5vxc803
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_y5vxc803/FS_95_clinical_review_parquet_none_native_20261118_053006_833977_UTC
+Method: parquet
+NETWORK: Phase 6 FS_95_clinical_review_parquet_none_native mode=ssh; requested=ssh; reason=none
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py send /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_parquet_none_native/FS_95_clinical_review_parquet_none_native_20261118_053006_833977_UTC.tar --remote offline@stand-in --remote-dir /tmp/thesis-adaptive-phase2-20261118/remote --trials 1 --ssh-port 22 --report-csv /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_parquet_none_native/transfer_trials.csv
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:30:11.334747+00:00", "operation": "Phase 6 FS_95_clinical_review_parquet_none_native_20261118_053006_833977_UTC trial 1", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:30:11.343881+00:00", "operation": "Phase 6 FS_95_clinical_review_parquet_none_native_20261118_053006_833977_UTC trial 1", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/FS_95_clinical_review_parquet_none_native_20261118_053006_833977_UTC.tar_unverified_20261118_053011_343809_UTC_28d79bbf481a40608cd169d69627615c", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/FS_95_clinical_review_parquet_none_native_20261118_053006_833977_UTC.tar_verified_20261118_053011_343809_UTC_28d79bbf481a40608cd169d69627615c"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:30:11.516617+00:00", "operation": "Phase 6 FS_95_clinical_review_parquet_none_native_20261118_053006_833977_UTC trial 1", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.18188632698729634}
+Trial 1: verified and published; 1 attempt(s)
+Transfer trial report: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_parquet_none_native/transfer_trials.csv
+COMPLETE phase6_FS_95_clinical_review_parquet_n_native: 6.124s
+START phase6_FS_95_clinical_review_pca_2_native: executing
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:30:11.770368+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:30:11.804054+00:00", "operation": "ssh preflight/setup", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.0336797580239363}
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase4/FS_95_clinical_review/selected_dataset_20261118_052922_607329_UTC --source-csv /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase3/synthetic_20261118_052919_646570_UTC/FS_95_clinical_review/selected_dataset.csv --method pca --output-dir /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_pca_2_native --package-name FS_95_clinical_review_pca_2_native --k 2 --codec native --full-reference-csv /tmp/thesis-adaptive-phase2-20261118/synthetic.csv --feature-selection-label FS_95_clinical_review
+PACKAGE CREATED: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_pca_2_native/FS_95_clinical_review_pca_2_native_20261118_053013_600169_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,852
+Payload alone: 5,024 bytes; package seconds: 0.0351
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_pca_2_native/FS_95_clinical_review_pca_2_native_20261118_053013_600169_UTC.tar
+VERIFIED: FS_95_clinical_review_pca_2_native_20261118_053013_600169_UTC pca
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_pca_2_native/FS_95_clinical_review_pca_2_native_20261118_053013_600169_UTC.tar --output-dir /tmp/thesis_receiver_t1d7y36o --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_t1d7y36o/FS_95_clinical_review_pca_2_native_20261118_053013_600169_UTC_recovered/pca_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_t1d7y36o/FS_95_clinical_review_pca_2_native_20261118_053013_600169_UTC
+Method: pca
+NETWORK: Phase 6 FS_95_clinical_review_pca_2_native mode=ssh; requested=ssh; reason=none
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py send /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_pca_2_native/FS_95_clinical_review_pca_2_native_20261118_053013_600169_UTC.tar --remote offline@stand-in --remote-dir /tmp/thesis-adaptive-phase2-20261118/remote --trials 1 --ssh-port 22 --report-csv /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_pca_2_native/transfer_trials.csv
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:30:18.431482+00:00", "operation": "Phase 6 FS_95_clinical_review_pca_2_native_20261118_053013_600169_UTC trial 1", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:30:18.431994+00:00", "operation": "Phase 6 FS_95_clinical_review_pca_2_native_20261118_053013_600169_UTC trial 1", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/FS_95_clinical_review_pca_2_native_20261118_053013_600169_UTC.tar_unverified_20261118_053018_431952_UTC_655142c8b1064bbbb3a8114f5b45aa95", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/FS_95_clinical_review_pca_2_native_20261118_053013_600169_UTC.tar_verified_20261118_053018_431952_UTC_655142c8b1064bbbb3a8114f5b45aa95"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:30:18.594156+00:00", "operation": "Phase 6 FS_95_clinical_review_pca_2_native_20261118_053013_600169_UTC trial 1", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.1626726149697788}
+Trial 1: verified and published; 1 attempt(s)
+Transfer trial report: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_pca_2_native/transfer_trials.csv
+COMPLETE phase6_FS_95_clinical_review_pca_2_native: 6.990s
+START phase6_FS_95_clinical_review_autoencoder_2_native: executing
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:30:18.769418+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:30:18.801723+00:00", "operation": "ssh preflight/setup", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.03230198897654191}
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase4/FS_95_clinical_review/selected_dataset_20261118_052922_607329_UTC --source-csv /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase3/synthetic_20261118_052919_646570_UTC/FS_95_clinical_review/selected_dataset.csv --method autoencoder --output-dir /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_autoencoder_2_native --package-name FS_95_clinical_review_autoencoder_2_native --k 2 --codec native --full-reference-csv /tmp/thesis-adaptive-phase2-20261118/synthetic.csv --feature-selection-label FS_95_clinical_review
+PACKAGE CREATED: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_autoencoder_2_native/FS_95_clinical_review_autoencoder_2_native_20261118_053020_082602_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,860
+Payload alone: 6,792 bytes; package seconds: 0.0160
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_autoencoder_2_native/FS_95_clinical_review_autoencoder_2_native_20261118_053020_082602_UTC.tar
+VERIFIED: FS_95_clinical_review_autoencoder_2_native_20261118_053020_082602_UTC autoencoder
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_autoencoder_2_native/FS_95_clinical_review_autoencoder_2_native_20261118_053020_082602_UTC.tar --output-dir /tmp/thesis_receiver_04ajmlao --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_04ajmlao/FS_95_clinical_review_autoencoder_2_native_20261118_053020_082602_UTC_recovered/autoencoder_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_04ajmlao/FS_95_clinical_review_autoencoder_2_native_20261118_053020_082602_UTC
+Method: autoencoder
+NETWORK: Phase 6 FS_95_clinical_review_autoencoder_2_native mode=ssh; requested=ssh; reason=none
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py send /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_autoencoder_2_native/FS_95_clinical_review_autoencoder_2_native_20261118_053020_082602_UTC.tar --remote offline@stand-in --remote-dir /tmp/thesis-adaptive-phase2-20261118/remote --trials 1 --ssh-port 22 --report-csv /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_autoencoder_2_native/transfer_trials.csv
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:30:24.049540+00:00", "operation": "Phase 6 FS_95_clinical_review_autoencoder_2_native_20261118_053020_082602_UTC trial 1", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-18T05:30:24.049968+00:00", "operation": "Phase 6 FS_95_clinical_review_autoencoder_2_native_20261118_053020_082602_UTC trial 1", "remote_pending_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/FS_95_clinical_review_autoencoder_2_native_20261118_053020_082602_UTC.tar_unverified_20261118_053024_049938_UTC_9bd32fd1dcee40169eea066cbddb0637", "remote_verified_directory": "/tmp/thesis-adaptive-phase2-20261118/remote/FS_95_clinical_review_autoencoder_2_native_20261118_053020_082602_UTC.tar_verified_20261118_053024_049938_UTC_9bd32fd1dcee40169eea066cbddb0637"}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-18T05:30:24.175552+00:00", "operation": "Phase 6 FS_95_clinical_review_autoencoder_2_native_20261118_053020_082602_UTC trial 1", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.12601022404851392}
+Trial 1: verified and published; 1 attempt(s)
+Transfer trial report: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/_work/phase6/FS_95_clinical_review_autoencoder_2_native/transfer_trials.csv
+COMPLETE phase6_FS_95_clinical_review_autoencoder_2_native: 5.560s
+START final_decision: forced recomputation
+COMPLETE final_decision: 1.786s
+
+DONE: /tmp/thesis-adaptive-phase2-20261118/run/runs/5d440d784d7da0248afd/results
+  FINAL_REPORT.md
+  01_integrated_evidence.csv
+  02_decision_rankings.csv
+  03_phase_overview.csv
+  04_network_trials.csv
+  run_manifest.json
+RESULTS: /tmp/thesis-adaptive-phase2-20261118/run/results/20261118_053026_126800_UTC_320thty8
+{
+  "status": "passed",
+  "packages": 10,
+  "injected_network_failures": 2,
+  "phase2_trials_per_artifact": 10,
+  "phase2_artifacts": 5,
+  "phase6_trials_per_package": 1,
+  "real_ssh_attempts": 0,
+  "transport": "LOCAL COMMAND STAND-INS; NOT REAL SSH EVIDENCE",
+  "report_directory": "/tmp/thesis-adaptive-phase2-20261118/run/results/20261118_053026_126800_UTC_320thty8"
+}

@@ -1,0 +1,10 @@
+
+> thesis-observatory@1.0.0 test:ui
+> playwright test --grep configuration form
+
+
+Running 1 test using 1 worker
+
+  ✓  1 tests/dashboard.spec.js:27:1 › configuration form, focus preservation and strict SSH fields (4.1s)
+
+  1 passed (5.6s)

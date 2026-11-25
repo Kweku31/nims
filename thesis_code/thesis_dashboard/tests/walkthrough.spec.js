@@ -1,0 +1,50 @@
+import {test, expect} from '@playwright/test';
+
+test('recorded thesis evidence works offline across all six phases and the decision', async ({page}) => {
+  await page.route('**/api/**', route=>route.abort());
+  await page.goto('/#thesis');
+  const walk = page.getByRole('region', {name:'Recorded thesis walkthrough'});
+  const next = walk.getByRole('button', {name:'Next step'});
+  await expect(walk).toContainText('790,215');
+  await walk.getByText('Inspect the four correlated pairs').click();
+  await expect(walk).toContainText('Hct / Hgb');
+  await next.click();
+  await walk.getByLabel('Paired baseline transport').selectOption('rsync');
+  await expect(walk).toContainText('0.264');
+  await next.click();
+  await walk.getByLabel('Hourly missingness threshold').selectOption('95');
+  await expect(walk.getByRole('row',{name:/With protection rules/})).toContainText('32');
+  await next.click();
+  await expect(walk).toContainText('0.907');
+  await next.click();
+  await walk.getByLabel('Latent dimensions').selectOption('8');
+  await expect(walk).toContainText('54,805');
+  await next.click();
+  await expect(walk).toContainText('649.67');
+  await walk.getByLabel('Payload at dispatch').selectOption('existing_payload');
+  await expect(walk).toContainText('36.66');
+  await walk.getByText('Compare interruption recovery for SCP and rsync').click();
+  await expect(walk).toContainText('-10.46');
+  await next.click();
+  await expect(walk.getByRole('row',{name:/95% · protected/})).toContainText('Zstandard');
+  await walk.getByLabel('Receiver fidelity').selectOption('full_fidelity');
+  await expect(walk.locator('tbody tr')).toHaveCount(1);
+  await walk.getByRole('button',{name:'Start again'}).click();
+  await expect(walk.getByRole('button',{name:'Previous'})).toBeDisabled();
+});
+
+test('inspect opens the exact saved snapshot and follows the chosen decision scope', async ({page}) => {
+  const runs = await (await page.request.get('/api/runs')).json();
+  const archive = runs.find(r=>r.snapshot==='20261120_083420_390853_UTC_hy7dh134');
+  test.skip(!archive, 'Requires the archived thesis experiment in local history');
+  await page.goto('/#thesis');
+  const walk = page.getByRole('region',{name:'Recorded thesis walkthrough'});
+  await walk.getByRole('button',{name:/Decision Decide/}).click();
+  await walk.getByLabel('Payload at dispatch').selectOption('existing_payload');
+  await walk.getByLabel('Receiver fidelity').selectOption('full_fidelity');
+  await walk.getByRole('button',{name:'Inspect the recorded ranking table'}).click();
+  await expect(page.getByLabel('Current experiment')).toHaveValue(archive.id);
+  await expect(page.getByLabel('Delivery scenario')).toHaveValue('existing_payload');
+  await expect(page.getByLabel('Fidelity requirement')).toHaveValue('full_fidelity');
+  await expect(page.getByLabel('Network evidence')).toHaveValue('ssh');
+});

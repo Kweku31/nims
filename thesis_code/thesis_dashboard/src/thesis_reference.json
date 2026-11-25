@@ -1,0 +1,384 @@
+{
+  "run": "66c57caa1bd63d2ea403",
+  "snapshot": "20261120_083420_390853_UTC_hy7dh134",
+  "input_sha256": "ae673cd33e720ef07bb8391389d1a2f3ee6ca15419f9f6de99f7e93f2ac83852",
+  "sources": {
+    "run_manifest.json": "e5491843f0b68c89a1aad977f7d7640f8605568d2384ec3cda7d221637dcd6d9",
+    "transport_studies.json": "80e09d17be40ea41decb2ceed24fb1fb1ca14681341bd7abeb00a1d6138c5b13",
+    "03_phase_overview.csv": "cd1512b697916008b1517d557a257c90cc339ad596ed39415e15aef23328f4cf",
+    "01_integrated_evidence.csv": "71260ecc331fa997792fac6a133a6224a8d14602345a9465ebcbd98c79aeac28",
+    "04_network_trials.csv": "555d73a85bb2c6bca9bd3217366e213e24f5a8ae14762d8b04d36ff0ca5fc763",
+    "paired_baseline_trials.csv": "4503ad5a5aceb3085f1c574fc48999aff663318e505bc58a86b8cac8ec293e89",
+    "paired_archives_trials.csv": "3293bb79c7bcc985f57dd3b7e865cbe38b6605f9bbff46f66542fdc54c1f9b27",
+    "paired_baseline_topsis.csv": "9dea8373a8f6053a37cf83d5c9d70aa58902795a5f4e50261a1533b3c78b8e56",
+    "02_decision_rankings.csv": "3989d449ec710b08a9aedfee671bb8a5e32b12bdffd67f773e97b975dfc0f793"
+  },
+  "profile": {
+    "n_rows": 790215.0,
+    "n_columns": 43.0,
+    "overall_cell_missingness_pct": 65.04794029414131,
+    "highly_correlated_pairs": 4.0
+  },
+  "baseline": {
+    "original_source": {
+      "file_bytes": 75688701.0,
+      "packaging_mean_seconds": 0.0,
+      "transfer_mean_seconds": 32.42469259200152
+    },
+    "csv": {
+      "file_bytes": 77550287.0,
+      "packaging_mean_seconds": 18.46925754090189,
+      "transfer_mean_seconds": 36.48039640800562
+    },
+    "csv_gzip": {
+      "file_bytes": 14573101.0,
+      "packaging_mean_seconds": 21.91577283769875,
+      "transfer_mean_seconds": 9.08764296210138
+    },
+    "parquet": {
+      "file_bytes": 9166970.0,
+      "packaging_mean_seconds": 0.6146743411998614,
+      "transfer_mean_seconds": 7.723542525302037
+    },
+    "csv_zstd": {
+      "file_bytes": 14671822.0,
+      "packaging_mean_seconds": 17.595373270897834,
+      "transfer_mean_seconds": 7.970531285001198
+    }
+  },
+  "retained": {
+    "FS_00_no_missingness_filter": 39,
+    "FS_80_missingness": 13,
+    "FS_80_clinical_review": 28,
+    "FS_90_missingness": 19,
+    "FS_90_clinical_review": 31,
+    "FS_95_missingness": 29,
+    "FS_95_clinical_review": 32
+  },
+  "coverage": 0.75,
+  "models": {
+    "2": {
+      "pca": {
+        "r2": 0.2585007881053067,
+        "overlap": 0.205,
+        "flags": 150,
+        "existing_payload": 21.410617848685067,
+        "fresh_data": 25.146014338695384
+      },
+      "autoencoder": {
+        "r2": 0.4440851144253021,
+        "overlap": 0.306,
+        "flags": 35,
+        "existing_payload": 36.65890339198813,
+        "fresh_data": 649.6701192479813
+      }
+    },
+    "4": {
+      "pca": {
+        "r2": 0.344841731188893,
+        "overlap": 0.2259999999999999,
+        "flags": 26,
+        "existing_payload": 26.90201046600123,
+        "fresh_data": 30.23110306999297
+      },
+      "autoencoder": {
+        "r2": 0.5893313317746789,
+        "overlap": 0.442,
+        "flags": 23089,
+        "existing_payload": 28.71023860599962,
+        "fresh_data": 485.1622696569976
+      }
+    },
+    "8": {
+      "pca": {
+        "r2": 0.5481596994971738,
+        "overlap": 0.359,
+        "flags": 10179,
+        "existing_payload": 41.78768669599958,
+        "fresh_data": 47.165261035988806
+      },
+      "autoencoder": {
+        "r2": 0.8149761741755261,
+        "overlap": 0.717,
+        "flags": 54805,
+        "existing_payload": 31.83458582899766,
+        "fresh_data": 468.2985028219846
+      }
+    },
+    "16": {
+      "pca": {
+        "r2": 0.6762788157600242,
+        "overlap": 0.436,
+        "flags": 31454,
+        "existing_payload": 70.57095035100065,
+        "fresh_data": 75.29654286699952
+      },
+      "autoencoder": {
+        "r2": 0.9066727574416292,
+        "overlap": 0.771,
+        "flags": 10216,
+        "existing_payload": 56.50671799600241,
+        "fresh_data": 390.7873403390113
+      }
+    }
+  },
+  "packages": 82,
+  "comparisons": 164,
+  "package_trials": 586,
+  "direct_trials": 40,
+  "archive_trials": 32,
+  "archive_pairs": 4,
+  "archive_delta": -10.464091464004014,
+  "baseline_scores": {
+    "rsync": {
+      "parquet": 1.0,
+      "csv_zstd": 0.26410222278598855,
+      "csv_gzip": 0.001126859532212193
+    },
+    "scp": {
+      "parquet": 1.0,
+      "csv_zstd": 0.28380545105530947,
+      "csv_gzip": 0.0010957262114037038
+    }
+  },
+  "winners": [
+    {
+      "dataset": "FS_00_no_missingness_filter",
+      "scenario": "loss_tolerant",
+      "delivery_scenario": "existing_payload",
+      "method": "parquet",
+      "score": 0.9511956612195082
+    },
+    {
+      "dataset": "FS_00_no_missingness_filter",
+      "scenario": "selected_columns_exact",
+      "delivery_scenario": "existing_payload",
+      "method": "parquet",
+      "score": 0.6576357528375949
+    },
+    {
+      "dataset": "FS_00_no_missingness_filter",
+      "scenario": "loss_tolerant",
+      "delivery_scenario": "fresh_data",
+      "method": "parquet",
+      "score": 0.9945628633568521
+    },
+    {
+      "dataset": "FS_00_no_missingness_filter",
+      "scenario": "selected_columns_exact",
+      "delivery_scenario": "fresh_data",
+      "method": "parquet",
+      "score": 0.6863230185704807
+    },
+    {
+      "dataset": "FS_80_clinical_review",
+      "scenario": "loss_tolerant",
+      "delivery_scenario": "existing_payload",
+      "method": "gzip",
+      "score": 0.9231920487057509
+    },
+    {
+      "dataset": "FS_80_clinical_review",
+      "scenario": "selected_columns_exact",
+      "delivery_scenario": "existing_payload",
+      "method": "parquet",
+      "score": 0.5404872889758021
+    },
+    {
+      "dataset": "FS_80_clinical_review",
+      "scenario": "loss_tolerant",
+      "delivery_scenario": "fresh_data",
+      "method": "parquet",
+      "score": 0.9893540207833789
+    },
+    {
+      "dataset": "FS_80_clinical_review",
+      "scenario": "selected_columns_exact",
+      "delivery_scenario": "fresh_data",
+      "method": "parquet",
+      "score": 0.5647572876776713
+    },
+    {
+      "dataset": "FS_80_missingness",
+      "scenario": "loss_tolerant",
+      "delivery_scenario": "existing_payload",
+      "method": "parquet",
+      "score": 0.9269537909643012
+    },
+    {
+      "dataset": "FS_80_missingness",
+      "scenario": "selected_columns_exact",
+      "delivery_scenario": "existing_payload",
+      "method": "parquet",
+      "score": 0.6616898076936262
+    },
+    {
+      "dataset": "FS_80_missingness",
+      "scenario": "loss_tolerant",
+      "delivery_scenario": "fresh_data",
+      "method": "parquet",
+      "score": 0.993213405792457
+    },
+    {
+      "dataset": "FS_80_missingness",
+      "scenario": "selected_columns_exact",
+      "delivery_scenario": "fresh_data",
+      "method": "parquet",
+      "score": 0.7088481195618181
+    },
+    {
+      "dataset": "FS_90_clinical_review",
+      "scenario": "loss_tolerant",
+      "delivery_scenario": "existing_payload",
+      "method": "gzip",
+      "score": 0.9228720889769036
+    },
+    {
+      "dataset": "FS_90_clinical_review",
+      "scenario": "selected_columns_exact",
+      "delivery_scenario": "existing_payload",
+      "method": "parquet",
+      "score": 0.5073487988958558
+    },
+    {
+      "dataset": "FS_90_clinical_review",
+      "scenario": "loss_tolerant",
+      "delivery_scenario": "fresh_data",
+      "method": "parquet",
+      "score": 0.9903818687478757
+    },
+    {
+      "dataset": "FS_90_clinical_review",
+      "scenario": "selected_columns_exact",
+      "delivery_scenario": "fresh_data",
+      "method": "parquet",
+      "score": 0.5594569053517102
+    },
+    {
+      "dataset": "FS_90_missingness",
+      "scenario": "loss_tolerant",
+      "delivery_scenario": "existing_payload",
+      "method": "parquet",
+      "score": 0.9365090628501055
+    },
+    {
+      "dataset": "FS_90_missingness",
+      "scenario": "selected_columns_exact",
+      "delivery_scenario": "existing_payload",
+      "method": "parquet",
+      "score": 0.6779448290353923
+    },
+    {
+      "dataset": "FS_90_missingness",
+      "scenario": "loss_tolerant",
+      "delivery_scenario": "fresh_data",
+      "method": "parquet",
+      "score": 0.9969610854261148
+    },
+    {
+      "dataset": "FS_90_missingness",
+      "scenario": "selected_columns_exact",
+      "delivery_scenario": "fresh_data",
+      "method": "parquet",
+      "score": 0.7479604299913746
+    },
+    {
+      "dataset": "FS_95_clinical_review",
+      "scenario": "loss_tolerant",
+      "delivery_scenario": "existing_payload",
+      "method": "zstd",
+      "score": 0.9084055108134466
+    },
+    {
+      "dataset": "FS_95_clinical_review",
+      "scenario": "selected_columns_exact",
+      "delivery_scenario": "existing_payload",
+      "method": "parquet",
+      "score": 0.5261678118461947
+    },
+    {
+      "dataset": "FS_95_clinical_review",
+      "scenario": "loss_tolerant",
+      "delivery_scenario": "fresh_data",
+      "method": "parquet",
+      "score": 0.9855587360638929
+    },
+    {
+      "dataset": "FS_95_clinical_review",
+      "scenario": "selected_columns_exact",
+      "delivery_scenario": "fresh_data",
+      "method": "parquet",
+      "score": 0.5392959151379475
+    },
+    {
+      "dataset": "FS_95_missingness",
+      "scenario": "loss_tolerant",
+      "delivery_scenario": "existing_payload",
+      "method": "parquet",
+      "score": 0.9227050470987674
+    },
+    {
+      "dataset": "FS_95_missingness",
+      "scenario": "selected_columns_exact",
+      "delivery_scenario": "existing_payload",
+      "method": "parquet",
+      "score": 0.5865885293978942
+    },
+    {
+      "dataset": "FS_95_missingness",
+      "scenario": "loss_tolerant",
+      "delivery_scenario": "fresh_data",
+      "method": "parquet",
+      "score": 0.9944256039183849
+    },
+    {
+      "dataset": "FS_95_missingness",
+      "scenario": "selected_columns_exact",
+      "delivery_scenario": "fresh_data",
+      "method": "parquet",
+      "score": 0.617612062484753
+    },
+    {
+      "dataset": "original",
+      "scenario": "full_fidelity",
+      "delivery_scenario": "existing_payload",
+      "method": "parquet",
+      "score": 0.8220431801705205
+    },
+    {
+      "dataset": "original",
+      "scenario": "loss_tolerant",
+      "delivery_scenario": "existing_payload",
+      "method": "parquet",
+      "score": 0.9521930070076006
+    },
+    {
+      "dataset": "original",
+      "scenario": "selected_columns_exact",
+      "delivery_scenario": "existing_payload",
+      "method": "parquet",
+      "score": 0.8220431801705205
+    },
+    {
+      "dataset": "original",
+      "scenario": "full_fidelity",
+      "delivery_scenario": "fresh_data",
+      "method": "parquet",
+      "score": 0.9144465986176907
+    },
+    {
+      "dataset": "original",
+      "scenario": "loss_tolerant",
+      "delivery_scenario": "fresh_data",
+      "method": "parquet",
+      "score": 0.9912190882698515
+    },
+    {
+      "dataset": "original",
+      "scenario": "selected_columns_exact",
+      "delivery_scenario": "fresh_data",
+      "method": "parquet",
+      "score": 0.9144465986176907
+    }
+  ]
+}

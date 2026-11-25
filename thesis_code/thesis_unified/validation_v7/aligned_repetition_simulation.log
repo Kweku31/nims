@@ -1,0 +1,674 @@
+LOG FILE: /tmp/thesis-aligned-simulation-20261118/run/pipeline.log
+NETWORK: {"status": "idle", "updated_utc": "2026-11-18T05:40:41.133636+00:00", "operation": "Experiment starting"}
+RUN d46ec12f8f093279bae8: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8
+START phase1: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/01_profiling_updated.py /tmp/thesis-aligned-simulation-20261118/synthetic.csv --output-dir /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase1 --threshold 0.95
+========================================================================
+PHASE 1 -- BASELINE DATASET PROFILING
+========================================================================
+Dataset: /tmp/thesis-aligned-simulation-20261118/synthetic.csv
+Rows: 64
+Columns: 16
+Source size: 11.77 KB (12,057 bytes)
+Load time: 0.007116 s
+
+========================================================================
+BASELINE PROFILE RESULTS
+========================================================================
+Rows: 64 | Columns: 16
+Input size: 11.77 KB | DataFrame memory: 8.13 KB
+Load: 0.007116s | Profiling: 0.249530s
+
+Identifiers
+  Automatic: patient_id
+  Manual:    None
+  Combined:  patient_id
+
+Correlation variables: time, SepsisLabel, Age, ICULOS, HospAdmTime, HR, O2Sat, Temp, SBP, MAP, DBP, Resp, Lactate, Glucose, SparseLab
+Unique pairs: 105 | Threshold: |r| >= 0.95
+   column_a    column_b     pearson_r  absolute_pearson_correlation  pairwise_n
+       time      ICULOS  1.000000e+00                  1.000000e+00          64
+SepsisLabel         Age -4.336067e-01                  4.336067e-01          64
+        DBP        Resp  2.760774e-01                  2.760774e-01          56
+        Age          HR  2.635773e-01                  2.635773e-01          60
+HospAdmTime     Glucose  2.590144e-01                  2.590144e-01          60
+      O2Sat         MAP  2.379027e-01                  2.379027e-01          57
+SepsisLabel     Lactate  2.348366e-01                  2.348366e-01          60
+HospAdmTime         MAP  2.296784e-01                  2.296784e-01          60
+HospAdmTime        Temp  2.178691e-01                  2.178691e-01          60
+        MAP         DBP -2.004057e-01                  2.004057e-01          56
+       time        Resp  1.888571e-01                  1.888571e-01          60
+     ICULOS        Resp  1.888571e-01                  1.888571e-01          60
+       Temp         SBP -1.853626e-01                  1.853626e-01          56
+        Age     Glucose -1.821203e-01                  1.821203e-01          60
+       Temp        Resp  1.802218e-01                  1.802218e-01          56
+        Age     Lactate -1.794590e-01                  1.794590e-01          60
+       time     Lactate -1.731163e-01                  1.731163e-01          60
+     ICULOS     Lactate -1.731163e-01                  1.731163e-01          60
+        Age         DBP -1.719817e-01                  1.719817e-01          60
+SepsisLabel        Temp -1.711393e-01                  1.711393e-01          60
+      O2Sat     Lactate  1.687264e-01                  1.687264e-01          56
+         HR       O2Sat  1.631213e-01                  1.631213e-01          56
+HospAdmTime          HR  1.625131e-01                  1.625131e-01          60
+        SBP         DBP  1.609893e-01                  1.609893e-01          56
+      O2Sat         SBP  1.602134e-01                  1.602134e-01          56
+       Temp     Glucose -1.553138e-01                  1.553138e-01          56
+        Age        Resp -1.542347e-01                  1.542347e-01          60
+        Age HospAdmTime -1.534107e-01                  1.534107e-01          64
+    Lactate     Glucose  1.519183e-01                  1.519183e-01          56
+        Age       O2Sat  1.492836e-01                  1.492836e-01          60
+        MAP        Resp -1.313463e-01                  1.313463e-01          57
+SepsisLabel        Resp  1.272887e-01                  1.272887e-01          60
+      O2Sat         DBP -1.152705e-01                  1.152705e-01          56
+        Age        Temp -1.145436e-01                  1.145436e-01          60
+       time         DBP -1.130527e-01                  1.130527e-01          60
+     ICULOS         DBP -1.130527e-01                  1.130527e-01          60
+SepsisLabel       O2Sat  1.121545e-01                  1.121545e-01          60
+HospAdmTime       O2Sat -1.062528e-01                  1.062528e-01          60
+        SBP         MAP  1.050515e-01                  1.050515e-01          56
+        MAP     Lactate  1.041731e-01                  1.041731e-01          56
+         HR         SBP  1.038028e-01                  1.038028e-01          56
+       Temp     Lactate -1.034884e-01                  1.034884e-01          56
+       Temp         MAP  1.021708e-01                  1.021708e-01          56
+        MAP     Glucose  1.008540e-01                  1.008540e-01          57
+         HR        Resp -9.849271e-02                  9.849271e-02          57
+SepsisLabel         SBP  9.832884e-02                  9.832884e-02          60
+SepsisLabel     Glucose  9.822646e-02                  9.822646e-02          60
+HospAdmTime         DBP  9.412053e-02                  9.412053e-02          60
+        Age         SBP -8.595770e-02                  8.595770e-02          60
+       time     Glucose  8.406131e-02                  8.406131e-02          60
+     ICULOS     Glucose  8.406131e-02                  8.406131e-02          60
+      O2Sat        Temp -8.324974e-02                  8.324974e-02          58
+        SBP     Glucose -8.288357e-02                  8.288357e-02          56
+         HR     Lactate -8.019244e-02                  8.019244e-02          57
+SepsisLabel         MAP  7.854849e-02                  7.854849e-02          60
+SepsisLabel         DBP -7.839223e-02                  7.839223e-02          60
+        DBP     Glucose -7.619863e-02                  7.619863e-02          56
+SepsisLabel          HR -7.448131e-02                  7.448131e-02          60
+         HR         MAP  7.419905e-02                  7.419905e-02          56
+     ICULOS         SBP -6.022338e-02                  6.022338e-02          60
+       time         SBP -6.022338e-02                  6.022338e-02          60
+        SBP     Lactate  5.337396e-02                  5.337396e-02          56
+        SBP        Resp  5.092632e-02                  5.092632e-02          56
+         HR        Temp -4.885573e-02                  4.885573e-02          56
+      O2Sat     Glucose -4.473549e-02                  4.473549e-02          56
+       time          HR -4.347646e-02                  4.347646e-02          60
+     ICULOS          HR -4.347646e-02                  4.347646e-02          60
+SepsisLabel HospAdmTime  4.156153e-02                  4.156153e-02          64
+       Temp         DBP -3.894662e-02                  3.894662e-02          56
+       time        Temp -3.271717e-02                  3.271717e-02          60
+     ICULOS        Temp -3.271717e-02                  3.271717e-02          60
+        DBP     Lactate -2.985350e-02                  2.985350e-02          57
+HospAdmTime        Resp -2.783806e-02                  2.783806e-02          60
+       Resp     Glucose -2.383350e-02                  2.383350e-02          56
+       Resp     Lactate -2.282752e-02                  2.282752e-02          57
+      O2Sat        Resp -2.235898e-02                  2.235898e-02          56
+         HR     Glucose -1.974476e-02                  1.974476e-02          57
+HospAdmTime     Lactate  1.972996e-02                  1.972996e-02          60
+       time         MAP -1.699060e-02                  1.699060e-02          60
+     ICULOS         MAP -1.699060e-02                  1.699060e-02          60
+        Age         MAP  8.800472e-03                  8.800472e-03          60
+       time       O2Sat -7.853824e-03                  7.853824e-03          60
+     ICULOS       O2Sat -7.853824e-03                  7.853824e-03          60
+HospAdmTime         SBP  5.897423e-03                  5.897423e-03          60
+         HR         DBP -7.929367e-04                  7.929367e-04          57
+       time HospAdmTime  3.115951e-18                  3.115951e-18          64
+     ICULOS HospAdmTime  3.115951e-18                  3.115951e-18          64
+       time SepsisLabel  0.000000e+00                  0.000000e+00          64
+       time         Age  0.000000e+00                  0.000000e+00          64
+SepsisLabel      ICULOS  0.000000e+00                  0.000000e+00          64
+        Age      ICULOS  0.000000e+00                  0.000000e+00          64
+       time   SparseLab           NaN                           NaN           2
+SepsisLabel   SparseLab           NaN                           NaN           2
+        Age   SparseLab           NaN                           NaN           2
+     ICULOS   SparseLab           NaN                           NaN           2
+HospAdmTime   SparseLab           NaN                           NaN           2
+         HR   SparseLab           NaN                           NaN           2
+      O2Sat   SparseLab           NaN                           NaN           2
+       Temp   SparseLab           NaN                           NaN           2
+        SBP   SparseLab           NaN                           NaN           2
+        MAP   SparseLab           NaN                           NaN           2
+        DBP   SparseLab           NaN                           NaN           2
+       Resp   SparseLab           NaN                           NaN           2
+    Lactate   SparseLab           NaN                           NaN           2
+    Glucose   SparseLab           NaN                           NaN           2
+
+Pairs above threshold: 1
+column_a column_b  pearson_r  absolute_pearson_correlation
+    time   ICULOS        1.0                           1.0
+
+========================================================================
+PHASE 1 COMPLETED SUCCESSFULLY
+========================================================================
+Results saved to: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase1/synthetic_20261118_054041
+Outputs: column_profile.csv, numeric_variable_profile.csv, correlation_all_pairs.csv, redundant_pairs.csv, duplicate_columns.csv, dataset_summary.csv, profile_metadata.json
+COMPLETE phase1: 0.861s
+START phase2: executing
+NETWORK: Phase 2 mode=simulated; requested=simulated; reason=none
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/02_transfer_benchmark.py /tmp/thesis-aligned-simulation-20261118/synthetic.csv --transfer-mode simulated --packaging-runs 1 --transfer-runs 10 --repeat-threshold-seconds 10.0 --bandwidth-mbps 100 --output-dir /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase2
+====================================================================================================
+PHASE 2 - BASELINE TRANSFER BENCHMARK
+====================================================================================================
+
+Reading dataset into memory once...
+
+Dataset:
+  /tmp/thesis-aligned-simulation-20261118/synthetic.csv
+Rows        : 64
+Columns     : 16
+Source size : 11.77 KB
+DataFrame   : 8.13 KB
+Load time   : 0.005920 s
+
+Calculating source SHA-256...
+SHA-256: cbf2d6a79dbe9f298b9b4bbc924d9936b0960410b234d5cbc22c4e1b05978f95
+
+==========================================================================================
+PACKAGING BENCHMARK
+==========================================================================================
+
+original_source: 11.77 KB (no packaging)
+
+CSV
+  Run 01: 0.002808 s
+
+CSV + gzip
+  Run 01: 0.002562 s
+
+Parquet
+  Run 01: 0.015324 s
+
+CSV + Zstandard
+  Run 01: 0.002385 s
+
+==========================================================================================
+TRANSFER BENCHMARK
+==========================================================================================
+
+Transfer: original_source
+Artifact size: 11.77 KB
+  Run 01: transfer=0.000965s, throughput=100.000 Mbps
+  Run 02: transfer=0.000965s, throughput=100.000 Mbps
+  Run 03: transfer=0.000965s, throughput=100.000 Mbps
+  Run 04: transfer=0.000965s, throughput=100.000 Mbps
+  Run 05: transfer=0.000965s, throughput=100.000 Mbps
+  Run 06: transfer=0.000965s, throughput=100.000 Mbps
+  Run 07: transfer=0.000965s, throughput=100.000 Mbps
+  Run 08: transfer=0.000965s, throughput=100.000 Mbps
+  Run 09: transfer=0.000965s, throughput=100.000 Mbps
+  Run 10: transfer=0.000965s, throughput=100.000 Mbps
+
+Transfer: csv
+Artifact size: 11.72 KB
+  Run 01: transfer=0.000960s, throughput=100.000 Mbps
+  Run 02: transfer=0.000960s, throughput=100.000 Mbps
+  Run 03: transfer=0.000960s, throughput=100.000 Mbps
+  Run 04: transfer=0.000960s, throughput=100.000 Mbps
+  Run 05: transfer=0.000960s, throughput=100.000 Mbps
+  Run 06: transfer=0.000960s, throughput=100.000 Mbps
+  Run 07: transfer=0.000960s, throughput=100.000 Mbps
+  Run 08: transfer=0.000960s, throughput=100.000 Mbps
+  Run 09: transfer=0.000960s, throughput=100.000 Mbps
+  Run 10: transfer=0.000960s, throughput=100.000 Mbps
+
+Transfer: csv_gzip
+Artifact size: 5.83 KB
+  Run 01: transfer=0.000477s, throughput=100.000 Mbps
+  Run 02: transfer=0.000477s, throughput=100.000 Mbps
+  Run 03: transfer=0.000477s, throughput=100.000 Mbps
+  Run 04: transfer=0.000477s, throughput=100.000 Mbps
+  Run 05: transfer=0.000477s, throughput=100.000 Mbps
+  Run 06: transfer=0.000477s, throughput=100.000 Mbps
+  Run 07: transfer=0.000477s, throughput=100.000 Mbps
+  Run 08: transfer=0.000477s, throughput=100.000 Mbps
+  Run 09: transfer=0.000477s, throughput=100.000 Mbps
+  Run 10: transfer=0.000477s, throughput=100.000 Mbps
+
+Transfer: parquet
+Artifact size: 14.34 KB
+  Run 01: transfer=0.001175s, throughput=100.000 Mbps
+  Run 02: transfer=0.001175s, throughput=100.000 Mbps
+  Run 03: transfer=0.001175s, throughput=100.000 Mbps
+  Run 04: transfer=0.001175s, throughput=100.000 Mbps
+  Run 05: transfer=0.001175s, throughput=100.000 Mbps
+  Run 06: transfer=0.001175s, throughput=100.000 Mbps
+  Run 07: transfer=0.001175s, throughput=100.000 Mbps
+  Run 08: transfer=0.001175s, throughput=100.000 Mbps
+  Run 09: transfer=0.001175s, throughput=100.000 Mbps
+  Run 10: transfer=0.001175s, throughput=100.000 Mbps
+
+Transfer: csv_zstd
+Artifact size: 5.46 KB
+  Run 01: transfer=0.000447s, throughput=100.000 Mbps
+  Run 02: transfer=0.000447s, throughput=100.000 Mbps
+  Run 03: transfer=0.000447s, throughput=100.000 Mbps
+  Run 04: transfer=0.000447s, throughput=100.000 Mbps
+  Run 05: transfer=0.000447s, throughput=100.000 Mbps
+  Run 06: transfer=0.000447s, throughput=100.000 Mbps
+  Run 07: transfer=0.000447s, throughput=100.000 Mbps
+  Run 08: transfer=0.000447s, throughput=100.000 Mbps
+  Run 09: transfer=0.000447s, throughput=100.000 Mbps
+  Run 10: transfer=0.000447s, throughput=100.000 Mbps
+
+==============================================================================================================
+PHASE 2 SUMMARY
+==============================================================================================================
+
+Transfer mode    : simulated
+Packaging runs   : 1
+Maximum transfer trials: 10
+Simulated bandwidth: 100.00 Mbps
+
+         format  file_mb  size_reduction_pct  packaging_mean_seconds  packaging_std_seconds  transfer_mean_seconds  transfer_std_seconds  throughput_mean_mbps  throughput_std_mbps integrity_verified
+original_source 0.011498            0.000000                0.000000               0.000000               0.000965              0.000000            100.000000             0.000000               None
+            csv 0.011442            0.489342                0.002808               0.000000               0.000960              0.000000            100.000000             0.000000               None
+       csv_gzip 0.005692           50.501783                0.002562               0.000000               0.000477              0.000000            100.000000             0.000000               None
+        parquet 0.014002          -21.771585                0.015324               0.000000               0.001175              0.000000            100.000000             0.000000               None
+       csv_zstd 0.005332           53.628597                0.002385               0.000000               0.000447              0.000000            100.000000             0.000000               None
+
+====================================================================================================
+PHASE 2 COMPLETED
+====================================================================================================
+
+Results:
+  Summary : /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase2/synthetic_20261118_054042/transfer_benchmark.csv
+  Trials  : /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase2/synthetic_20261118_054042/transfer_trials.csv
+  Metadata: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase2/synthetic_20261118_054042/transfer_metadata.json
+  Artifacts: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase2/synthetic_20261118_054042/artifacts
+COMPLETE phase2: 0.563s
+START phase2_topsis: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/topsis_transfer_decision.py /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase2/synthetic_20261118_054042/transfer_benchmark.csv --formats csv_gzip parquet csv_zstd --output-dir /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase2_topsis
+TOPSIS criterion setup:
+  size_reduction_pct       (benefit, maximize)
+  packaging_mean_seconds   (cost, minimize)
+  transfer_mean_seconds    (cost, minimize)
+Normalized weights: 0.3333, 0.3333, 0.3333
+
+Ranking:
+  format size_reduction_pct packaging_mean_seconds transfer_mean_seconds distance_to_ideal_best distance_to_ideal_worst topsis_score  rank
+csv_zstd             53.629               0.002385              0.000447               0.000000                0.463530     1.000000     1
+csv_gzip             50.502               0.002562              0.000477               0.015940                0.448865     0.965705     2
+ parquet            -21.772               0.015324              0.001175               0.463530                0.000000     0.000000     3
+
+Saved TOPSIS matrices and ranking to: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase2_topsis
+Note: TOPSIS ranking depends on the chosen alternatives and criterion weights.
+COMPLETE phase2_topsis: 0.543s
+START phase3: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/03_feature_selection_all_thresholds_clinical.py /tmp/thesis-aligned-simulation-20261118/synthetic.csv --output-dir /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase3 --correlation-action flag --correlation-threshold 0.95 --min-correlation-observations 10 --min-correlation-patients 3 --patient-coverage-min 0.75 --missingness-thresholds 0.8 0.9 0.95 --clinically-protected Lactate
+Source dataset: /tmp/thesis-aligned-simulation-20261118/synthetic.csv
+Rows: 64; patients: 16; columns: 16
+Selection statistics: ALL patients and observations (no split)
+Protected structural/ID columns: ['SepsisLabel', 'patient_id', 'time']
+Results: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase3/synthetic_20261118_054043_565732_UTC
+
+Running FS_00_no_missingness_filter ...
+  Columns: 16 -> 16; file: 11,998 bytes; selection: 0.010s; flagged correlations: 0
+
+Running FS_80_missingness ...
+  Columns: 16 -> 15; file: 11,918 bytes; selection: 0.011s; flagged correlations: 0
+
+Running FS_80_clinical_review ...
+  Columns: 16 -> 15; file: 11,918 bytes; selection: 0.013s; flagged correlations: 0
+
+Running FS_90_missingness ...
+  Columns: 16 -> 15; file: 11,918 bytes; selection: 0.014s; flagged correlations: 0
+
+Running FS_90_clinical_review ...
+  Columns: 16 -> 15; file: 11,918 bytes; selection: 0.010s; flagged correlations: 0
+
+Running FS_95_missingness ...
+  Columns: 16 -> 15; file: 11,918 bytes; selection: 0.011s; flagged correlations: 0
+
+Running FS_95_clinical_review ...
+  Columns: 16 -> 15; file: 11,918 bytes; selection: 0.010s; flagged correlations: 0
+
+Completed 7 experiments. Comparison: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase3/synthetic_20261118_054043_565732_UTC/threshold_comparison.csv
+Matched comparison: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase3/synthetic_20261118_054043_565732_UTC/clinical_impact_comparison.csv
+NOTE: 75.0% patient coverage is a study-defined sensitivity threshold, not a published clinical cutoff.
+COMPLETE phase3: 0.709s
+START phase4_original: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/04_dimensionality_reduction_updated.py /tmp/thesis-aligned-simulation-20261118/synthetic.csv --output-dir /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase4/original --methods pca autoencoder --k 2 --ae-max-iter 15 --seed 42 --lossless-formats gzip zstd parquet --bandwidth-mbps 100 --strict-lossless
+Lossless baseline: gzip
+Lossless baseline: zstd
+Lossless baseline: parquet
+Input : /tmp/thesis-aligned-simulation-20261118/synthetic.csv
+Rows  : 64
+Encoded numerical predictors: 10
+Preserved exactly: ['patient_id', 'time', 'SepsisLabel', 'Age', 'ICULOS', 'HospAdmTime']
+Exact clinical variables present: ['Age', 'HospAdmTime', 'ICULOS']
+CSV   : 12,057 bytes; smallest verified lossless: zstd (5,707 bytes)
+Output: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase4/original/synthetic_20261118_054045_334558_UTC
+Running pca, k=2 ...
+  Payload 5,158 bytes; normalized RMSE 0.8251474073680962
+Running autoencoder, k=2 ...
+  WARNING: AE k=2 reached 15 iterations without optimizer stopping by tolerance. Treat result as preliminary.
+  Payload 7,112 bytes; normalized RMSE 1.0163050580119464
+
+COMPLETE. Main result: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase4/original/synthetic_20261118_054045_334558_UTC/phase4_comparison.csv
+COMPLETE phase4_original: 1.771s
+START phase4_FS_95_clinical_review: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/04_dimensionality_reduction_updated.py /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase3/synthetic_20261118_054043_565732_UTC/FS_95_clinical_review/selected_dataset.csv --output-dir /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase4/FS_95_clinical_review --methods pca autoencoder --k 2 --ae-max-iter 15 --seed 42 --lossless-formats gzip zstd parquet --bandwidth-mbps 100 --strict-lossless
+Lossless baseline: gzip
+Lossless baseline: zstd
+Lossless baseline: parquet
+Input : /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase3/synthetic_20261118_054043_565732_UTC/FS_95_clinical_review/selected_dataset.csv
+Rows  : 64
+Encoded numerical predictors: 9
+Preserved exactly: ['patient_id', 'time', 'SepsisLabel', 'Age', 'ICULOS', 'HospAdmTime']
+Exact clinical variables present: ['Age', 'HospAdmTime', 'ICULOS']
+CSV   : 11,918 bytes; smallest verified lossless: zstd (5,658 bytes)
+Output: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase4/FS_95_clinical_review/selected_dataset_20261118_054047_097105_UTC
+Running pca, k=2 ...
+  Payload 5,082 bytes; normalized RMSE 0.8144949585747743
+Running autoencoder, k=2 ...
+  WARNING: AE k=2 reached 15 iterations without optimizer stopping by tolerance. Treat result as preliminary.
+  Payload 6,798 bytes; normalized RMSE 1.0540671574201421
+
+COMPLETE. Main result: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase4/FS_95_clinical_review/selected_dataset_20261118_054047_097105_UTC/phase4_comparison.csv
+COMPLETE phase4_FS_95_clinical_review: 1.770s
+START phase5: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_utility_evaluation_updated.py --output-dir /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase5 --full-reference /tmp/thesis-aligned-simulation-20261118/synthetic.csv --distance-samples 16 --neighbor-k 5 10 --seed 42 --experiment /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase4/original/synthetic_20261118_054045_334558_UTC /tmp/thesis-aligned-simulation-20261118/synthetic.csv --experiment /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase4/FS_95_clinical_review/selected_dataset_20261118_054047_097105_UTC /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase3/synthetic_20261118_054043_565732_UTC/FS_95_clinical_review/selected_dataset.csv
+Evaluating: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase4/original/synthetic_20261118_054045_334558_UTC  |  Source: /tmp/thesis-aligned-simulation-20261118/synthetic.csv
+  Evaluated 5 method/packaging rows; 20 feature metrics
+Evaluating: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase4/FS_95_clinical_review/selected_dataset_20261118_054047_097105_UTC  |  Source: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase3/synthetic_20261118_054043_565732_UTC/FS_95_clinical_review/selected_dataset.csv
+  Evaluated 5 method/packaging rows; 18 feature metrics
+
+Phase 5 complete: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase5/phase5_20261118_054048_693921_UTC
+  - phase5_utility_summary.csv
+  - phase5_per_feature_utility.csv
+  - phase5_feature_retention.csv
+  - phase5_sampled_patient_rows.csv
+  - phase5_nearest_neighbor_overlap.csv
+  - phase5_metadata.json
+COMPLETE phase5: 1.549s
+START phase6_original_gzip_n_native: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase4/original/synthetic_20261118_054045_334558_UTC --source-csv /tmp/thesis-aligned-simulation-20261118/synthetic.csv --method gzip --output-dir /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_gzip_none_native --package-name original_gzip_none_native
+PACKAGE CREATED: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_gzip_none_native/original_gzip_none_native_20261118_054050_366073_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,843
+Payload alone: 6,010 bytes; package seconds: 0.0164
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_gzip_none_native/original_gzip_none_native_20261118_054050_366073_UTC.tar
+VERIFIED: original_gzip_none_native_20261118_054050_366073_UTC gzip
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_gzip_none_native/original_gzip_none_native_20261118_054050_366073_UTC.tar --output-dir /tmp/thesis_receiver_cgaho1xv
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_cgaho1xv/original_gzip_none_native_20261118_054050_366073_UTC
+Method: gzip
+NETWORK: Phase 6 original_gzip_none_native mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_original_gzip_n_native: 4.902s
+START phase6_original_zstd_n_native: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase4/original/synthetic_20261118_054045_334558_UTC --source-csv /tmp/thesis-aligned-simulation-20261118/synthetic.csv --method zstd --output-dir /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_zstd_none_native --package-name original_zstd_none_native
+PACKAGE CREATED: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_zstd_none_native/original_zstd_none_native_20261118_054055_163329_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,843
+Payload alone: 5,616 bytes; package seconds: 0.0165
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_zstd_none_native/original_zstd_none_native_20261118_054055_163329_UTC.tar
+VERIFIED: original_zstd_none_native_20261118_054055_163329_UTC zstd
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_zstd_none_native/original_zstd_none_native_20261118_054055_163329_UTC.tar --output-dir /tmp/thesis_receiver_m4nvasm7
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_m4nvasm7/original_zstd_none_native_20261118_054055_163329_UTC
+Method: zstd
+NETWORK: Phase 6 original_zstd_none_native mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_original_zstd_n_native: 4.584s
+START phase6_original_parquet_n_native: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase4/original/synthetic_20261118_054045_334558_UTC --source-csv /tmp/thesis-aligned-simulation-20261118/synthetic.csv --method parquet --output-dir /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_parquet_none_native --package-name original_parquet_none_native
+PACKAGE CREATED: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_parquet_none_native/original_parquet_none_native_20261118_054059_844956_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,846
+Payload alone: 14,804 bytes; package seconds: 0.0422
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_parquet_none_native/original_parquet_none_native_20261118_054059_844956_UTC.tar
+VERIFIED: original_parquet_none_native_20261118_054059_844956_UTC parquet
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_parquet_none_native/original_parquet_none_native_20261118_054059_844956_UTC.tar --output-dir /tmp/thesis_receiver_v9nl5_jq
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_v9nl5_jq/original_parquet_none_native_20261118_054059_844956_UTC
+Method: parquet
+NETWORK: Phase 6 original_parquet_none_native mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_original_parquet_n_native: 4.855s
+START phase6_original_pca_2_native: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase4/original/synthetic_20261118_054045_334558_UTC --source-csv /tmp/thesis-aligned-simulation-20261118/synthetic.csv --method pca --output-dir /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_pca_2_native --package-name original_pca_2_native --k 2 --codec native
+PACKAGE CREATED: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_pca_2_native/original_pca_2_native_20261118_054104_709303_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,839
+Payload alone: 5,158 bytes; package seconds: 0.0290
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_pca_2_native/original_pca_2_native_20261118_054104_709303_UTC.tar
+VERIFIED: original_pca_2_native_20261118_054104_709303_UTC pca
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_pca_2_native/original_pca_2_native_20261118_054104_709303_UTC.tar --output-dir /tmp/thesis_receiver_w4zk858w --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_w4zk858w/original_pca_2_native_20261118_054104_709303_UTC_recovered/pca_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_w4zk858w/original_pca_2_native_20261118_054104_709303_UTC
+Method: pca
+NETWORK: Phase 6 original_pca_2_native mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_original_pca_2_native: 5.872s
+START phase6_original_pca_2_gzip: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase4/original/synthetic_20261118_054045_334558_UTC --source-csv /tmp/thesis-aligned-simulation-20261118/synthetic.csv --method pca --output-dir /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_pca_2_gzip --package-name original_pca_2_gzip --k 2 --codec gzip
+PACKAGE CREATED: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_pca_2_gzip/original_pca_2_gzip_20261118_054110_604752_UTC.tar
+Validated transmitted bytes (archive + SHA256): 20,597
+Payload alone: 2,429 bytes; package seconds: 0.0257
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_pca_2_gzip/original_pca_2_gzip_20261118_054110_604752_UTC.tar
+VERIFIED: original_pca_2_gzip_20261118_054110_604752_UTC pca
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_pca_2_gzip/original_pca_2_gzip_20261118_054110_604752_UTC.tar --output-dir /tmp/thesis_receiver_zpcj1z9b --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_zpcj1z9b/original_pca_2_gzip_20261118_054110_604752_UTC_recovered/pca_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_zpcj1z9b/original_pca_2_gzip_20261118_054110_604752_UTC
+Method: pca
+NETWORK: Phase 6 original_pca_2_gzip mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_original_pca_2_gzip: 4.890s
+START phase6_original_pca_2_zstd: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase4/original/synthetic_20261118_054045_334558_UTC --source-csv /tmp/thesis-aligned-simulation-20261118/synthetic.csv --method pca --output-dir /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_pca_2_zstd --package-name original_pca_2_zstd --k 2 --codec zstd
+PACKAGE CREATED: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_pca_2_zstd/original_pca_2_zstd_20261118_054115_463331_UTC.tar
+Validated transmitted bytes (archive + SHA256): 20,597
+Payload alone: 2,559 bytes; package seconds: 0.0231
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_pca_2_zstd/original_pca_2_zstd_20261118_054115_463331_UTC.tar
+VERIFIED: original_pca_2_zstd_20261118_054115_463331_UTC pca
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_pca_2_zstd/original_pca_2_zstd_20261118_054115_463331_UTC.tar --output-dir /tmp/thesis_receiver_mif8d7x3 --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_mif8d7x3/original_pca_2_zstd_20261118_054115_463331_UTC_recovered/pca_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_mif8d7x3/original_pca_2_zstd_20261118_054115_463331_UTC
+Method: pca
+NETWORK: Phase 6 original_pca_2_zstd mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_original_pca_2_zstd: 4.722s
+START phase6_original_autoencoder_2_native: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase4/original/synthetic_20261118_054045_334558_UTC --source-csv /tmp/thesis-aligned-simulation-20261118/synthetic.csv --method autoencoder --output-dir /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_autoencoder_2_native --package-name original_autoencoder_2_native --k 2 --codec native
+PACKAGE CREATED: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_autoencoder_2_native/original_autoencoder_2_native_20261118_054120_216503_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,847
+Payload alone: 7,112 bytes; package seconds: 0.0165
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_autoencoder_2_native/original_autoencoder_2_native_20261118_054120_216503_UTC.tar
+VERIFIED: original_autoencoder_2_native_20261118_054120_216503_UTC autoencoder
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_autoencoder_2_native/original_autoencoder_2_native_20261118_054120_216503_UTC.tar --output-dir /tmp/thesis_receiver_65dh_chq --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_65dh_chq/original_autoencoder_2_native_20261118_054120_216503_UTC_recovered/autoencoder_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_65dh_chq/original_autoencoder_2_native_20261118_054120_216503_UTC
+Method: autoencoder
+NETWORK: Phase 6 original_autoencoder_2_native mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_original_autoencoder_2_native: 4.692s
+START phase6_original_autoencoder_2_gzip: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase4/original/synthetic_20261118_054045_334558_UTC --source-csv /tmp/thesis-aligned-simulation-20261118/synthetic.csv --method autoencoder --output-dir /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_autoencoder_2_gzip --package-name original_autoencoder_2_gzip --k 2 --codec gzip
+PACKAGE CREATED: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_autoencoder_2_gzip/original_autoencoder_2_gzip_20261118_054124_957933_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,845
+Payload alone: 3,933 bytes; package seconds: 0.0354
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_autoencoder_2_gzip/original_autoencoder_2_gzip_20261118_054124_957933_UTC.tar
+VERIFIED: original_autoencoder_2_gzip_20261118_054124_957933_UTC autoencoder
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_autoencoder_2_gzip/original_autoencoder_2_gzip_20261118_054124_957933_UTC.tar --output-dir /tmp/thesis_receiver_ifuy60sx --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_ifuy60sx/original_autoencoder_2_gzip_20261118_054124_957933_UTC_recovered/autoencoder_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_ifuy60sx/original_autoencoder_2_gzip_20261118_054124_957933_UTC
+Method: autoencoder
+NETWORK: Phase 6 original_autoencoder_2_gzip mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_original_autoencoder_2_gzip: 5.026s
+START phase6_original_autoencoder_2_zstd: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase4/original/synthetic_20261118_054045_334558_UTC --source-csv /tmp/thesis-aligned-simulation-20261118/synthetic.csv --method autoencoder --output-dir /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_autoencoder_2_zstd --package-name original_autoencoder_2_zstd --k 2 --codec zstd
+PACKAGE CREATED: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_autoencoder_2_zstd/original_autoencoder_2_zstd_20261118_054130_027355_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,845
+Payload alone: 4,110 bytes; package seconds: 0.0274
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_autoencoder_2_zstd/original_autoencoder_2_zstd_20261118_054130_027355_UTC.tar
+VERIFIED: original_autoencoder_2_zstd_20261118_054130_027355_UTC autoencoder
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/original_autoencoder_2_zstd/original_autoencoder_2_zstd_20261118_054130_027355_UTC.tar --output-dir /tmp/thesis_receiver_xqsxzsxf --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_xqsxzsxf/original_autoencoder_2_zstd_20261118_054130_027355_UTC_recovered/autoencoder_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_xqsxzsxf/original_autoencoder_2_zstd_20261118_054130_027355_UTC
+Method: autoencoder
+NETWORK: Phase 6 original_autoencoder_2_zstd mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_original_autoencoder_2_zstd: 4.900s
+START phase6_FS_95_clinical_review_gzip_n_native: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase4/FS_95_clinical_review/selected_dataset_20261118_054047_097105_UTC --source-csv /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase3/synthetic_20261118_054043_565732_UTC/FS_95_clinical_review/selected_dataset.csv --method gzip --output-dir /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_gzip_none_native --package-name FS_95_clinical_review_gzip_none_native --full-reference-csv /tmp/thesis-aligned-simulation-20261118/synthetic.csv --feature-selection-label FS_95_clinical_review
+PACKAGE CREATED: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_gzip_none_native/FS_95_clinical_review_gzip_none_native_20261118_054134_851061_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,856
+Payload alone: 5,953 bytes; package seconds: 0.0204
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_gzip_none_native/FS_95_clinical_review_gzip_none_native_20261118_054134_851061_UTC.tar
+VERIFIED: FS_95_clinical_review_gzip_none_native_20261118_054134_851061_UTC gzip
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_gzip_none_native/FS_95_clinical_review_gzip_none_native_20261118_054134_851061_UTC.tar --output-dir /tmp/thesis_receiver_jujsbxx_
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_jujsbxx_/FS_95_clinical_review_gzip_none_native_20261118_054134_851061_UTC
+Method: gzip
+NETWORK: Phase 6 FS_95_clinical_review_gzip_none_native mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_FS_95_clinical_review_gzip_n_native: 4.845s
+START phase6_FS_95_clinical_review_zstd_n_native: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase4/FS_95_clinical_review/selected_dataset_20261118_054047_097105_UTC --source-csv /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase3/synthetic_20261118_054043_565732_UTC/FS_95_clinical_review/selected_dataset.csv --method zstd --output-dir /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_zstd_none_native --package-name FS_95_clinical_review_zstd_none_native --full-reference-csv /tmp/thesis-aligned-simulation-20261118/synthetic.csv --feature-selection-label FS_95_clinical_review
+PACKAGE CREATED: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_zstd_none_native/FS_95_clinical_review_zstd_none_native_20261118_054139_707871_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,856
+Payload alone: 5,567 bytes; package seconds: 0.0262
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_zstd_none_native/FS_95_clinical_review_zstd_none_native_20261118_054139_707871_UTC.tar
+VERIFIED: FS_95_clinical_review_zstd_none_native_20261118_054139_707871_UTC zstd
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_zstd_none_native/FS_95_clinical_review_zstd_none_native_20261118_054139_707871_UTC.tar --output-dir /tmp/thesis_receiver_j35fpl59
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_j35fpl59/FS_95_clinical_review_zstd_none_native_20261118_054139_707871_UTC
+Method: zstd
+NETWORK: Phase 6 FS_95_clinical_review_zstd_none_native mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_FS_95_clinical_review_zstd_n_native: 4.737s
+START phase6_FS_95_clinical_review_parquet_n_native: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase4/FS_95_clinical_review/selected_dataset_20261118_054047_097105_UTC --source-csv /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase3/synthetic_20261118_054043_565732_UTC/FS_95_clinical_review/selected_dataset.csv --method parquet --output-dir /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_parquet_none_native --package-name FS_95_clinical_review_parquet_none_native --full-reference-csv /tmp/thesis-aligned-simulation-20261118/synthetic.csv --feature-selection-label FS_95_clinical_review
+PACKAGE CREATED: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_parquet_none_native/FS_95_clinical_review_parquet_none_native_20261118_054144_564405_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,859
+Payload alone: 14,207 bytes; package seconds: 0.0399
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_parquet_none_native/FS_95_clinical_review_parquet_none_native_20261118_054144_564405_UTC.tar
+VERIFIED: FS_95_clinical_review_parquet_none_native_20261118_054144_564405_UTC parquet
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_parquet_none_native/FS_95_clinical_review_parquet_none_native_20261118_054144_564405_UTC.tar --output-dir /tmp/thesis_receiver_1udxqh79
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_1udxqh79/FS_95_clinical_review_parquet_none_native_20261118_054144_564405_UTC
+Method: parquet
+NETWORK: Phase 6 FS_95_clinical_review_parquet_none_native mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_FS_95_clinical_review_parquet_n_native: 5.124s
+START phase6_FS_95_clinical_review_pca_2_native: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase4/FS_95_clinical_review/selected_dataset_20261118_054047_097105_UTC --source-csv /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase3/synthetic_20261118_054043_565732_UTC/FS_95_clinical_review/selected_dataset.csv --method pca --output-dir /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_pca_2_native --package-name FS_95_clinical_review_pca_2_native --k 2 --codec native --full-reference-csv /tmp/thesis-aligned-simulation-20261118/synthetic.csv --feature-selection-label FS_95_clinical_review
+PACKAGE CREATED: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_pca_2_native/FS_95_clinical_review_pca_2_native_20261118_054150_052359_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,852
+Payload alone: 5,082 bytes; package seconds: 0.0397
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_pca_2_native/FS_95_clinical_review_pca_2_native_20261118_054150_052359_UTC.tar
+VERIFIED: FS_95_clinical_review_pca_2_native_20261118_054150_052359_UTC pca
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_pca_2_native/FS_95_clinical_review_pca_2_native_20261118_054150_052359_UTC.tar --output-dir /tmp/thesis_receiver_st2br5cy --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_st2br5cy/FS_95_clinical_review_pca_2_native_20261118_054150_052359_UTC_recovered/pca_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_st2br5cy/FS_95_clinical_review_pca_2_native_20261118_054150_052359_UTC
+Method: pca
+NETWORK: Phase 6 FS_95_clinical_review_pca_2_native mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_FS_95_clinical_review_pca_2_native: 5.862s
+START phase6_FS_95_clinical_review_pca_2_gzip: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase4/FS_95_clinical_review/selected_dataset_20261118_054047_097105_UTC --source-csv /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase3/synthetic_20261118_054043_565732_UTC/FS_95_clinical_review/selected_dataset.csv --method pca --output-dir /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_pca_2_gzip --package-name FS_95_clinical_review_pca_2_gzip --k 2 --codec gzip --full-reference-csv /tmp/thesis-aligned-simulation-20261118/synthetic.csv --feature-selection-label FS_95_clinical_review
+PACKAGE CREATED: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_pca_2_gzip/FS_95_clinical_review_pca_2_gzip_20261118_054155_589882_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,850
+Payload alone: 2,386 bytes; package seconds: 0.0300
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_pca_2_gzip/FS_95_clinical_review_pca_2_gzip_20261118_054155_589882_UTC.tar
+VERIFIED: FS_95_clinical_review_pca_2_gzip_20261118_054155_589882_UTC pca
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_pca_2_gzip/FS_95_clinical_review_pca_2_gzip_20261118_054155_589882_UTC.tar --output-dir /tmp/thesis_receiver_05_s67ma --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_05_s67ma/FS_95_clinical_review_pca_2_gzip_20261118_054155_589882_UTC_recovered/pca_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_05_s67ma/FS_95_clinical_review_pca_2_gzip_20261118_054155_589882_UTC
+Method: pca
+NETWORK: Phase 6 FS_95_clinical_review_pca_2_gzip mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_FS_95_clinical_review_pca_2_gzip: 5.068s
+START phase6_FS_95_clinical_review_pca_2_zstd: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase4/FS_95_clinical_review/selected_dataset_20261118_054047_097105_UTC --source-csv /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase3/synthetic_20261118_054043_565732_UTC/FS_95_clinical_review/selected_dataset.csv --method pca --output-dir /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_pca_2_zstd --package-name FS_95_clinical_review_pca_2_zstd --k 2 --codec zstd --full-reference-csv /tmp/thesis-aligned-simulation-20261118/synthetic.csv --feature-selection-label FS_95_clinical_review
+PACKAGE CREATED: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_pca_2_zstd/FS_95_clinical_review_pca_2_zstd_20261118_054200_611515_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,850
+Payload alone: 2,522 bytes; package seconds: 0.0292
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_pca_2_zstd/FS_95_clinical_review_pca_2_zstd_20261118_054200_611515_UTC.tar
+VERIFIED: FS_95_clinical_review_pca_2_zstd_20261118_054200_611515_UTC pca
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_pca_2_zstd/FS_95_clinical_review_pca_2_zstd_20261118_054200_611515_UTC.tar --output-dir /tmp/thesis_receiver_bynihisn --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_bynihisn/FS_95_clinical_review_pca_2_zstd_20261118_054200_611515_UTC_recovered/pca_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_bynihisn/FS_95_clinical_review_pca_2_zstd_20261118_054200_611515_UTC
+Method: pca
+NETWORK: Phase 6 FS_95_clinical_review_pca_2_zstd mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_FS_95_clinical_review_pca_2_zstd: 4.958s
+START phase6_FS_95_clinical_review_autoencoder_2_native: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase4/FS_95_clinical_review/selected_dataset_20261118_054047_097105_UTC --source-csv /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase3/synthetic_20261118_054043_565732_UTC/FS_95_clinical_review/selected_dataset.csv --method autoencoder --output-dir /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_autoencoder_2_native --package-name FS_95_clinical_review_autoencoder_2_native --k 2 --codec native --full-reference-csv /tmp/thesis-aligned-simulation-20261118/synthetic.csv --feature-selection-label FS_95_clinical_review
+PACKAGE CREATED: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_autoencoder_2_native/FS_95_clinical_review_autoencoder_2_native_20261118_054205_579815_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,860
+Payload alone: 6,798 bytes; package seconds: 0.0201
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_autoencoder_2_native/FS_95_clinical_review_autoencoder_2_native_20261118_054205_579815_UTC.tar
+VERIFIED: FS_95_clinical_review_autoencoder_2_native_20261118_054205_579815_UTC autoencoder
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_autoencoder_2_native/FS_95_clinical_review_autoencoder_2_native_20261118_054205_579815_UTC.tar --output-dir /tmp/thesis_receiver__ibf865d --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver__ibf865d/FS_95_clinical_review_autoencoder_2_native_20261118_054205_579815_UTC_recovered/autoencoder_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver__ibf865d/FS_95_clinical_review_autoencoder_2_native_20261118_054205_579815_UTC
+Method: autoencoder
+NETWORK: Phase 6 FS_95_clinical_review_autoencoder_2_native mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_FS_95_clinical_review_autoencoder_2_native: 4.651s
+START phase6_FS_95_clinical_review_autoencoder_2_gzip: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase4/FS_95_clinical_review/selected_dataset_20261118_054047_097105_UTC --source-csv /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase3/synthetic_20261118_054043_565732_UTC/FS_95_clinical_review/selected_dataset.csv --method autoencoder --output-dir /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_autoencoder_2_gzip --package-name FS_95_clinical_review_autoencoder_2_gzip --k 2 --codec gzip --full-reference-csv /tmp/thesis-aligned-simulation-20261118/synthetic.csv --feature-selection-label FS_95_clinical_review
+PACKAGE CREATED: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_autoencoder_2_gzip/FS_95_clinical_review_autoencoder_2_gzip_20261118_054210_034058_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,858
+Payload alone: 3,641 bytes; package seconds: 0.0298
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_autoencoder_2_gzip/FS_95_clinical_review_autoencoder_2_gzip_20261118_054210_034058_UTC.tar
+VERIFIED: FS_95_clinical_review_autoencoder_2_gzip_20261118_054210_034058_UTC autoencoder
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_autoencoder_2_gzip/FS_95_clinical_review_autoencoder_2_gzip_20261118_054210_034058_UTC.tar --output-dir /tmp/thesis_receiver_v_bvizkm --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_v_bvizkm/FS_95_clinical_review_autoencoder_2_gzip_20261118_054210_034058_UTC_recovered/autoencoder_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_v_bvizkm/FS_95_clinical_review_autoencoder_2_gzip_20261118_054210_034058_UTC
+Method: autoencoder
+NETWORK: Phase 6 FS_95_clinical_review_autoencoder_2_gzip mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_FS_95_clinical_review_autoencoder_2_gzip: 4.391s
+START phase6_FS_95_clinical_review_autoencoder_2_zstd: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase4/FS_95_clinical_review/selected_dataset_20261118_054047_097105_UTC --source-csv /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase3/synthetic_20261118_054043_565732_UTC/FS_95_clinical_review/selected_dataset.csv --method autoencoder --output-dir /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_autoencoder_2_zstd --package-name FS_95_clinical_review_autoencoder_2_zstd --k 2 --codec zstd --full-reference-csv /tmp/thesis-aligned-simulation-20261118/synthetic.csv --feature-selection-label FS_95_clinical_review
+PACKAGE CREATED: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_autoencoder_2_zstd/FS_95_clinical_review_autoencoder_2_zstd_20261118_054214_526496_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,858
+Payload alone: 3,796 bytes; package seconds: 0.0246
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_autoencoder_2_zstd/FS_95_clinical_review_autoencoder_2_zstd_20261118_054214_526496_UTC.tar
+VERIFIED: FS_95_clinical_review_autoencoder_2_zstd_20261118_054214_526496_UTC autoencoder
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/_work/phase6/FS_95_clinical_review_autoencoder_2_zstd/FS_95_clinical_review_autoencoder_2_zstd_20261118_054214_526496_UTC.tar --output-dir /tmp/thesis_receiver_lycqbdr9 --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_lycqbdr9/FS_95_clinical_review_autoencoder_2_zstd_20261118_054214_526496_UTC_recovered/autoencoder_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_lycqbdr9/FS_95_clinical_review_autoencoder_2_zstd_20261118_054214_526496_UTC
+Method: autoencoder
+NETWORK: Phase 6 FS_95_clinical_review_autoencoder_2_zstd mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_FS_95_clinical_review_autoencoder_2_zstd: 4.422s
+START final_decision: forced recomputation
+COMPLETE final_decision: 1.585s
+
+DONE: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/results
+  FINAL_REPORT.md
+  01_integrated_evidence.csv
+  02_decision_rankings.csv
+  03_phase_overview.csv
+  04_network_trials.csv
+  run_manifest.json
+RESULTS: /tmp/thesis-aligned-simulation-20261118/run/results/20261118_054219_184384_UTC_ieqmsesl
+LOG FILE: /tmp/thesis-aligned-simulation-20261118/run/pipeline.log
+NETWORK: {"status": "idle", "updated_utc": "2026-11-18T05:42:19.195444+00:00", "operation": "Experiment starting"}
+RUN d46ec12f8f093279bae8: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8
+SKIP phase1: verified completed checkpoint
+SKIP phase2: verified completed checkpoint
+SKIP phase2_topsis: verified completed checkpoint
+SKIP phase3: verified completed checkpoint
+SKIP phase4_original: verified completed checkpoint
+SKIP phase4_FS_95_clinical_review: verified completed checkpoint
+SKIP phase5: verified completed checkpoint
+SKIP phase6_original_gzip_n_native: verified completed checkpoint
+SKIP phase6_original_zstd_n_native: verified completed checkpoint
+SKIP phase6_original_parquet_n_native: verified completed checkpoint
+SKIP phase6_original_pca_2_native: verified completed checkpoint
+SKIP phase6_original_pca_2_gzip: verified completed checkpoint
+SKIP phase6_original_pca_2_zstd: verified completed checkpoint
+SKIP phase6_original_autoencoder_2_native: verified completed checkpoint
+SKIP phase6_original_autoencoder_2_gzip: verified completed checkpoint
+SKIP phase6_original_autoencoder_2_zstd: verified completed checkpoint
+SKIP phase6_FS_95_clinical_review_gzip_n_native: verified completed checkpoint
+SKIP phase6_FS_95_clinical_review_zstd_n_native: verified completed checkpoint
+SKIP phase6_FS_95_clinical_review_parquet_n_native: verified completed checkpoint
+SKIP phase6_FS_95_clinical_review_pca_2_native: verified completed checkpoint
+SKIP phase6_FS_95_clinical_review_pca_2_gzip: verified completed checkpoint
+SKIP phase6_FS_95_clinical_review_pca_2_zstd: verified completed checkpoint
+SKIP phase6_FS_95_clinical_review_autoencoder_2_native: verified completed checkpoint
+SKIP phase6_FS_95_clinical_review_autoencoder_2_gzip: verified completed checkpoint
+SKIP phase6_FS_95_clinical_review_autoencoder_2_zstd: verified completed checkpoint
+START final_decision: forced recomputation
+COMPLETE final_decision: 1.989s
+
+DONE: /tmp/thesis-aligned-simulation-20261118/run/runs/d46ec12f8f093279bae8/results
+  FINAL_REPORT.md
+  01_integrated_evidence.csv
+  02_decision_rankings.csv
+  03_phase_overview.csv
+  04_network_trials.csv
+  run_manifest.json
+RESULTS: /tmp/thesis-aligned-simulation-20261118/run/results/20261118_054221_216811_UTC_dostor5m
+{
+  "status": "passed",
+  "rows": 64,
+  "patients": 16,
+  "packages": 18,
+  "evidence_rows": 36,
+  "ranking_rows": 162,
+  "checkpoint_resume_verified": true,
+  "real_ssh_attempts": 0,
+  "timestamped_report_snapshots": 2,
+  "previous_reports_preserved": true,
+  "report_directory": "/tmp/thesis-aligned-simulation-20261118/run/results/20261118_054221_216811_UTC_dostor5m"
+}

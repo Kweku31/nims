@@ -1,0 +1,12 @@
+test_adapter_forwards_execution_settings (test_ae_acceleration.AccelerationTests.test_adapter_forwards_execution_settings) ... ok
+test_array_optimizer_matches_sklearn_with_partial_final_batch (test_ae_acceleration.AccelerationTests.test_array_optimizer_matches_sklearn_with_partial_final_batch) ... ok
+test_cpu_progress_preserves_original_training_and_decoder (test_ae_acceleration.AccelerationTests.test_cpu_progress_preserves_original_training_and_decoder) ... ok
+test_gpu_training_matches_cpu_float32_and_decoder_is_portable (test_ae_acceleration.AccelerationTests.test_gpu_training_matches_cpu_float32_and_decoder_is_portable) ... ok
+test_invalid_execution_settings (test_ae_acceleration.AccelerationTests.test_invalid_execution_settings) ... ok
+test_requested_gpu_failure_is_not_silently_cpu (test_ae_acceleration.AccelerationTests.test_requested_gpu_failure_is_not_silently_cpu) ... ok
+test_unavailable_gpu_fails_before_pipeline_work (test_ae_acceleration.AccelerationTests.test_unavailable_gpu_fails_before_pipeline_work) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 4.708s
+
+OK

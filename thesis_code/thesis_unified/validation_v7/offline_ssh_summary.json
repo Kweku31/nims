@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "packages": 10,
+  "injected_network_failures": 2,
+  "real_ssh_attempts": 0,
+  "transport": "LOCAL COMMAND STAND-INS; NOT REAL SSH EVIDENCE",
+  "report_directory": "/tmp/thesis-offline-ssh-pipeline-20261115/run/results/20261115_185040_896843_UTC_wiu57y36"
+}

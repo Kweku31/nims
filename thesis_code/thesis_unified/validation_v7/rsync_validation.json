@@ -1,0 +1,38 @@
+{
+  "date_utc": "2026-11-23",
+  "pipeline_unit_tests": {
+    "total": 70,
+    "passed": 69,
+    "skipped": 1
+  },
+  "dashboard_backend_tests_passed": 21,
+  "browser_tests_passed": 14,
+  "paired_synthetic_run": {
+    "phase2_formats": 5,
+    "phase6_packages": 10,
+    "trials_per_format_or_package_per_transport": 2,
+    "injected_scp_failures": 2,
+    "receiver_rows_per_package": 64,
+    "transports": [
+      "scp",
+      "rsync"
+    ],
+    "real_rsync_binary": true,
+    "ssh_and_scp": "local test substitutes",
+    "external_ssh_connections": 0
+  },
+  "rsync_only_phase6_replay": {
+    "verified_packages": 10,
+    "new_timestamped_result": true
+  },
+  "local_interruption_demo": {
+    "partial_bytes": 1572864,
+    "matched_bytes_on_retry": 1572480,
+    "matched_bytes_in_next_trial": 0,
+    "archive_checksums_passed": true
+  },
+  "code_provenance_test": {
+    "pre_update_backup_fingerprints_accepted_for_replay": true,
+    "unknown_phase4_fingerprint_rejected": true
+  }
+}

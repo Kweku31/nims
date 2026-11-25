@@ -1,0 +1,31 @@
+test_cancel_and_single_active_job (test_server.DashboardTests.test_cancel_and_single_active_job) ... ok
+test_csv_nonfinite_values_are_json_safe (test_server.DashboardTests.test_csv_nonfinite_values_are_json_safe) ... ok
+test_custom_weights_are_validated_before_launch_and_saved (test_server.DashboardTests.test_custom_weights_are_validated_before_launch_and_saved) ... ok
+test_dataset_preview_preserves_values_and_paginates (test_server.DashboardTests.test_dataset_preview_preserves_values_and_paginates) ... ok
+test_discovers_distinct_timestamp_snapshots_and_safe_report_paths (test_server.DashboardTests.test_discovers_distinct_timestamp_snapshots_and_safe_report_paths) ... ok
+test_http_downloads_and_cross_origin_protection (test_server.DashboardTests.test_http_downloads_and_cross_origin_protection) ... 127.0.0.1 - - [18/Nov/2026 16:11:55] "POST /api/datasets/upload HTTP/1.1" 201 -
+127.0.0.1 - - [18/Nov/2026 16:11:55] "POST /api/datasets/upload HTTP/1.1" 403 -
+127.0.0.1 - - [18/Nov/2026 16:11:55] "POST /api/runs HTTP/1.1" 403 -
+127.0.0.1 - - [18/Nov/2026 16:11:55] "GET /api/settings HTTP/1.1" 403 -
+127.0.0.1 - - [18/Nov/2026 16:11:55] "GET /api/runs/36ece497b8a0f360/files/config.json HTTP/1.1" 404 -
+ok
+test_invalid_optional_settings_never_start_a_process (test_server.DashboardTests.test_invalid_optional_settings_never_start_a_process) ... ok
+test_invalid_ssh_recovery_inputs_are_rejected (test_server.DashboardTests.test_invalid_ssh_recovery_inputs_are_rejected) ... ok
+test_invalid_uploads_clean_up_partial_files (test_server.DashboardTests.test_invalid_uploads_clean_up_partial_files) ... ok
+test_launch_process_and_completion (test_server.DashboardTests.test_launch_process_and_completion) ... ok
+test_launch_validation_never_invokes_shell (test_server.DashboardTests.test_launch_validation_never_invokes_shell) ... ok
+test_missing_source_and_missing_api_are_distinct (test_server.DashboardTests.test_missing_source_and_missing_api_are_distinct) ... ok
+test_optional_settings_saved_with_explicit_percentage_units (test_server.DashboardTests.test_optional_settings_saved_with_explicit_percentage_units) ... ok
+test_patient_coverage_choices_are_written_to_the_pipeline_config (test_server.DashboardTests.test_patient_coverage_choices_are_written_to_the_pipeline_config) ... ok
+test_phase_one_redundancy_lists_saved_pairs_and_handles_missing_files (test_server.DashboardTests.test_phase_one_redundancy_lists_saved_pairs_and_handles_missing_files) ... ok
+test_phase_status_aggregates_configurations (test_server.DashboardTests.test_phase_status_aggregates_configurations) ... ok
+test_phase_three_lists_decisions_for_the_selected_variant (test_server.DashboardTests.test_phase_three_lists_decisions_for_the_selected_variant) ... ok
+test_restart_does_not_launch_over_a_surviving_worker (test_server.DashboardTests.test_restart_does_not_launch_over_a_surviving_worker) ... ok
+test_resume_reuses_job_config_output_and_keeps_audit_history (test_server.DashboardTests.test_resume_reuses_job_config_output_and_keeps_audit_history) ... ok
+test_run_dataset_preview_detects_changed_source (test_server.DashboardTests.test_run_dataset_preview_detects_changed_source) ... ok
+test_upload_is_local_unique_and_preserves_exact_bytes (test_server.DashboardTests.test_upload_is_local_unique_and_preserves_exact_bytes) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 1.221s
+
+OK

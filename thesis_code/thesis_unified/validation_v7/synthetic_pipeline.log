@@ -1,0 +1,632 @@
+LOG FILE: /tmp/thesis-v7-timestamp-smoke/run/pipeline.log
+RUN 4a97a3ae1e6243e730fb: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb
+START phase1: executing
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/01_profiling_updated.py /tmp/thesis-v7-timestamp-smoke/synthetic.csv --output-dir /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase1 --threshold 0.95
+========================================================================
+PHASE 1 -- BASELINE DATASET PROFILING
+========================================================================
+Dataset: /tmp/thesis-v7-timestamp-smoke/synthetic.csv
+Rows: 64
+Columns: 16
+Source size: 11.77 KB (12,057 bytes)
+Load time: 0.026280 s
+
+========================================================================
+BASELINE PROFILE RESULTS
+========================================================================
+Rows: 64 | Columns: 16
+Input size: 11.77 KB | DataFrame memory: 8.13 KB
+Load: 0.026280s | Profiling: 0.316059s
+
+Identifiers
+  Automatic: patient_id
+  Manual:    None
+  Combined:  patient_id
+
+Correlation variables: time, SepsisLabel, Age, ICULOS, HospAdmTime, HR, O2Sat, Temp, SBP, MAP, DBP, Resp, Lactate, Glucose, SparseLab
+Unique pairs: 105 | Threshold: |r| >= 0.95
+   column_a    column_b  pearson_r  absolute_pearson_correlation  pairwise_n
+       time      ICULOS   1.000000                      1.000000          64
+SepsisLabel         Age  -0.433607                      0.433607          64
+        DBP        Resp   0.276077                      0.276077          56
+        Age          HR   0.263577                      0.263577          60
+HospAdmTime     Glucose   0.259014                      0.259014          60
+      O2Sat         MAP   0.237903                      0.237903          57
+SepsisLabel     Lactate   0.234837                      0.234837          60
+HospAdmTime         MAP   0.229678                      0.229678          60
+HospAdmTime        Temp   0.217869                      0.217869          60
+        MAP         DBP  -0.200406                      0.200406          56
+       time        Resp   0.188857                      0.188857          60
+     ICULOS        Resp   0.188857                      0.188857          60
+       Temp         SBP  -0.185363                      0.185363          56
+        Age     Glucose  -0.182120                      0.182120          60
+       Temp        Resp   0.180222                      0.180222          56
+        Age     Lactate  -0.179459                      0.179459          60
+       time     Lactate  -0.173116                      0.173116          60
+     ICULOS     Lactate  -0.173116                      0.173116          60
+        Age         DBP  -0.171982                      0.171982          60
+SepsisLabel        Temp  -0.171139                      0.171139          60
+      O2Sat     Lactate   0.168726                      0.168726          56
+         HR       O2Sat   0.163121                      0.163121          56
+HospAdmTime          HR   0.162513                      0.162513          60
+        SBP         DBP   0.160989                      0.160989          56
+      O2Sat         SBP   0.160213                      0.160213          56
+       Temp     Glucose  -0.155314                      0.155314          56
+        Age        Resp  -0.154235                      0.154235          60
+        Age HospAdmTime  -0.153411                      0.153411          64
+    Lactate     Glucose   0.151918                      0.151918          56
+        Age       O2Sat   0.149284                      0.149284          60
+        MAP        Resp  -0.131346                      0.131346          57
+SepsisLabel        Resp   0.127289                      0.127289          60
+      O2Sat         DBP  -0.115271                      0.115271          56
+        Age        Temp  -0.114544                      0.114544          60
+       time         DBP  -0.113053                      0.113053          60
+     ICULOS         DBP  -0.113053                      0.113053          60
+SepsisLabel       O2Sat   0.112155                      0.112155          60
+HospAdmTime       O2Sat  -0.106253                      0.106253          60
+        SBP         MAP   0.105051                      0.105051          56
+        MAP     Lactate   0.104173                      0.104173          56
+         HR         SBP   0.103803                      0.103803          56
+       Temp     Lactate  -0.103488                      0.103488          56
+       Temp         MAP   0.102171                      0.102171          56
+        MAP     Glucose   0.100854                      0.100854          57
+         HR        Resp  -0.098493                      0.098493          57
+SepsisLabel         SBP   0.098329                      0.098329          60
+SepsisLabel     Glucose   0.098226                      0.098226          60
+HospAdmTime         DBP   0.094121                      0.094121          60
+        Age         SBP  -0.085958                      0.085958          60
+       time     Glucose   0.084061                      0.084061          60
+     ICULOS     Glucose   0.084061                      0.084061          60
+      O2Sat        Temp  -0.083250                      0.083250          58
+        SBP     Glucose  -0.082884                      0.082884          56
+         HR     Lactate  -0.080192                      0.080192          57
+SepsisLabel         MAP   0.078548                      0.078548          60
+SepsisLabel         DBP  -0.078392                      0.078392          60
+        DBP     Glucose  -0.076199                      0.076199          56
+SepsisLabel          HR  -0.074481                      0.074481          60
+         HR         MAP   0.074199                      0.074199          56
+     ICULOS         SBP  -0.060223                      0.060223          60
+       time         SBP  -0.060223                      0.060223          60
+        SBP     Lactate   0.053374                      0.053374          56
+        SBP        Resp   0.050926                      0.050926          56
+         HR        Temp  -0.048856                      0.048856          56
+      O2Sat     Glucose  -0.044735                      0.044735          56
+       time          HR  -0.043476                      0.043476          60
+     ICULOS          HR  -0.043476                      0.043476          60
+SepsisLabel HospAdmTime   0.041562                      0.041562          64
+       Temp         DBP  -0.038947                      0.038947          56
+       time        Temp  -0.032717                      0.032717          60
+     ICULOS        Temp  -0.032717                      0.032717          60
+        DBP     Lactate  -0.029853                      0.029853          57
+HospAdmTime        Resp  -0.027838                      0.027838          60
+       Resp     Glucose  -0.023833                      0.023833          56
+       Resp     Lactate  -0.022828                      0.022828          57
+      O2Sat        Resp  -0.022359                      0.022359          56
+         HR     Glucose  -0.019745                      0.019745          57
+HospAdmTime     Lactate   0.019730                      0.019730          60
+     ICULOS         MAP  -0.016991                      0.016991          60
+       time         MAP  -0.016991                      0.016991          60
+        Age         MAP   0.008800                      0.008800          60
+     ICULOS       O2Sat  -0.007854                      0.007854          60
+       time       O2Sat  -0.007854                      0.007854          60
+HospAdmTime         SBP   0.005897                      0.005897          60
+         HR         DBP  -0.000793                      0.000793          57
+       time SepsisLabel   0.000000                      0.000000          64
+       time         Age   0.000000                      0.000000          64
+       time HospAdmTime   0.000000                      0.000000          64
+SepsisLabel      ICULOS   0.000000                      0.000000          64
+        Age      ICULOS   0.000000                      0.000000          64
+     ICULOS HospAdmTime   0.000000                      0.000000          64
+       time   SparseLab        NaN                           NaN           2
+SepsisLabel   SparseLab        NaN                           NaN           2
+        Age   SparseLab        NaN                           NaN           2
+     ICULOS   SparseLab        NaN                           NaN           2
+HospAdmTime   SparseLab        NaN                           NaN           2
+         HR   SparseLab        NaN                           NaN           2
+      O2Sat   SparseLab        NaN                           NaN           2
+       Temp   SparseLab        NaN                           NaN           2
+        SBP   SparseLab        NaN                           NaN           2
+        MAP   SparseLab        NaN                           NaN           2
+        DBP   SparseLab        NaN                           NaN           2
+       Resp   SparseLab        NaN                           NaN           2
+    Lactate   SparseLab        NaN                           NaN           2
+    Glucose   SparseLab        NaN                           NaN           2
+
+Pairs above threshold: 1
+column_a column_b  pearson_r  absolute_pearson_correlation
+    time   ICULOS        1.0                           1.0
+
+========================================================================
+PHASE 1 COMPLETED SUCCESSFULLY
+========================================================================
+Results saved to: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase1/synthetic_20261113_234120
+Outputs: column_profile.csv, numeric_variable_profile.csv, correlation_all_pairs.csv, redundant_pairs.csv, duplicate_columns.csv, dataset_summary.csv, profile_metadata.json
+COMPLETE phase1: 1.347s
+START phase2: executing
+NETWORK: Phase 2 mode=simulated; requested=simulated; reason=none
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/02_transfer_benchmark.py /tmp/thesis-v7-timestamp-smoke/synthetic.csv --transfer-mode simulated --packaging-runs 1 --transfer-runs 2 --bandwidth-mbps 100 --output-dir /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase2
+====================================================================================================
+PHASE 2 - BASELINE TRANSFER BENCHMARK
+====================================================================================================
+
+Reading dataset into memory once...
+
+Dataset:
+  /tmp/thesis-v7-timestamp-smoke/synthetic.csv
+Rows        : 64
+Columns     : 16
+Source size : 11.77 KB
+DataFrame   : 8.13 KB
+Load time   : 0.021819 s
+
+Calculating source SHA-256...
+SHA-256: cbf2d6a79dbe9f298b9b4bbc924d9936b0960410b234d5cbc22c4e1b05978f95
+
+==========================================================================================
+PACKAGING BENCHMARK
+==========================================================================================
+
+original_source: 11.77 KB (no packaging)
+
+CSV
+  Run 01: 0.002822 s
+
+CSV + gzip
+  Run 01: 0.002806 s
+
+Parquet
+  Run 01: 0.057702 s
+
+CSV + Zstandard
+  Run 01: 0.005422 s
+
+==========================================================================================
+TRANSFER BENCHMARK
+==========================================================================================
+
+Transfer: original_source
+Artifact size: 11.77 KB
+  Run 01: transfer=0.000965s, throughput=100.000 Mbps
+  Run 02: transfer=0.000965s, throughput=100.000 Mbps
+
+Transfer: csv
+Artifact size: 11.77 KB
+  Run 01: transfer=0.000965s, throughput=100.000 Mbps
+  Run 02: transfer=0.000965s, throughput=100.000 Mbps
+
+Transfer: csv_gzip
+Artifact size: 5.87 KB
+  Run 01: transfer=0.000481s, throughput=100.000 Mbps
+  Run 02: transfer=0.000481s, throughput=100.000 Mbps
+
+Transfer: parquet
+Artifact size: 14.34 KB
+  Run 01: transfer=0.001175s, throughput=100.000 Mbps
+  Run 02: transfer=0.001175s, throughput=100.000 Mbps
+
+Transfer: csv_zstd
+Artifact size: 5.48 KB
+  Run 01: transfer=0.000449s, throughput=100.000 Mbps
+  Run 02: transfer=0.000449s, throughput=100.000 Mbps
+
+==============================================================================================================
+PHASE 2 SUMMARY
+==============================================================================================================
+
+Transfer mode    : simulated
+Packaging runs   : 1
+Transfer runs    : 2
+Simulated bandwidth: 100.00 Mbps
+
+         format  file_mb  size_reduction_pct  packaging_mean_seconds  packaging_std_seconds  transfer_mean_seconds  transfer_std_seconds  throughput_mean_mbps  throughput_std_mbps integrity_verified
+original_source 0.011498            0.000000                0.000000               0.000000               0.000965              0.000000            100.000000             0.000000               None
+            csv 0.011498            0.000000                0.002822               0.000000               0.000965              0.000000            100.000000             0.000000               None
+       csv_gzip 0.005730           50.170026                0.002806               0.000000               0.000481              0.000000            100.000000             0.000000               None
+        parquet 0.014002          -21.771585                0.057702               0.000000               0.001175              0.000000            100.000000             0.000000               None
+       csv_zstd 0.005352           53.454425                0.005422               0.000000               0.000449              0.000000            100.000000             0.000000               None
+
+====================================================================================================
+PHASE 2 COMPLETED
+====================================================================================================
+
+Results:
+  Summary : /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase2/synthetic_20261113_234121/transfer_benchmark.csv
+  Trials  : /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase2/synthetic_20261113_234121/transfer_trials.csv
+  Metadata: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase2/synthetic_20261113_234121/transfer_metadata.json
+  Artifacts: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase2/synthetic_20261113_234121/artifacts
+COMPLETE phase2: 0.985s
+START phase2_topsis: executing
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/topsis_transfer_decision.py /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase2/synthetic_20261113_234121/transfer_benchmark.csv --formats csv_gzip parquet csv_zstd --output-dir /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase2_topsis
+TOPSIS criterion setup:
+  size_reduction_pct       (benefit, maximize)
+  packaging_mean_seconds   (cost, minimize)
+  transfer_mean_seconds    (cost, minimize)
+Normalized weights: 0.3333, 0.3333, 0.3333
+
+Ranking:
+  format size_reduction_pct packaging_mean_seconds transfer_mean_seconds distance_to_ideal_best distance_to_ideal_worst topsis_score  rank
+csv_zstd             53.454               0.005422              0.000449               0.015031                0.479576     0.969610     1
+csv_gzip             50.170               0.002806              0.000481               0.016324                0.476768     0.966894     2
+ parquet            -21.772               0.057702              0.001175               0.489130                0.000000     0.000000     3
+
+Saved TOPSIS matrices and ranking to: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase2_topsis
+Note: TOPSIS ranking depends on the chosen alternatives and criterion weights.
+COMPLETE phase2_topsis: 0.973s
+START phase3: executing
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/03_feature_selection_all_thresholds_clinical.py /tmp/thesis-v7-timestamp-smoke/synthetic.csv --output-dir /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase3 --correlation-action flag --correlation-threshold 0.95 --min-correlation-observations 10 --min-correlation-patients 3 --patient-coverage-min 0.75 --missingness-thresholds 0.8 0.9 0.95 --clinically-protected Lactate
+Source dataset: /tmp/thesis-v7-timestamp-smoke/synthetic.csv
+Rows: 64; patients: 16; columns: 16
+Selection statistics: ALL patients and observations (no split)
+Protected structural/ID columns: ['SepsisLabel', 'patient_id', 'time']
+Results: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase3/synthetic_20261113_234123_238841_UTC
+
+Running FS_00_no_missingness_filter ...
+  Columns: 16 -> 16; file: 12,057 bytes; selection: 0.011s; flagged correlations: 0
+
+Running FS_80_missingness ...
+  Columns: 16 -> 15; file: 11,977 bytes; selection: 0.013s; flagged correlations: 0
+
+Running FS_80_clinical_review ...
+  Columns: 16 -> 15; file: 11,977 bytes; selection: 0.012s; flagged correlations: 0
+
+Running FS_90_missingness ...
+  Columns: 16 -> 15; file: 11,977 bytes; selection: 0.010s; flagged correlations: 0
+
+Running FS_90_clinical_review ...
+  Columns: 16 -> 15; file: 11,977 bytes; selection: 0.012s; flagged correlations: 0
+
+Running FS_95_missingness ...
+  Columns: 16 -> 15; file: 11,977 bytes; selection: 0.010s; flagged correlations: 0
+
+Running FS_95_clinical_review ...
+  Columns: 16 -> 15; file: 11,977 bytes; selection: 0.012s; flagged correlations: 0
+
+Completed 7 experiments. Comparison: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase3/synthetic_20261113_234123_238841_UTC/threshold_comparison.csv
+Matched comparison: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase3/synthetic_20261113_234123_238841_UTC/clinical_impact_comparison.csv
+NOTE: 75.0% patient coverage is a study-defined sensitivity threshold, not a published clinical cutoff.
+COMPLETE phase3: 1.168s
+START phase4_original: executing
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/04_dimensionality_reduction_updated.py /tmp/thesis-v7-timestamp-smoke/synthetic.csv --output-dir /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase4/original --methods pca autoencoder --k 2 --ae-max-iter 15 --seed 42 --lossless-formats gzip zstd parquet --bandwidth-mbps 100 --strict-lossless
+Lossless baseline: gzip
+Lossless baseline: zstd
+Lossless baseline: parquet
+Input : /tmp/thesis-v7-timestamp-smoke/synthetic.csv
+Rows  : 64
+Encoded numerical predictors: 10
+Preserved exactly: ['patient_id', 'time', 'SepsisLabel', 'Age', 'ICULOS', 'HospAdmTime']
+Exact clinical variables present: ['Age', 'HospAdmTime', 'ICULOS']
+CSV   : 12,057 bytes; smallest verified lossless: zstd (5,707 bytes)
+Output: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase4/original/synthetic_20261113_234125_964726_UTC
+Running pca, k=2 ...
+  Payload 5,158 bytes; normalized RMSE 0.8251474073680961
+Running autoencoder, k=2 ...
+  WARNING: AE k=2 reached 15 iterations without optimizer stopping by tolerance. Treat result as preliminary.
+  Payload 7,112 bytes; normalized RMSE 1.0163050580119464
+
+COMPLETE. Main result: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase4/original/synthetic_20261113_234125_964726_UTC/phase4_comparison.csv
+COMPLETE phase4_original: 2.812s
+START phase4_FS_95_clinical_review: executing
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/04_dimensionality_reduction_updated.py /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase3/synthetic_20261113_234123_238841_UTC/FS_95_clinical_review/selected_dataset.csv --output-dir /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase4/FS_95_clinical_review --methods pca autoencoder --k 2 --ae-max-iter 15 --seed 42 --lossless-formats gzip zstd parquet --bandwidth-mbps 100 --strict-lossless
+Lossless baseline: gzip
+Lossless baseline: zstd
+Lossless baseline: parquet
+Input : /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase3/synthetic_20261113_234123_238841_UTC/FS_95_clinical_review/selected_dataset.csv
+Rows  : 64
+Encoded numerical predictors: 9
+Preserved exactly: ['patient_id', 'time', 'SepsisLabel', 'Age', 'ICULOS', 'HospAdmTime']
+Exact clinical variables present: ['Age', 'HospAdmTime', 'ICULOS']
+CSV   : 11,977 bytes; smallest verified lossless: zstd (5,696 bytes)
+Output: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase4/FS_95_clinical_review/selected_dataset_20261113_234128_366362_UTC
+Running pca, k=2 ...
+  Payload 5,082 bytes; normalized RMSE 0.8144949585747744
+Running autoencoder, k=2 ...
+  WARNING: AE k=2 reached 15 iterations without optimizer stopping by tolerance. Treat result as preliminary.
+  Payload 6,798 bytes; normalized RMSE 1.0540671574201421
+
+COMPLETE. Main result: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase4/FS_95_clinical_review/selected_dataset_20261113_234128_366362_UTC/phase4_comparison.csv
+COMPLETE phase4_FS_95_clinical_review: 2.410s
+START phase5: executing
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_utility_evaluation_updated.py --output-dir /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase5 --full-reference /tmp/thesis-v7-timestamp-smoke/synthetic.csv --distance-samples 16 --neighbor-k 5 10 --seed 42 --experiment /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase4/original/synthetic_20261113_234125_964726_UTC /tmp/thesis-v7-timestamp-smoke/synthetic.csv --experiment /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase4/FS_95_clinical_review/selected_dataset_20261113_234128_366362_UTC /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase3/synthetic_20261113_234123_238841_UTC/FS_95_clinical_review/selected_dataset.csv
+Evaluating: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase4/original/synthetic_20261113_234125_964726_UTC  |  Source: /tmp/thesis-v7-timestamp-smoke/synthetic.csv
+  Evaluated 5 method/packaging rows; 20 feature metrics
+Evaluating: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase4/FS_95_clinical_review/selected_dataset_20261113_234128_366362_UTC  |  Source: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase3/synthetic_20261113_234123_238841_UTC/FS_95_clinical_review/selected_dataset.csv
+  Evaluated 5 method/packaging rows; 18 feature metrics
+
+Phase 5 complete: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase5/phase5_20261113_234130_291770_UTC
+  - phase5_utility_summary.csv
+  - phase5_per_feature_utility.csv
+  - phase5_feature_retention.csv
+  - phase5_sampled_patient_rows.csv
+  - phase5_nearest_neighbor_overlap.csv
+  - phase5_metadata.json
+COMPLETE phase5: 1.786s
+START phase6_original_gzip_n_native: executing
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase4/original/synthetic_20261113_234125_964726_UTC --source-csv /tmp/thesis-v7-timestamp-smoke/synthetic.csv --method gzip --output-dir /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_gzip_none_native --package-name original_gzip_none_native
+PACKAGE CREATED: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_gzip_none_native/original_gzip_none_native_20261113_234132_346422_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,843
+Payload alone: 6,010 bytes; package seconds: 0.0280
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_gzip_none_native/original_gzip_none_native_20261113_234132_346422_UTC.tar
+VERIFIED: original_gzip_none_native_20261113_234132_346422_UTC gzip
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_gzip_none_native/original_gzip_none_native_20261113_234132_346422_UTC.tar --output-dir /tmp/thesis_receiver_9006tugg
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_9006tugg/original_gzip_none_native_20261113_234132_346422_UTC
+Method: gzip
+NETWORK: Phase 6 original_gzip_none_native mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_original_gzip_n_native: 6.529s
+START phase6_original_zstd_n_native: executing
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase4/original/synthetic_20261113_234125_964726_UTC --source-csv /tmp/thesis-v7-timestamp-smoke/synthetic.csv --method zstd --output-dir /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_zstd_none_native --package-name original_zstd_none_native
+PACKAGE CREATED: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_zstd_none_native/original_zstd_none_native_20261113_234139_071435_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,843
+Payload alone: 5,616 bytes; package seconds: 0.0277
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_zstd_none_native/original_zstd_none_native_20261113_234139_071435_UTC.tar
+VERIFIED: original_zstd_none_native_20261113_234139_071435_UTC zstd
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_zstd_none_native/original_zstd_none_native_20261113_234139_071435_UTC.tar --output-dir /tmp/thesis_receiver_03zijv1d
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_03zijv1d/original_zstd_none_native_20261113_234139_071435_UTC
+Method: zstd
+NETWORK: Phase 6 original_zstd_none_native mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_original_zstd_n_native: 7.132s
+START phase6_original_parquet_n_native: executing
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase4/original/synthetic_20261113_234125_964726_UTC --source-csv /tmp/thesis-v7-timestamp-smoke/synthetic.csv --method parquet --output-dir /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_parquet_none_native --package-name original_parquet_none_native
+PACKAGE CREATED: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_parquet_none_native/original_parquet_none_native_20261113_234146_530687_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,846
+Payload alone: 14,804 bytes; package seconds: 0.0960
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_parquet_none_native/original_parquet_none_native_20261113_234146_530687_UTC.tar
+VERIFIED: original_parquet_none_native_20261113_234146_530687_UTC parquet
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_parquet_none_native/original_parquet_none_native_20261113_234146_530687_UTC.tar --output-dir /tmp/thesis_receiver_fu3yw1tz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_fu3yw1tz/original_parquet_none_native_20261113_234146_530687_UTC
+Method: parquet
+NETWORK: Phase 6 original_parquet_none_native mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_original_parquet_n_native: 7.962s
+START phase6_original_pca_2_native: executing
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase4/original/synthetic_20261113_234125_964726_UTC --source-csv /tmp/thesis-v7-timestamp-smoke/synthetic.csv --method pca --output-dir /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_pca_2_native --package-name original_pca_2_native --k 2 --codec native
+PACKAGE CREATED: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_pca_2_native/original_pca_2_native_20261113_234154_171712_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,839
+Payload alone: 5,158 bytes; package seconds: 0.0313
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_pca_2_native/original_pca_2_native_20261113_234154_171712_UTC.tar
+VERIFIED: original_pca_2_native_20261113_234154_171712_UTC pca
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_pca_2_native/original_pca_2_native_20261113_234154_171712_UTC.tar --output-dir /tmp/thesis_receiver_yycpfat2 --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_yycpfat2/original_pca_2_native_20261113_234154_171712_UTC_recovered/pca_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_yycpfat2/original_pca_2_native_20261113_234154_171712_UTC
+Method: pca
+NETWORK: Phase 6 original_pca_2_native mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_original_pca_2_native: 6.775s
+START phase6_original_pca_2_gzip: executing
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase4/original/synthetic_20261113_234125_964726_UTC --source-csv /tmp/thesis-v7-timestamp-smoke/synthetic.csv --method pca --output-dir /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_pca_2_gzip --package-name original_pca_2_gzip --k 2 --codec gzip
+PACKAGE CREATED: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_pca_2_gzip/original_pca_2_gzip_20261113_234200_379501_UTC.tar
+Validated transmitted bytes (archive + SHA256): 20,597
+Payload alone: 2,429 bytes; package seconds: 0.0244
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_pca_2_gzip/original_pca_2_gzip_20261113_234200_379501_UTC.tar
+VERIFIED: original_pca_2_gzip_20261113_234200_379501_UTC pca
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_pca_2_gzip/original_pca_2_gzip_20261113_234200_379501_UTC.tar --output-dir /tmp/thesis_receiver_qkwh3z60 --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_qkwh3z60/original_pca_2_gzip_20261113_234200_379501_UTC_recovered/pca_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_qkwh3z60/original_pca_2_gzip_20261113_234200_379501_UTC
+Method: pca
+NETWORK: Phase 6 original_pca_2_gzip mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_original_pca_2_gzip: 4.514s
+START phase6_original_pca_2_zstd: executing
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase4/original/synthetic_20261113_234125_964726_UTC --source-csv /tmp/thesis-v7-timestamp-smoke/synthetic.csv --method pca --output-dir /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_pca_2_zstd --package-name original_pca_2_zstd --k 2 --codec zstd
+PACKAGE CREATED: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_pca_2_zstd/original_pca_2_zstd_20261113_234204_949933_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,837
+Payload alone: 2,561 bytes; package seconds: 0.0288
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_pca_2_zstd/original_pca_2_zstd_20261113_234204_949933_UTC.tar
+VERIFIED: original_pca_2_zstd_20261113_234204_949933_UTC pca
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_pca_2_zstd/original_pca_2_zstd_20261113_234204_949933_UTC.tar --output-dir /tmp/thesis_receiver_ohoffu80 --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_ohoffu80/original_pca_2_zstd_20261113_234204_949933_UTC_recovered/pca_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_ohoffu80/original_pca_2_zstd_20261113_234204_949933_UTC
+Method: pca
+NETWORK: Phase 6 original_pca_2_zstd mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_original_pca_2_zstd: 4.763s
+START phase6_original_autoencoder_2_native: executing
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase4/original/synthetic_20261113_234125_964726_UTC --source-csv /tmp/thesis-v7-timestamp-smoke/synthetic.csv --method autoencoder --output-dir /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_autoencoder_2_native --package-name original_autoencoder_2_native --k 2 --codec native
+PACKAGE CREATED: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_autoencoder_2_native/original_autoencoder_2_native_20261113_234209_850257_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,847
+Payload alone: 7,112 bytes; package seconds: 0.0209
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_autoencoder_2_native/original_autoencoder_2_native_20261113_234209_850257_UTC.tar
+VERIFIED: original_autoencoder_2_native_20261113_234209_850257_UTC autoencoder
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_autoencoder_2_native/original_autoencoder_2_native_20261113_234209_850257_UTC.tar --output-dir /tmp/thesis_receiver_pki9tc81 --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_pki9tc81/original_autoencoder_2_native_20261113_234209_850257_UTC_recovered/autoencoder_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_pki9tc81/original_autoencoder_2_native_20261113_234209_850257_UTC
+Method: autoencoder
+NETWORK: Phase 6 original_autoencoder_2_native mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_original_autoencoder_2_native: 4.511s
+START phase6_original_autoencoder_2_gzip: executing
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase4/original/synthetic_20261113_234125_964726_UTC --source-csv /tmp/thesis-v7-timestamp-smoke/synthetic.csv --method autoencoder --output-dir /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_autoencoder_2_gzip --package-name original_autoencoder_2_gzip --k 2 --codec gzip
+PACKAGE CREATED: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_autoencoder_2_gzip/original_autoencoder_2_gzip_20261113_234214_196548_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,845
+Payload alone: 3,933 bytes; package seconds: 0.0270
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_autoencoder_2_gzip/original_autoencoder_2_gzip_20261113_234214_196548_UTC.tar
+VERIFIED: original_autoencoder_2_gzip_20261113_234214_196548_UTC autoencoder
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_autoencoder_2_gzip/original_autoencoder_2_gzip_20261113_234214_196548_UTC.tar --output-dir /tmp/thesis_receiver_5bzvmxk6 --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_5bzvmxk6/original_autoencoder_2_gzip_20261113_234214_196548_UTC_recovered/autoencoder_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_5bzvmxk6/original_autoencoder_2_gzip_20261113_234214_196548_UTC
+Method: autoencoder
+NETWORK: Phase 6 original_autoencoder_2_gzip mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_original_autoencoder_2_gzip: 4.268s
+START phase6_original_autoencoder_2_zstd: executing
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase4/original/synthetic_20261113_234125_964726_UTC --source-csv /tmp/thesis-v7-timestamp-smoke/synthetic.csv --method autoencoder --output-dir /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_autoencoder_2_zstd --package-name original_autoencoder_2_zstd --k 2 --codec zstd
+PACKAGE CREATED: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_autoencoder_2_zstd/original_autoencoder_2_zstd_20261113_234218_515876_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,845
+Payload alone: 4,111 bytes; package seconds: 0.0305
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_autoencoder_2_zstd/original_autoencoder_2_zstd_20261113_234218_515876_UTC.tar
+VERIFIED: original_autoencoder_2_zstd_20261113_234218_515876_UTC autoencoder
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/original_autoencoder_2_zstd/original_autoencoder_2_zstd_20261113_234218_515876_UTC.tar --output-dir /tmp/thesis_receiver_nmvrazfy --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_nmvrazfy/original_autoencoder_2_zstd_20261113_234218_515876_UTC_recovered/autoencoder_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_nmvrazfy/original_autoencoder_2_zstd_20261113_234218_515876_UTC
+Method: autoencoder
+NETWORK: Phase 6 original_autoencoder_2_zstd mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_original_autoencoder_2_zstd: 4.478s
+START phase6_FS_95_clinical_review_gzip_n_native: executing
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase4/FS_95_clinical_review/selected_dataset_20261113_234128_366362_UTC --source-csv /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase3/synthetic_20261113_234123_238841_UTC/FS_95_clinical_review/selected_dataset.csv --method gzip --output-dir /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_gzip_none_native --package-name FS_95_clinical_review_gzip_none_native --full-reference-csv /tmp/thesis-v7-timestamp-smoke/synthetic.csv --feature-selection-label FS_95_clinical_review
+PACKAGE CREATED: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_gzip_none_native/FS_95_clinical_review_gzip_none_native_20261113_234222_893711_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,856
+Payload alone: 5,988 bytes; package seconds: 0.0309
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_gzip_none_native/FS_95_clinical_review_gzip_none_native_20261113_234222_893711_UTC.tar
+VERIFIED: FS_95_clinical_review_gzip_none_native_20261113_234222_893711_UTC gzip
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_gzip_none_native/FS_95_clinical_review_gzip_none_native_20261113_234222_893711_UTC.tar --output-dir /tmp/thesis_receiver_rat9p7sk
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_rat9p7sk/FS_95_clinical_review_gzip_none_native_20261113_234222_893711_UTC
+Method: gzip
+NETWORK: Phase 6 FS_95_clinical_review_gzip_none_native mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_FS_95_clinical_review_gzip_n_native: 4.264s
+START phase6_FS_95_clinical_review_zstd_n_native: executing
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase4/FS_95_clinical_review/selected_dataset_20261113_234128_366362_UTC --source-csv /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase3/synthetic_20261113_234123_238841_UTC/FS_95_clinical_review/selected_dataset.csv --method zstd --output-dir /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_zstd_none_native --package-name FS_95_clinical_review_zstd_none_native --full-reference-csv /tmp/thesis-v7-timestamp-smoke/synthetic.csv --feature-selection-label FS_95_clinical_review
+PACKAGE CREATED: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_zstd_none_native/FS_95_clinical_review_zstd_none_native_20261113_234227_129234_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,856
+Payload alone: 5,605 bytes; package seconds: 0.0218
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_zstd_none_native/FS_95_clinical_review_zstd_none_native_20261113_234227_129234_UTC.tar
+VERIFIED: FS_95_clinical_review_zstd_none_native_20261113_234227_129234_UTC zstd
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_zstd_none_native/FS_95_clinical_review_zstd_none_native_20261113_234227_129234_UTC.tar --output-dir /tmp/thesis_receiver_i_9qiv1b
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_i_9qiv1b/FS_95_clinical_review_zstd_none_native_20261113_234227_129234_UTC
+Method: zstd
+NETWORK: Phase 6 FS_95_clinical_review_zstd_none_native mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_FS_95_clinical_review_zstd_n_native: 4.315s
+START phase6_FS_95_clinical_review_parquet_n_native: executing
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase4/FS_95_clinical_review/selected_dataset_20261113_234128_366362_UTC --source-csv /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase3/synthetic_20261113_234123_238841_UTC/FS_95_clinical_review/selected_dataset.csv --method parquet --output-dir /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_parquet_none_native --package-name FS_95_clinical_review_parquet_none_native --full-reference-csv /tmp/thesis-v7-timestamp-smoke/synthetic.csv --feature-selection-label FS_95_clinical_review
+PACKAGE CREATED: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_parquet_none_native/FS_95_clinical_review_parquet_none_native_20261113_234231_526059_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,859
+Payload alone: 14,207 bytes; package seconds: 0.0585
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_parquet_none_native/FS_95_clinical_review_parquet_none_native_20261113_234231_526059_UTC.tar
+VERIFIED: FS_95_clinical_review_parquet_none_native_20261113_234231_526059_UTC parquet
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_parquet_none_native/FS_95_clinical_review_parquet_none_native_20261113_234231_526059_UTC.tar --output-dir /tmp/thesis_receiver_bbwxa3oq
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_bbwxa3oq/FS_95_clinical_review_parquet_none_native_20261113_234231_526059_UTC
+Method: parquet
+NETWORK: Phase 6 FS_95_clinical_review_parquet_none_native mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_FS_95_clinical_review_parquet_n_native: 4.348s
+START phase6_FS_95_clinical_review_pca_2_native: executing
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase4/FS_95_clinical_review/selected_dataset_20261113_234128_366362_UTC --source-csv /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase3/synthetic_20261113_234123_238841_UTC/FS_95_clinical_review/selected_dataset.csv --method pca --output-dir /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_pca_2_native --package-name FS_95_clinical_review_pca_2_native --k 2 --codec native --full-reference-csv /tmp/thesis-v7-timestamp-smoke/synthetic.csv --feature-selection-label FS_95_clinical_review
+PACKAGE CREATED: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_pca_2_native/FS_95_clinical_review_pca_2_native_20261113_234235_800694_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,852
+Payload alone: 5,082 bytes; package seconds: 0.0191
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_pca_2_native/FS_95_clinical_review_pca_2_native_20261113_234235_800694_UTC.tar
+VERIFIED: FS_95_clinical_review_pca_2_native_20261113_234235_800694_UTC pca
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_pca_2_native/FS_95_clinical_review_pca_2_native_20261113_234235_800694_UTC.tar --output-dir /tmp/thesis_receiver_994bun7m --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_994bun7m/FS_95_clinical_review_pca_2_native_20261113_234235_800694_UTC_recovered/pca_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_994bun7m/FS_95_clinical_review_pca_2_native_20261113_234235_800694_UTC
+Method: pca
+NETWORK: Phase 6 FS_95_clinical_review_pca_2_native mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_FS_95_clinical_review_pca_2_native: 4.400s
+START phase6_FS_95_clinical_review_pca_2_gzip: executing
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase4/FS_95_clinical_review/selected_dataset_20261113_234128_366362_UTC --source-csv /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase3/synthetic_20261113_234123_238841_UTC/FS_95_clinical_review/selected_dataset.csv --method pca --output-dir /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_pca_2_gzip --package-name FS_95_clinical_review_pca_2_gzip --k 2 --codec gzip --full-reference-csv /tmp/thesis-v7-timestamp-smoke/synthetic.csv --feature-selection-label FS_95_clinical_review
+PACKAGE CREATED: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_pca_2_gzip/FS_95_clinical_review_pca_2_gzip_20261113_234240_152862_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,850
+Payload alone: 2,385 bytes; package seconds: 0.0351
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_pca_2_gzip/FS_95_clinical_review_pca_2_gzip_20261113_234240_152862_UTC.tar
+VERIFIED: FS_95_clinical_review_pca_2_gzip_20261113_234240_152862_UTC pca
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_pca_2_gzip/FS_95_clinical_review_pca_2_gzip_20261113_234240_152862_UTC.tar --output-dir /tmp/thesis_receiver_zqan619d --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_zqan619d/FS_95_clinical_review_pca_2_gzip_20261113_234240_152862_UTC_recovered/pca_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_zqan619d/FS_95_clinical_review_pca_2_gzip_20261113_234240_152862_UTC
+Method: pca
+NETWORK: Phase 6 FS_95_clinical_review_pca_2_gzip mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_FS_95_clinical_review_pca_2_gzip: 4.144s
+START phase6_FS_95_clinical_review_pca_2_zstd: executing
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase4/FS_95_clinical_review/selected_dataset_20261113_234128_366362_UTC --source-csv /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase3/synthetic_20261113_234123_238841_UTC/FS_95_clinical_review/selected_dataset.csv --method pca --output-dir /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_pca_2_zstd --package-name FS_95_clinical_review_pca_2_zstd --k 2 --codec zstd --full-reference-csv /tmp/thesis-v7-timestamp-smoke/synthetic.csv --feature-selection-label FS_95_clinical_review
+PACKAGE CREATED: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_pca_2_zstd/FS_95_clinical_review_pca_2_zstd_20261113_234244_454200_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,850
+Payload alone: 2,523 bytes; package seconds: 0.0298
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_pca_2_zstd/FS_95_clinical_review_pca_2_zstd_20261113_234244_454200_UTC.tar
+VERIFIED: FS_95_clinical_review_pca_2_zstd_20261113_234244_454200_UTC pca
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_pca_2_zstd/FS_95_clinical_review_pca_2_zstd_20261113_234244_454200_UTC.tar --output-dir /tmp/thesis_receiver_az_d5hi3 --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_az_d5hi3/FS_95_clinical_review_pca_2_zstd_20261113_234244_454200_UTC_recovered/pca_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_az_d5hi3/FS_95_clinical_review_pca_2_zstd_20261113_234244_454200_UTC
+Method: pca
+NETWORK: Phase 6 FS_95_clinical_review_pca_2_zstd mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_FS_95_clinical_review_pca_2_zstd: 4.328s
+START phase6_FS_95_clinical_review_autoencoder_2_native: executing
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase4/FS_95_clinical_review/selected_dataset_20261113_234128_366362_UTC --source-csv /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase3/synthetic_20261113_234123_238841_UTC/FS_95_clinical_review/selected_dataset.csv --method autoencoder --output-dir /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_autoencoder_2_native --package-name FS_95_clinical_review_autoencoder_2_native --k 2 --codec native --full-reference-csv /tmp/thesis-v7-timestamp-smoke/synthetic.csv --feature-selection-label FS_95_clinical_review
+PACKAGE CREATED: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_autoencoder_2_native/FS_95_clinical_review_autoencoder_2_native_20261113_234248_772572_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,860
+Payload alone: 6,798 bytes; package seconds: 0.0209
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_autoencoder_2_native/FS_95_clinical_review_autoencoder_2_native_20261113_234248_772572_UTC.tar
+VERIFIED: FS_95_clinical_review_autoencoder_2_native_20261113_234248_772572_UTC autoencoder
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_autoencoder_2_native/FS_95_clinical_review_autoencoder_2_native_20261113_234248_772572_UTC.tar --output-dir /tmp/thesis_receiver_ib719kft --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_ib719kft/FS_95_clinical_review_autoencoder_2_native_20261113_234248_772572_UTC_recovered/autoencoder_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_ib719kft/FS_95_clinical_review_autoencoder_2_native_20261113_234248_772572_UTC
+Method: autoencoder
+NETWORK: Phase 6 FS_95_clinical_review_autoencoder_2_native mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_FS_95_clinical_review_autoencoder_2_native: 4.273s
+START phase6_FS_95_clinical_review_autoencoder_2_gzip: executing
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase4/FS_95_clinical_review/selected_dataset_20261113_234128_366362_UTC --source-csv /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase3/synthetic_20261113_234123_238841_UTC/FS_95_clinical_review/selected_dataset.csv --method autoencoder --output-dir /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_autoencoder_2_gzip --package-name FS_95_clinical_review_autoencoder_2_gzip --k 2 --codec gzip --full-reference-csv /tmp/thesis-v7-timestamp-smoke/synthetic.csv --feature-selection-label FS_95_clinical_review
+PACKAGE CREATED: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_autoencoder_2_gzip/FS_95_clinical_review_autoencoder_2_gzip_20261113_234252_985778_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,858
+Payload alone: 3,641 bytes; package seconds: 0.0312
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_autoencoder_2_gzip/FS_95_clinical_review_autoencoder_2_gzip_20261113_234252_985778_UTC.tar
+VERIFIED: FS_95_clinical_review_autoencoder_2_gzip_20261113_234252_985778_UTC autoencoder
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_autoencoder_2_gzip/FS_95_clinical_review_autoencoder_2_gzip_20261113_234252_985778_UTC.tar --output-dir /tmp/thesis_receiver_sk3szcya --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_sk3szcya/FS_95_clinical_review_autoencoder_2_gzip_20261113_234252_985778_UTC_recovered/autoencoder_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_sk3szcya/FS_95_clinical_review_autoencoder_2_gzip_20261113_234252_985778_UTC
+Method: autoencoder
+NETWORK: Phase 6 FS_95_clinical_review_autoencoder_2_gzip mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_FS_95_clinical_review_autoencoder_2_gzip: 4.104s
+START phase6_FS_95_clinical_review_autoencoder_2_zstd: executing
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase4/FS_95_clinical_review/selected_dataset_20261113_234128_366362_UTC --source-csv /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase3/synthetic_20261113_234123_238841_UTC/FS_95_clinical_review/selected_dataset.csv --method autoencoder --output-dir /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_autoencoder_2_zstd --package-name FS_95_clinical_review_autoencoder_2_zstd --k 2 --codec zstd --full-reference-csv /tmp/thesis-v7-timestamp-smoke/synthetic.csv --feature-selection-label FS_95_clinical_review
+PACKAGE CREATED: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_autoencoder_2_zstd/FS_95_clinical_review_autoencoder_2_zstd_20261113_234257_187977_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,858
+Payload alone: 3,796 bytes; package seconds: 0.0312
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_autoencoder_2_zstd/FS_95_clinical_review_autoencoder_2_zstd_20261113_234257_187977_UTC.tar
+VERIFIED: FS_95_clinical_review_autoencoder_2_zstd_20261113_234257_187977_UTC autoencoder
+RUN: /run/user/1000/thesis-v7-validation/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/_work/phase6/FS_95_clinical_review_autoencoder_2_zstd/FS_95_clinical_review_autoencoder_2_zstd_20261113_234257_187977_UTC.tar --output-dir /tmp/thesis_receiver_qwhnqfo8 --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_qwhnqfo8/FS_95_clinical_review_autoencoder_2_zstd_20261113_234257_187977_UTC_recovered/autoencoder_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_qwhnqfo8/FS_95_clinical_review_autoencoder_2_zstd_20261113_234257_187977_UTC
+Method: autoencoder
+NETWORK: Phase 6 FS_95_clinical_review_autoencoder_2_zstd mode=simulated_ideal; requested=simulated; reason=none
+COMPLETE phase6_FS_95_clinical_review_autoencoder_2_zstd: 4.047s
+START final_decision: forced recomputation
+COMPLETE final_decision: 1.472s
+
+DONE: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/results
+  FINAL_REPORT.md
+  01_integrated_evidence.csv
+  02_decision_rankings.csv
+  03_phase_overview.csv
+  04_network_trials.csv
+  run_manifest.json
+RESULTS: /tmp/thesis-v7-timestamp-smoke/run/results/20261113_234301_384993_UTC_7gxfq1sd
+LOG FILE: /tmp/thesis-v7-timestamp-smoke/run/pipeline.log
+RUN 4a97a3ae1e6243e730fb: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb
+SKIP phase1: verified completed checkpoint
+SKIP phase2: verified completed checkpoint
+SKIP phase2_topsis: verified completed checkpoint
+SKIP phase3: verified completed checkpoint
+SKIP phase4_original: verified completed checkpoint
+SKIP phase4_FS_95_clinical_review: verified completed checkpoint
+SKIP phase5: verified completed checkpoint
+SKIP phase6_original_gzip_n_native: verified completed checkpoint
+SKIP phase6_original_zstd_n_native: verified completed checkpoint
+SKIP phase6_original_parquet_n_native: verified completed checkpoint
+SKIP phase6_original_pca_2_native: verified completed checkpoint
+SKIP phase6_original_pca_2_gzip: verified completed checkpoint
+SKIP phase6_original_pca_2_zstd: verified completed checkpoint
+SKIP phase6_original_autoencoder_2_native: verified completed checkpoint
+SKIP phase6_original_autoencoder_2_gzip: verified completed checkpoint
+SKIP phase6_original_autoencoder_2_zstd: verified completed checkpoint
+SKIP phase6_FS_95_clinical_review_gzip_n_native: verified completed checkpoint
+SKIP phase6_FS_95_clinical_review_zstd_n_native: verified completed checkpoint
+SKIP phase6_FS_95_clinical_review_parquet_n_native: verified completed checkpoint
+SKIP phase6_FS_95_clinical_review_pca_2_native: verified completed checkpoint
+SKIP phase6_FS_95_clinical_review_pca_2_gzip: verified completed checkpoint
+SKIP phase6_FS_95_clinical_review_pca_2_zstd: verified completed checkpoint
+SKIP phase6_FS_95_clinical_review_autoencoder_2_native: verified completed checkpoint
+SKIP phase6_FS_95_clinical_review_autoencoder_2_gzip: verified completed checkpoint
+SKIP phase6_FS_95_clinical_review_autoencoder_2_zstd: verified completed checkpoint
+START final_decision: forced recomputation
+COMPLETE final_decision: 1.395s
+
+DONE: /tmp/thesis-v7-timestamp-smoke/run/runs/4a97a3ae1e6243e730fb/results
+  FINAL_REPORT.md
+  01_integrated_evidence.csv
+  02_decision_rankings.csv
+  03_phase_overview.csv
+  04_network_trials.csv
+  run_manifest.json
+RESULTS: /tmp/thesis-v7-timestamp-smoke/run/results/20261113_234302_811632_UTC_fa4wrslt
+{
+  "status": "passed",
+  "rows": 64,
+  "patients": 16,
+  "packages": 18,
+  "evidence_rows": 36,
+  "ranking_rows": 162,
+  "checkpoint_resume_verified": true,
+  "real_ssh_attempts": 0,
+  "timestamped_report_snapshots": 2,
+  "previous_reports_preserved": true,
+  "report_directory": "/tmp/thesis-v7-timestamp-smoke/run/results/20261113_234302_811632_UTC_fa4wrslt"
+}

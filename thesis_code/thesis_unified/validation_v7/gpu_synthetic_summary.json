@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "ae_backend": "gpu",
+  "rows": 64,
+  "patients": 16,
+  "packages": 18,
+  "evidence_rows": 36,
+  "ranking_rows": 216,
+  "checkpoint_resume_verified": true,
+  "real_ssh_attempts": 0,
+  "timestamped_report_snapshots": 2,
+  "previous_reports_preserved": true,
+  "report_directory": "/tmp/thesis-gpu-synthetic-final-20261118/run/results/20261118_214024_896358_UTC_ltl1kb5p"
+}

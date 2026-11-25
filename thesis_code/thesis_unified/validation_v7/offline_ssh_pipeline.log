@@ -1,0 +1,559 @@
+LOG FILE: /tmp/thesis-offline-ssh-pipeline-20261115/run/pipeline.log
+NETWORK: {"status": "idle", "updated_utc": "2026-11-15T18:49:25.932280+00:00", "operation": "Experiment starting"}
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-15T18:49:25.932955+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-15T18:49:25.967853+00:00", "operation": "ssh preflight/setup", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.03489029797492549}
+RUN 3b52348d75fe788c5b4c: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c
+START phase1: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/01_profiling_updated.py /tmp/thesis-offline-ssh-pipeline-20261115/synthetic.csv --output-dir /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase1 --threshold 0.95
+========================================================================
+PHASE 1 -- BASELINE DATASET PROFILING
+========================================================================
+Dataset: /tmp/thesis-offline-ssh-pipeline-20261115/synthetic.csv
+Rows: 64
+Columns: 15
+Source size: 12.31 KB (12,605 bytes)
+Load time: 0.014619 s
+
+========================================================================
+BASELINE PROFILE RESULTS
+========================================================================
+Rows: 64 | Columns: 15
+Input size: 12.31 KB | DataFrame memory: 7.63 KB
+Load: 0.014619s | Profiling: 0.159904s
+
+Identifiers
+  Automatic: patient_id
+  Manual:    None
+  Combined:  patient_id
+
+Correlation variables: time, SepsisLabel, Age, ICULOS, HospAdmTime, HR, O2Sat, Temp, SBP, MAP, DBP, Resp, Lactate, Glucose
+Unique pairs: 91 | Threshold: |r| >= 0.95
+   column_a    column_b     pearson_r  absolute_pearson_correlation  pairwise_n
+       time      ICULOS  1.000000e+00                  1.000000e+00          64
+        Age HospAdmTime -4.573244e-01                  4.573244e-01          64
+SepsisLabel         Age  4.290717e-01                  4.290717e-01          64
+        Age     Lactate  3.097860e-01                  3.097860e-01          64
+       time     Glucose -2.972502e-01                  2.972502e-01          64
+     ICULOS     Glucose -2.972502e-01                  2.972502e-01          64
+       Temp     Lactate -2.839113e-01                  2.839113e-01          64
+        Age        Resp  2.522468e-01                  2.522468e-01          64
+        MAP     Glucose -2.296446e-01                  2.296446e-01          64
+    Lactate     Glucose -2.279306e-01                  2.279306e-01          64
+HospAdmTime        Resp -2.257556e-01                  2.257556e-01          64
+SepsisLabel         SBP -2.149773e-01                  2.149773e-01          64
+         HR         MAP  2.010958e-01                  2.010958e-01          64
+SepsisLabel          HR -1.863112e-01                  1.863112e-01          64
+        Age        Temp -1.809770e-01                  1.809770e-01          64
+         HR        Temp  1.686334e-01                  1.686334e-01          64
+         HR         DBP -1.652397e-01                  1.652397e-01          64
+       Temp         MAP  1.623923e-01                  1.623923e-01          64
+         HR     Lactate -1.496505e-01                  1.496505e-01          64
+      O2Sat         MAP  1.476202e-01                  1.476202e-01          64
+SepsisLabel     Glucose -1.449257e-01                  1.449257e-01          64
+        DBP        Resp -1.399888e-01                  1.399888e-01          64
+      O2Sat        Temp  1.394487e-01                  1.394487e-01          64
+       time          HR  1.393747e-01                  1.393747e-01          64
+     ICULOS          HR  1.393747e-01                  1.393747e-01          64
+         HR         SBP -1.390273e-01                  1.390273e-01          64
+HospAdmTime         SBP  1.369697e-01                  1.369697e-01          64
+      O2Sat     Lactate -1.309367e-01                  1.309367e-01          64
+        DBP     Glucose -1.305811e-01                  1.305811e-01          64
+       time     Lactate  1.277402e-01                  1.277402e-01          64
+     ICULOS     Lactate  1.277402e-01                  1.277402e-01          64
+        MAP         DBP  1.260734e-01                  1.260734e-01          64
+       Resp     Glucose -1.241471e-01                  1.241471e-01          64
+        Age     Glucose -1.168835e-01                  1.168835e-01          64
+        DBP     Lactate  1.141159e-01                  1.141159e-01          64
+SepsisLabel        Resp -1.133243e-01                  1.133243e-01          64
+SepsisLabel         MAP -1.121638e-01                  1.121638e-01          64
+       time         SBP -9.913259e-02                  9.913259e-02          64
+     ICULOS         SBP -9.913259e-02                  9.913259e-02          64
+SepsisLabel     Lactate  9.781346e-02                  9.781346e-02          64
+HospAdmTime         DBP  9.770644e-02                  9.770644e-02          64
+        SBP     Glucose  9.657829e-02                  9.657829e-02          64
+        Age       O2Sat -9.550791e-02                  9.550791e-02          64
+HospAdmTime     Glucose -9.432096e-02                  9.432096e-02          64
+        SBP     Lactate -8.988128e-02                  8.988128e-02          64
+        Age          HR -8.854026e-02                  8.854026e-02          64
+        MAP     Lactate -8.126199e-02                  8.126199e-02          64
+HospAdmTime        Temp  7.833750e-02                  7.833750e-02          64
+        SBP         DBP  7.608987e-02                  7.608987e-02          64
+        SBP        Resp  7.400766e-02                  7.400766e-02          64
+SepsisLabel HospAdmTime  7.302335e-02                  7.302335e-02          64
+       time         MAP  7.213009e-02                  7.213009e-02          64
+     ICULOS         MAP  7.213009e-02                  7.213009e-02          64
+       Temp         SBP  5.876404e-02                  5.876404e-02          64
+        SBP         MAP -5.783204e-02                  5.783204e-02          64
+        MAP        Resp  5.755787e-02                  5.755787e-02          64
+SepsisLabel        Temp -5.645829e-02                  5.645829e-02          64
+         HR       O2Sat -4.566181e-02                  4.566181e-02          64
+         HR        Resp -4.474416e-02                  4.474416e-02          64
+       time         DBP  4.464725e-02                  4.464725e-02          64
+     ICULOS         DBP  4.464725e-02                  4.464725e-02          64
+       time        Resp  4.092629e-02                  4.092629e-02          64
+     ICULOS        Resp  4.092629e-02                  4.092629e-02          64
+       Temp        Resp -3.544045e-02                  3.544045e-02          64
+HospAdmTime     Lactate -3.383461e-02                  3.383461e-02          64
+HospAdmTime       O2Sat  3.234322e-02                  3.234322e-02          64
+       Resp     Lactate -3.204872e-02                  3.204872e-02          64
+      O2Sat         DBP -3.032071e-02                  3.032071e-02          64
+        Age         SBP  2.848610e-02                  2.848610e-02          64
+HospAdmTime          HR -2.771040e-02                  2.771040e-02          64
+       Temp     Glucose  2.595823e-02                  2.595823e-02          64
+        Age         DBP  2.304289e-02                  2.304289e-02          64
+HospAdmTime         MAP -2.279776e-02                  2.279776e-02          64
+      O2Sat     Glucose -2.266019e-02                  2.266019e-02          64
+       Temp         DBP  2.166500e-02                  2.166500e-02          64
+         HR     Glucose -2.153899e-02                  2.153899e-02          64
+       time        Temp  1.613605e-02                  1.613605e-02          64
+     ICULOS        Temp  1.613605e-02                  1.613605e-02          64
+      O2Sat         SBP -1.478171e-02                  1.478171e-02          64
+      O2Sat        Resp -1.458733e-02                  1.458733e-02          64
+SepsisLabel       O2Sat  1.337822e-02                  1.337822e-02          64
+       time       O2Sat -1.208952e-02                  1.208952e-02          64
+     ICULOS       O2Sat -1.208952e-02                  1.208952e-02          64
+SepsisLabel         DBP -8.220674e-03                  8.220674e-03          64
+        Age         MAP -4.938238e-03                  4.938238e-03          64
+       time HospAdmTime -2.334864e-18                  2.334864e-18          64
+     ICULOS HospAdmTime -2.334864e-18                  2.334864e-18          64
+       time SepsisLabel  0.000000e+00                  0.000000e+00          64
+       time         Age  0.000000e+00                  0.000000e+00          64
+SepsisLabel      ICULOS  0.000000e+00                  0.000000e+00          64
+        Age      ICULOS  0.000000e+00                  0.000000e+00          64
+
+Pairs above threshold: 1
+column_a column_b  pearson_r  absolute_pearson_correlation
+    time   ICULOS        1.0                           1.0
+
+========================================================================
+PHASE 1 COMPLETED SUCCESSFULLY
+========================================================================
+Results saved to: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase1/synthetic_20261115_184926
+Outputs: column_profile.csv, numeric_variable_profile.csv, correlation_all_pairs.csv, redundant_pairs.csv, duplicate_columns.csv, dataset_summary.csv, profile_metadata.json
+COMPLETE phase1: 0.755s
+START phase2: executing
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-15T18:49:26.731579+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-15T18:49:26.765021+00:00", "operation": "ssh preflight/setup", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.03343474603025243}
+NETWORK: Phase 2 mode=ssh; requested=ssh; reason=none
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/02_transfer_benchmark.py /tmp/thesis-offline-ssh-pipeline-20261115/synthetic.csv --transfer-mode ssh --packaging-runs 1 --transfer-runs 1 --bandwidth-mbps 100 --output-dir /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase2 --host stand-in --user offline --port 22 --remote-dir /tmp/thesis-offline-ssh-pipeline-20261115/remote
+====================================================================================================
+PHASE 2 - BASELINE TRANSFER BENCHMARK
+====================================================================================================
+
+Reading dataset into memory once...
+
+Dataset:
+  /tmp/thesis-offline-ssh-pipeline-20261115/synthetic.csv
+Rows        : 64
+Columns     : 15
+Source size : 12.31 KB
+DataFrame   : 7.63 KB
+Load time   : 0.010772 s
+
+Calculating source SHA-256...
+SHA-256: 0d2cbe0bf1e5f836276d8ff6bd69f3688fcb419b08bed3d8be37515aeca96875
+
+==========================================================================================
+PACKAGING BENCHMARK
+==========================================================================================
+
+original_source: 12.31 KB (no packaging)
+
+CSV
+  Run 01: 0.003176 s
+
+CSV + gzip
+  Run 01: 0.005026 s
+
+Parquet
+  Run 01: 0.024696 s
+
+CSV + Zstandard
+  Run 01: 0.003391 s
+
+Checking remote endpoint...
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-15T18:49:27.446767+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-15T18:49:27.485501+00:00", "operation": "ssh preflight/setup", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.038733954017516226}
+Remote endpoint ready.
+
+==========================================================================================
+TRANSFER BENCHMARK
+==========================================================================================
+
+Transfer: original_source
+Artifact size: 12.31 KB
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-15T18:49:27.486630+00:00", "operation": "Phase 2 original_source", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connection_lost", "updated_utc": "2026-11-15T18:49:27.569540+00:00", "operation": "Phase 2 original_source", "attempt": 1, "max_attempts": 3, "error": "Connection reset by peer", "transient": true, "failed_attempt_seconds": 0.08251907199155539, "failed_attempts": 1, "cumulative_failed_attempt_seconds": 0.08251907199155539, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.08251907199155539, "delivery_wall_seconds": 0.08290897001279518, "retry_in_seconds": 0, "next_attempt": 2}
+NETWORK: {"status": "retrying", "updated_utc": "2026-11-15T18:49:27.570222+00:00", "operation": "Phase 2 original_source", "attempt": 2, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-15T18:49:27.730144+00:00", "operation": "Phase 2 original_source", "attempts": 2, "failed_attempts": 1, "failed_attempt_seconds": 0.08251907199155539, "backoff_seconds": 5.167699418962002e-05, "recovery_overhead_seconds": 0.08257074898574501, "delivery_wall_seconds": 0.24351083301007748}
+  Run 01: transfer=0.041050s, throughput=2.457 Mbps, integrity=PASS
+
+Transfer: csv
+Artifact size: 12.26 KB
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-15T18:49:27.731413+00:00", "operation": "Phase 2 csv", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-15T18:49:27.907329+00:00", "operation": "Phase 2 csv", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.17590805102372542}
+  Run 01: transfer=0.038031s, throughput=2.640 Mbps, integrity=PASS
+
+Transfer: csv_gzip
+Artifact size: 6.08 KB
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-15T18:49:27.908391+00:00", "operation": "Phase 2 csv_gzip", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-15T18:49:28.076823+00:00", "operation": "Phase 2 csv_gzip", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.16842864698264748}
+  Run 01: transfer=0.036685s, throughput=1.358 Mbps, integrity=PASS
+
+Transfer: parquet
+Artifact size: 14.00 KB
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-15T18:49:28.078116+00:00", "operation": "Phase 2 parquet", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-15T18:49:28.231600+00:00", "operation": "Phase 2 parquet", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.15347654797369614}
+  Run 01: transfer=0.036768s, throughput=3.119 Mbps, integrity=PASS
+
+Transfer: csv_zstd
+Artifact size: 5.73 KB
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-15T18:49:28.233218+00:00", "operation": "Phase 2 csv_zstd", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-15T18:49:28.386751+00:00", "operation": "Phase 2 csv_zstd", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.1535249360022135}
+  Run 01: transfer=0.037166s, throughput=1.264 Mbps, integrity=PASS
+
+==============================================================================================================
+PHASE 2 SUMMARY
+==============================================================================================================
+
+Transfer mode    : ssh
+Packaging runs   : 1
+Transfer runs    : 1
+
+         format  file_mb  size_reduction_pct  packaging_mean_seconds  packaging_std_seconds  transfer_mean_seconds  transfer_std_seconds  throughput_mean_mbps  throughput_std_mbps  integrity_verified
+original_source 0.012021            0.000000                0.000000               0.000000               0.041050              0.000000              2.456515             0.000000                True
+            csv 0.011971            0.420468                0.003176               0.000000               0.038031              0.000000              2.640356             0.000000                True
+       csv_gzip 0.005937           50.614835                0.005026               0.000000               0.036685              0.000000              1.357516             0.000000                True
+        parquet 0.013670          -13.716779                0.024696               0.000000               0.036768              0.000000              3.118766             0.000000                True
+       csv_zstd 0.005599           53.423245                0.003391               0.000000               0.037166              0.000000              1.263737             0.000000                True
+
+====================================================================================================
+PHASE 2 COMPLETED
+====================================================================================================
+
+Results:
+  Summary : /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase2/synthetic_20261115_184927/transfer_benchmark.csv
+  Trials  : /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase2/synthetic_20261115_184927/transfer_trials.csv
+  Metadata: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase2/synthetic_20261115_184927/transfer_metadata.json
+  Artifacts: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase2/synthetic_20261115_184927/artifacts
+COMPLETE phase2: 1.750s
+START phase2_topsis: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/topsis_transfer_decision.py /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase2/synthetic_20261115_184927/transfer_benchmark.csv --formats csv_gzip parquet csv_zstd --output-dir /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase2_topsis
+TOPSIS criterion setup:
+  size_reduction_pct       (benefit, maximize)
+  packaging_mean_seconds   (cost, minimize)
+  transfer_mean_seconds    (cost, minimize)
+Normalized weights: 0.3333, 0.3333, 0.3333
+
+Ranking:
+  format size_reduction_pct packaging_mean_seconds transfer_mean_seconds distance_to_ideal_best distance_to_ideal_worst topsis_score  rank
+csv_zstd             53.423               0.003391              0.037166               0.002512                0.409101     0.993897     1
+csv_gzip             50.615               0.005026              0.036685               0.024810                0.385409     0.939521     2
+ parquet            -13.717               0.024696              0.036768               0.409101                0.002075     0.005046     3
+
+Saved TOPSIS matrices and ranking to: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase2_topsis
+Note: TOPSIS ranking depends on the chosen alternatives and criterion weights.
+COMPLETE phase2_topsis: 0.668s
+START phase3: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/03_feature_selection_all_thresholds_clinical.py /tmp/thesis-offline-ssh-pipeline-20261115/synthetic.csv --output-dir /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase3 --correlation-action flag --correlation-threshold 0.95 --min-correlation-observations 200 --min-correlation-patients 30 --patient-coverage-min 0.75 --missingness-thresholds 0.8 0.9 0.95 --clinically-protected Lactate
+Source dataset: /tmp/thesis-offline-ssh-pipeline-20261115/synthetic.csv
+Rows: 64; patients: 16; columns: 15
+Selection statistics: ALL patients and observations (no split)
+Protected structural/ID columns: ['SepsisLabel', 'patient_id', 'time']
+Results: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase3/synthetic_20261115_184929_576909_UTC
+
+Running FS_00_no_missingness_filter ...
+  Columns: 15 -> 15; file: 12,552 bytes; selection: 0.009s; flagged correlations: 0
+
+Running FS_80_missingness ...
+  Columns: 15 -> 15; file: 12,552 bytes; selection: 0.009s; flagged correlations: 0
+
+Running FS_80_clinical_review ...
+  Columns: 15 -> 15; file: 12,552 bytes; selection: 0.009s; flagged correlations: 0
+
+Running FS_90_missingness ...
+  Columns: 15 -> 15; file: 12,552 bytes; selection: 0.009s; flagged correlations: 0
+
+Running FS_90_clinical_review ...
+  Columns: 15 -> 15; file: 12,552 bytes; selection: 0.009s; flagged correlations: 0
+
+Running FS_95_missingness ...
+  Columns: 15 -> 15; file: 12,552 bytes; selection: 0.009s; flagged correlations: 0
+
+Running FS_95_clinical_review ...
+  Columns: 15 -> 15; file: 12,552 bytes; selection: 0.009s; flagged correlations: 0
+
+Completed 7 experiments. Comparison: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase3/synthetic_20261115_184929_576909_UTC/threshold_comparison.csv
+Matched comparison: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase3/synthetic_20261115_184929_576909_UTC/clinical_impact_comparison.csv
+NOTE: 75.0% patient coverage is a study-defined sensitivity threshold, not a published clinical cutoff.
+COMPLETE phase3: 0.628s
+START phase4_original: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/04_dimensionality_reduction_updated.py /tmp/thesis-offline-ssh-pipeline-20261115/synthetic.csv --output-dir /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase4/original --methods pca autoencoder --k 2 --ae-max-iter 10 --seed 42 --lossless-formats gzip zstd parquet --bandwidth-mbps 100 --strict-lossless
+Lossless baseline: gzip
+Lossless baseline: zstd
+Lossless baseline: parquet
+Input : /tmp/thesis-offline-ssh-pipeline-20261115/synthetic.csv
+Rows  : 64
+Encoded numerical predictors: 9
+Preserved exactly: ['patient_id', 'time', 'SepsisLabel', 'Age', 'ICULOS', 'HospAdmTime']
+Exact clinical variables present: ['Age', 'HospAdmTime', 'ICULOS']
+CSV   : 12,605 bytes; smallest verified lossless: zstd (5,994 bytes)
+Output: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase4/original/synthetic_20261115_184931_273070_UTC
+Running pca, k=2 ...
+  Payload 5,024 bytes; normalized RMSE 0.8148963128831529
+Running autoencoder, k=2 ...
+  WARNING: AE k=2 reached 10 iterations without optimizer stopping by tolerance. Treat result as preliminary.
+  Payload 6,792 bytes; normalized RMSE 1.0630298587569187
+
+COMPLETE. Main result: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase4/original/synthetic_20261115_184931_273070_UTC/phase4_comparison.csv
+COMPLETE phase4_original: 1.740s
+START phase4_FS_95_clinical_review: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/04_dimensionality_reduction_updated.py /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase3/synthetic_20261115_184929_576909_UTC/FS_95_clinical_review/selected_dataset.csv --output-dir /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase4/FS_95_clinical_review --methods pca autoencoder --k 2 --ae-max-iter 10 --seed 42 --lossless-formats gzip zstd parquet --bandwidth-mbps 100 --strict-lossless
+Lossless baseline: gzip
+Lossless baseline: zstd
+Lossless baseline: parquet
+Input : /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase3/synthetic_20261115_184929_576909_UTC/FS_95_clinical_review/selected_dataset.csv
+Rows  : 64
+Encoded numerical predictors: 9
+Preserved exactly: ['patient_id', 'time', 'SepsisLabel', 'Age', 'ICULOS', 'HospAdmTime']
+Exact clinical variables present: ['Age', 'HospAdmTime', 'ICULOS']
+CSV   : 12,552 bytes; smallest verified lossless: zstd (5,966 bytes)
+Output: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase4/FS_95_clinical_review/selected_dataset_20261115_184932_985308_UTC
+Running pca, k=2 ...
+  Payload 5,024 bytes; normalized RMSE 0.8148963128831529
+Running autoencoder, k=2 ...
+  WARNING: AE k=2 reached 10 iterations without optimizer stopping by tolerance. Treat result as preliminary.
+  Payload 6,792 bytes; normalized RMSE 1.0630298587569185
+
+COMPLETE. Main result: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase4/FS_95_clinical_review/selected_dataset_20261115_184932_985308_UTC/phase4_comparison.csv
+COMPLETE phase4_FS_95_clinical_review: 1.711s
+START phase5: executing
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_utility_evaluation_updated.py --output-dir /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase5 --full-reference /tmp/thesis-offline-ssh-pipeline-20261115/synthetic.csv --distance-samples 16 --neighbor-k 5 10 --seed 42 --experiment /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase4/original/synthetic_20261115_184931_273070_UTC /tmp/thesis-offline-ssh-pipeline-20261115/synthetic.csv --experiment /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase4/FS_95_clinical_review/selected_dataset_20261115_184932_985308_UTC /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase3/synthetic_20261115_184929_576909_UTC/FS_95_clinical_review/selected_dataset.csv
+Evaluating: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase4/original/synthetic_20261115_184931_273070_UTC  |  Source: /tmp/thesis-offline-ssh-pipeline-20261115/synthetic.csv
+  Evaluated 5 method/packaging rows; 18 feature metrics
+Evaluating: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase4/FS_95_clinical_review/selected_dataset_20261115_184932_985308_UTC  |  Source: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase3/synthetic_20261115_184929_576909_UTC/FS_95_clinical_review/selected_dataset.csv
+  Evaluated 5 method/packaging rows; 18 feature metrics
+
+Phase 5 complete: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase5/phase5_20261115_184934_315085_UTC
+  - phase5_utility_summary.csv
+  - phase5_per_feature_utility.csv
+  - phase5_feature_retention.csv
+  - phase5_sampled_patient_rows.csv
+  - phase5_nearest_neighbor_overlap.csv
+  - phase5_metadata.json
+COMPLETE phase5: 1.270s
+START phase6_original_gzip_n_native: executing
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-15T18:49:34.526811+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-15T18:49:34.556385+00:00", "operation": "ssh preflight/setup", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.029571605031378567}
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase4/original/synthetic_20261115_184931_273070_UTC --source-csv /tmp/thesis-offline-ssh-pipeline-20261115/synthetic.csv --method gzip --output-dir /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_gzip_none_native --package-name original_gzip_none_native
+PACKAGE CREATED: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_gzip_none_native/original_gzip_none_native_20261115_184935_748427_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,843
+Payload alone: 6,267 bytes; package seconds: 0.0168
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_gzip_none_native/original_gzip_none_native_20261115_184935_748427_UTC.tar
+VERIFIED: original_gzip_none_native_20261115_184935_748427_UTC gzip
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_gzip_none_native/original_gzip_none_native_20261115_184935_748427_UTC.tar --output-dir /tmp/thesis_receiver_x0ddqqtu
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_x0ddqqtu/original_gzip_none_native_20261115_184935_748427_UTC
+Method: gzip
+NETWORK: Phase 6 original_gzip_none_native mode=ssh; requested=ssh; reason=none
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py send /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_gzip_none_native/original_gzip_none_native_20261115_184935_748427_UTC.tar --remote offline@stand-in --remote-dir /tmp/thesis-offline-ssh-pipeline-20261115/remote --trials 1 --ssh-port 22 --report-csv /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_gzip_none_native/transfer_trials.csv
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-15T18:49:40.170707+00:00", "operation": "Phase 6 original_gzip_none_native_20261115_184935_748427_UTC trial 1", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connection_lost", "updated_utc": "2026-11-15T18:49:40.228017+00:00", "operation": "Phase 6 original_gzip_none_native_20261115_184935_748427_UTC trial 1", "attempt": 1, "max_attempts": 3, "error": "Connection reset by peer", "transient": true, "failed_attempt_seconds": 0.056860927026718855, "failed_attempts": 1, "cumulative_failed_attempt_seconds": 0.056860927026718855, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.056860927026718855, "delivery_wall_seconds": 0.05731046700384468, "retry_in_seconds": 0, "next_attempt": 2}
+NETWORK: {"status": "retrying", "updated_utc": "2026-11-15T18:49:40.228489+00:00", "operation": "Phase 6 original_gzip_none_native_20261115_184935_748427_UTC trial 1", "attempt": 2, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-15T18:49:40.341592+00:00", "operation": "Phase 6 original_gzip_none_native_20261115_184935_748427_UTC trial 1", "attempts": 2, "failed_attempts": 1, "failed_attempt_seconds": 0.056860927026718855, "backoff_seconds": 5.7537981774657965e-05, "recovery_overhead_seconds": 0.05691846500849351, "delivery_wall_seconds": 0.17087958398042247}
+Trial 1: verified and published; 2 attempt(s)
+Transfer trial report: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_gzip_none_native/transfer_trials.csv
+COMPLETE phase6_original_gzip_n_native: 5.975s
+START phase6_original_zstd_n_native: executing
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-15T18:49:40.509394+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-15T18:49:40.561295+00:00", "operation": "ssh preflight/setup", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.05190467101056129}
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase4/original/synthetic_20261115_184931_273070_UTC --source-csv /tmp/thesis-offline-ssh-pipeline-20261115/synthetic.csv --method zstd --output-dir /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_zstd_none_native --package-name original_zstd_none_native
+PACKAGE CREATED: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_zstd_none_native/original_zstd_none_native_20261115_184941_923063_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,843
+Payload alone: 5,903 bytes; package seconds: 0.0218
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_zstd_none_native/original_zstd_none_native_20261115_184941_923063_UTC.tar
+VERIFIED: original_zstd_none_native_20261115_184941_923063_UTC zstd
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_zstd_none_native/original_zstd_none_native_20261115_184941_923063_UTC.tar --output-dir /tmp/thesis_receiver_eskhpcg1
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_eskhpcg1/original_zstd_none_native_20261115_184941_923063_UTC
+Method: zstd
+NETWORK: Phase 6 original_zstd_none_native mode=ssh; requested=ssh; reason=none
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py send /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_zstd_none_native/original_zstd_none_native_20261115_184941_923063_UTC.tar --remote offline@stand-in --remote-dir /tmp/thesis-offline-ssh-pipeline-20261115/remote --trials 1 --ssh-port 22 --report-csv /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_zstd_none_native/transfer_trials.csv
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-15T18:49:46.552054+00:00", "operation": "Phase 6 original_zstd_none_native_20261115_184941_923063_UTC trial 1", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-15T18:49:46.662484+00:00", "operation": "Phase 6 original_zstd_none_native_20261115_184941_923063_UTC trial 1", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.11043965601129457}
+Trial 1: verified and published; 1 attempt(s)
+Transfer trial report: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_zstd_none_native/transfer_trials.csv
+COMPLETE phase6_original_zstd_n_native: 6.307s
+START phase6_original_parquet_n_native: executing
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-15T18:49:46.819002+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-15T18:49:46.848640+00:00", "operation": "ssh preflight/setup", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.029633270984049886}
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase4/original/synthetic_20261115_184931_273070_UTC --source-csv /tmp/thesis-offline-ssh-pipeline-20261115/synthetic.csv --method parquet --output-dir /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_parquet_none_native --package-name original_parquet_none_native
+PACKAGE CREATED: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_parquet_none_native/original_parquet_none_native_20261115_184948_162791_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,846
+Payload alone: 14,452 bytes; package seconds: 0.0410
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_parquet_none_native/original_parquet_none_native_20261115_184948_162791_UTC.tar
+VERIFIED: original_parquet_none_native_20261115_184948_162791_UTC parquet
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_parquet_none_native/original_parquet_none_native_20261115_184948_162791_UTC.tar --output-dir /tmp/thesis_receiver_ey6euyu4
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_ey6euyu4/original_parquet_none_native_20261115_184948_162791_UTC
+Method: parquet
+NETWORK: Phase 6 original_parquet_none_native mode=ssh; requested=ssh; reason=none
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py send /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_parquet_none_native/original_parquet_none_native_20261115_184948_162791_UTC.tar --remote offline@stand-in --remote-dir /tmp/thesis-offline-ssh-pipeline-20261115/remote --trials 1 --ssh-port 22 --report-csv /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_parquet_none_native/transfer_trials.csv
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-15T18:49:52.544991+00:00", "operation": "Phase 6 original_parquet_none_native_20261115_184948_162791_UTC trial 1", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-15T18:49:52.664846+00:00", "operation": "Phase 6 original_parquet_none_native_20261115_184948_162791_UTC trial 1", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.11985334503697231}
+Trial 1: verified and published; 1 attempt(s)
+Transfer trial report: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_parquet_none_native/transfer_trials.csv
+COMPLETE phase6_original_parquet_n_native: 6.025s
+START phase6_original_pca_2_native: executing
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-15T18:49:52.852013+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-15T18:49:52.879053+00:00", "operation": "ssh preflight/setup", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.027036916988436133}
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase4/original/synthetic_20261115_184931_273070_UTC --source-csv /tmp/thesis-offline-ssh-pipeline-20261115/synthetic.csv --method pca --output-dir /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_pca_2_native --package-name original_pca_2_native --k 2 --codec native
+PACKAGE CREATED: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_pca_2_native/original_pca_2_native_20261115_184954_101823_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,839
+Payload alone: 5,024 bytes; package seconds: 0.0478
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_pca_2_native/original_pca_2_native_20261115_184954_101823_UTC.tar
+VERIFIED: original_pca_2_native_20261115_184954_101823_UTC pca
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_pca_2_native/original_pca_2_native_20261115_184954_101823_UTC.tar --output-dir /tmp/thesis_receiver_jiymvexl --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_jiymvexl/original_pca_2_native_20261115_184954_101823_UTC_recovered/pca_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_jiymvexl/original_pca_2_native_20261115_184954_101823_UTC
+Method: pca
+NETWORK: Phase 6 original_pca_2_native mode=ssh; requested=ssh; reason=none
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py send /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_pca_2_native/original_pca_2_native_20261115_184954_101823_UTC.tar --remote offline@stand-in --remote-dir /tmp/thesis-offline-ssh-pipeline-20261115/remote --trials 1 --ssh-port 22 --report-csv /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_pca_2_native/transfer_trials.csv
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-15T18:49:59.638968+00:00", "operation": "Phase 6 original_pca_2_native_20261115_184954_101823_UTC trial 1", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-15T18:49:59.777029+00:00", "operation": "Phase 6 original_pca_2_native_20261115_184954_101823_UTC trial 1", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.1380993570201099}
+Trial 1: verified and published; 1 attempt(s)
+Transfer trial report: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_pca_2_native/transfer_trials.csv
+COMPLETE phase6_original_pca_2_native: 7.074s
+START phase6_original_autoencoder_2_native: executing
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-15T18:49:59.933756+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-15T18:49:59.961279+00:00", "operation": "ssh preflight/setup", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.027521120035089552}
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase4/original/synthetic_20261115_184931_273070_UTC --source-csv /tmp/thesis-offline-ssh-pipeline-20261115/synthetic.csv --method autoencoder --output-dir /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_autoencoder_2_native --package-name original_autoencoder_2_native --k 2 --codec native
+PACKAGE CREATED: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_autoencoder_2_native/original_autoencoder_2_native_20261115_185001_370099_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,847
+Payload alone: 6,792 bytes; package seconds: 0.0228
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_autoencoder_2_native/original_autoencoder_2_native_20261115_185001_370099_UTC.tar
+VERIFIED: original_autoencoder_2_native_20261115_185001_370099_UTC autoencoder
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_autoencoder_2_native/original_autoencoder_2_native_20261115_185001_370099_UTC.tar --output-dir /tmp/thesis_receiver_h1ma75if --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_h1ma75if/original_autoencoder_2_native_20261115_185001_370099_UTC_recovered/autoencoder_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_h1ma75if/original_autoencoder_2_native_20261115_185001_370099_UTC
+Method: autoencoder
+NETWORK: Phase 6 original_autoencoder_2_native mode=ssh; requested=ssh; reason=none
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py send /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_autoencoder_2_native/original_autoencoder_2_native_20261115_185001_370099_UTC.tar --remote offline@stand-in --remote-dir /tmp/thesis-offline-ssh-pipeline-20261115/remote --trials 1 --ssh-port 22 --report-csv /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_autoencoder_2_native/transfer_trials.csv
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-15T18:50:06.945176+00:00", "operation": "Phase 6 original_autoencoder_2_native_20261115_185001_370099_UTC trial 1", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-15T18:50:07.097209+00:00", "operation": "Phase 6 original_autoencoder_2_native_20261115_185001_370099_UTC trial 1", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.15202804998261854}
+Trial 1: verified and published; 1 attempt(s)
+Transfer trial report: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/original_autoencoder_2_native/transfer_trials.csv
+COMPLETE phase6_original_autoencoder_2_native: 7.397s
+START phase6_FS_95_clinical_review_gzip_n_native: executing
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-15T18:50:07.334528+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-15T18:50:07.381002+00:00", "operation": "ssh preflight/setup", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.04646817996399477}
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase4/FS_95_clinical_review/selected_dataset_20261115_184932_985308_UTC --source-csv /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase3/synthetic_20261115_184929_576909_UTC/FS_95_clinical_review/selected_dataset.csv --method gzip --output-dir /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_gzip_none_native --package-name FS_95_clinical_review_gzip_none_native --full-reference-csv /tmp/thesis-offline-ssh-pipeline-20261115/synthetic.csv --feature-selection-label FS_95_clinical_review
+PACKAGE CREATED: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_gzip_none_native/FS_95_clinical_review_gzip_none_native_20261115_185008_824095_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,856
+Payload alone: 6,227 bytes; package seconds: 0.0308
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_gzip_none_native/FS_95_clinical_review_gzip_none_native_20261115_185008_824095_UTC.tar
+VERIFIED: FS_95_clinical_review_gzip_none_native_20261115_185008_824095_UTC gzip
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_gzip_none_native/FS_95_clinical_review_gzip_none_native_20261115_185008_824095_UTC.tar --output-dir /tmp/thesis_receiver_wrezgawe
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_wrezgawe/FS_95_clinical_review_gzip_none_native_20261115_185008_824095_UTC
+Method: gzip
+NETWORK: Phase 6 FS_95_clinical_review_gzip_none_native mode=ssh; requested=ssh; reason=none
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py send /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_gzip_none_native/FS_95_clinical_review_gzip_none_native_20261115_185008_824095_UTC.tar --remote offline@stand-in --remote-dir /tmp/thesis-offline-ssh-pipeline-20261115/remote --trials 1 --ssh-port 22 --report-csv /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_gzip_none_native/transfer_trials.csv
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-15T18:50:13.935737+00:00", "operation": "Phase 6 FS_95_clinical_review_gzip_none_native_20261115_185008_824095_UTC trial 1", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-15T18:50:14.056315+00:00", "operation": "Phase 6 FS_95_clinical_review_gzip_none_native_20261115_185008_824095_UTC trial 1", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.12057486199773848}
+Trial 1: verified and published; 1 attempt(s)
+Transfer trial report: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_gzip_none_native/transfer_trials.csv
+COMPLETE phase6_FS_95_clinical_review_gzip_n_native: 6.906s
+START phase6_FS_95_clinical_review_zstd_n_native: executing
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-15T18:50:14.249339+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-15T18:50:14.281998+00:00", "operation": "ssh preflight/setup", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.032649501983541995}
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase4/FS_95_clinical_review/selected_dataset_20261115_184932_985308_UTC --source-csv /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase3/synthetic_20261115_184929_576909_UTC/FS_95_clinical_review/selected_dataset.csv --method zstd --output-dir /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_zstd_none_native --package-name FS_95_clinical_review_zstd_none_native --full-reference-csv /tmp/thesis-offline-ssh-pipeline-20261115/synthetic.csv --feature-selection-label FS_95_clinical_review
+PACKAGE CREATED: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_zstd_none_native/FS_95_clinical_review_zstd_none_native_20261115_185015_643419_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,856
+Payload alone: 5,875 bytes; package seconds: 0.0228
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_zstd_none_native/FS_95_clinical_review_zstd_none_native_20261115_185015_643419_UTC.tar
+VERIFIED: FS_95_clinical_review_zstd_none_native_20261115_185015_643419_UTC zstd
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_zstd_none_native/FS_95_clinical_review_zstd_none_native_20261115_185015_643419_UTC.tar --output-dir /tmp/thesis_receiver_53kbul94
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_53kbul94/FS_95_clinical_review_zstd_none_native_20261115_185015_643419_UTC
+Method: zstd
+NETWORK: Phase 6 FS_95_clinical_review_zstd_none_native mode=ssh; requested=ssh; reason=none
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py send /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_zstd_none_native/FS_95_clinical_review_zstd_none_native_20261115_185015_643419_UTC.tar --remote offline@stand-in --remote-dir /tmp/thesis-offline-ssh-pipeline-20261115/remote --trials 1 --ssh-port 22 --report-csv /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_zstd_none_native/transfer_trials.csv
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-15T18:50:20.141445+00:00", "operation": "Phase 6 FS_95_clinical_review_zstd_none_native_20261115_185015_643419_UTC trial 1", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-15T18:50:20.259464+00:00", "operation": "Phase 6 FS_95_clinical_review_zstd_none_native_20261115_185015_643419_UTC trial 1", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.11802349897334352}
+Trial 1: verified and published; 1 attempt(s)
+Transfer trial report: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_zstd_none_native/transfer_trials.csv
+COMPLETE phase6_FS_95_clinical_review_zstd_n_native: 6.165s
+START phase6_FS_95_clinical_review_parquet_n_native: executing
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-15T18:50:20.422808+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-15T18:50:20.451096+00:00", "operation": "ssh preflight/setup", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.028286457003559917}
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase4/FS_95_clinical_review/selected_dataset_20261115_184932_985308_UTC --source-csv /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase3/synthetic_20261115_184929_576909_UTC/FS_95_clinical_review/selected_dataset.csv --method parquet --output-dir /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_parquet_none_native --package-name FS_95_clinical_review_parquet_none_native --full-reference-csv /tmp/thesis-offline-ssh-pipeline-20261115/synthetic.csv --feature-selection-label FS_95_clinical_review
+PACKAGE CREATED: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_parquet_none_native/FS_95_clinical_review_parquet_none_native_20261115_185021_767851_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,859
+Payload alone: 14,452 bytes; package seconds: 0.0426
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_parquet_none_native/FS_95_clinical_review_parquet_none_native_20261115_185021_767851_UTC.tar
+VERIFIED: FS_95_clinical_review_parquet_none_native_20261115_185021_767851_UTC parquet
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_parquet_none_native/FS_95_clinical_review_parquet_none_native_20261115_185021_767851_UTC.tar --output-dir /tmp/thesis_receiver_a4auz6q4
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_a4auz6q4/FS_95_clinical_review_parquet_none_native_20261115_185021_767851_UTC
+Method: parquet
+NETWORK: Phase 6 FS_95_clinical_review_parquet_none_native mode=ssh; requested=ssh; reason=none
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py send /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_parquet_none_native/FS_95_clinical_review_parquet_none_native_20261115_185021_767851_UTC.tar --remote offline@stand-in --remote-dir /tmp/thesis-offline-ssh-pipeline-20261115/remote --trials 1 --ssh-port 22 --report-csv /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_parquet_none_native/transfer_trials.csv
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-15T18:50:26.278615+00:00", "operation": "Phase 6 FS_95_clinical_review_parquet_none_native_20261115_185021_767851_UTC trial 1", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-15T18:50:26.430238+00:00", "operation": "Phase 6 FS_95_clinical_review_parquet_none_native_20261115_185021_767851_UTC trial 1", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.151626763981767}
+Trial 1: verified and published; 1 attempt(s)
+Transfer trial report: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_parquet_none_native/transfer_trials.csv
+COMPLETE phase6_FS_95_clinical_review_parquet_n_native: 6.222s
+START phase6_FS_95_clinical_review_pca_2_native: executing
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-15T18:50:26.653495+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-15T18:50:26.680997+00:00", "operation": "ssh preflight/setup", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.02749681699788198}
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase4/FS_95_clinical_review/selected_dataset_20261115_184932_985308_UTC --source-csv /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase3/synthetic_20261115_184929_576909_UTC/FS_95_clinical_review/selected_dataset.csv --method pca --output-dir /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_pca_2_native --package-name FS_95_clinical_review_pca_2_native --k 2 --codec native --full-reference-csv /tmp/thesis-offline-ssh-pipeline-20261115/synthetic.csv --feature-selection-label FS_95_clinical_review
+PACKAGE CREATED: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_pca_2_native/FS_95_clinical_review_pca_2_native_20261115_185028_071097_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,852
+Payload alone: 5,024 bytes; package seconds: 0.0208
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_pca_2_native/FS_95_clinical_review_pca_2_native_20261115_185028_071097_UTC.tar
+VERIFIED: FS_95_clinical_review_pca_2_native_20261115_185028_071097_UTC pca
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_pca_2_native/FS_95_clinical_review_pca_2_native_20261115_185028_071097_UTC.tar --output-dir /tmp/thesis_receiver_am0ol_47 --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_am0ol_47/FS_95_clinical_review_pca_2_native_20261115_185028_071097_UTC_recovered/pca_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_am0ol_47/FS_95_clinical_review_pca_2_native_20261115_185028_071097_UTC
+Method: pca
+NETWORK: Phase 6 FS_95_clinical_review_pca_2_native mode=ssh; requested=ssh; reason=none
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py send /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_pca_2_native/FS_95_clinical_review_pca_2_native_20261115_185028_071097_UTC.tar --remote offline@stand-in --remote-dir /tmp/thesis-offline-ssh-pipeline-20261115/remote --trials 1 --ssh-port 22 --report-csv /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_pca_2_native/transfer_trials.csv
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-15T18:50:32.647583+00:00", "operation": "Phase 6 FS_95_clinical_review_pca_2_native_20261115_185028_071097_UTC trial 1", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-15T18:50:32.768381+00:00", "operation": "Phase 6 FS_95_clinical_review_pca_2_native_20261115_185028_071097_UTC trial 1", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.1207949829986319}
+Trial 1: verified and published; 1 attempt(s)
+Transfer trial report: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_pca_2_native/transfer_trials.csv
+COMPLETE phase6_FS_95_clinical_review_pca_2_native: 6.358s
+START phase6_FS_95_clinical_review_autoencoder_2_native: executing
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-15T18:50:33.022283+00:00", "operation": "ssh preflight/setup", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-15T18:50:33.049400+00:00", "operation": "ssh preflight/setup", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.027115356002468616}
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py build --phase4-run /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase4/FS_95_clinical_review/selected_dataset_20261115_184932_985308_UTC --source-csv /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase3/synthetic_20261115_184929_576909_UTC/FS_95_clinical_review/selected_dataset.csv --method autoencoder --output-dir /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_autoencoder_2_native --package-name FS_95_clinical_review_autoencoder_2_native --k 2 --codec native --full-reference-csv /tmp/thesis-offline-ssh-pipeline-20261115/synthetic.csv --feature-selection-label FS_95_clinical_review
+PACKAGE CREATED: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_autoencoder_2_native/FS_95_clinical_review_autoencoder_2_native_20261115_185034_384264_UTC.tar
+Validated transmitted bytes (archive + SHA256): 30,860
+Payload alone: 6,792 bytes; package seconds: 0.0280
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py verify /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_autoencoder_2_native/FS_95_clinical_review_autoencoder_2_native_20261115_185034_384264_UTC.tar
+VERIFIED: FS_95_clinical_review_autoencoder_2_native_20261115_185034_384264_UTC autoencoder
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py unpack /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_autoencoder_2_native/FS_95_clinical_review_autoencoder_2_native_20261115_185034_384264_UTC.tar --output-dir /tmp/thesis_receiver_oyp0v6he --recover-npz
+Recovered Phase 4 NPZ: /tmp/thesis_receiver_oyp0v6he/FS_95_clinical_review_autoencoder_2_native_20261115_185034_384264_UTC_recovered/autoencoder_k2_transfer_payload.npz
+VERIFIED AND UNPACKED: /tmp/thesis_receiver_oyp0v6he/FS_95_clinical_review_autoencoder_2_native_20261115_185034_384264_UTC
+Method: autoencoder
+NETWORK: Phase 6 FS_95_clinical_review_autoencoder_2_native mode=ssh; requested=ssh; reason=none
+RUN: /home/kweku/philemon/thesis_code/thesis/bin/python /home/kweku/philemon/thesis_code/thesis_unified/thesis_pipeline/legacy/06_transfer_package.py send /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_autoencoder_2_native/FS_95_clinical_review_autoencoder_2_native_20261115_185034_384264_UTC.tar --remote offline@stand-in --remote-dir /tmp/thesis-offline-ssh-pipeline-20261115/remote --trials 1 --ssh-port 22 --report-csv /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_autoencoder_2_native/transfer_trials.csv
+NETWORK: {"status": "connecting", "updated_utc": "2026-11-15T18:50:38.877869+00:00", "operation": "Phase 6 FS_95_clinical_review_autoencoder_2_native_20261115_185034_384264_UTC trial 1", "attempt": 1, "max_attempts": 3}
+NETWORK: {"status": "connected", "updated_utc": "2026-11-15T18:50:38.996288+00:00", "operation": "Phase 6 FS_95_clinical_review_autoencoder_2_native_20261115_185034_384264_UTC trial 1", "attempts": 1, "failed_attempts": 0, "failed_attempt_seconds": 0.0, "backoff_seconds": 0.0, "recovery_overhead_seconds": 0.0, "delivery_wall_seconds": 0.1184159170370549}
+Trial 1: verified and published; 1 attempt(s)
+Transfer trial report: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/_work/phase6/FS_95_clinical_review_autoencoder_2_native/transfer_trials.csv
+COMPLETE phase6_FS_95_clinical_review_autoencoder_2_native: 6.136s
+START final_decision: forced recomputation
+COMPLETE final_decision: 1.732s
+
+DONE: /tmp/thesis-offline-ssh-pipeline-20261115/run/runs/3b52348d75fe788c5b4c/results
+  FINAL_REPORT.md
+  01_integrated_evidence.csv
+  02_decision_rankings.csv
+  03_phase_overview.csv
+  04_network_trials.csv
+  run_manifest.json
+RESULTS: /tmp/thesis-offline-ssh-pipeline-20261115/run/results/20261115_185040_896843_UTC_wiu57y36
+{
+  "status": "passed",
+  "packages": 10,
+  "injected_network_failures": 2,
+  "real_ssh_attempts": 0,
+  "transport": "LOCAL COMMAND STAND-INS; NOT REAL SSH EVIDENCE",
+  "report_directory": "/tmp/thesis-offline-ssh-pipeline-20261115/run/results/20261115_185040_896843_UTC_wiu57y36"
+}

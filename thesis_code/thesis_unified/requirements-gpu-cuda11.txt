@@ -1,0 +1,4 @@
+# Optional: requires a compatible NVIDIA GPU, driver and CUDA 11 system libraries.
+# CPU-only users should install requirements.txt instead.
+-r requirements.txt
+cupy-cuda11x==13.6.0

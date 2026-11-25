@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "packages": 10,
+  "injected_network_failures": 2,
+  "phase2_trials_per_artifact": 10,
+  "phase2_artifacts": 5,
+  "phase6_trials_per_package": 1,
+  "real_ssh_attempts": 0,
+  "transport": "LOCAL COMMAND STAND-INS; NOT REAL SSH EVIDENCE",
+  "report_directory": "/tmp/thesis-adaptive-phase2-20261118/run/results/20261118_053026_126800_UTC_320thty8"
+}

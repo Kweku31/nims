@@ -1,0 +1,26 @@
+# Comparing SCP and rsync over SSH
+
+In New experiment choose **Strict SSH → SSH file transfer → Compare both on the same files**. The same selector is available for Phase 6 replay. SCP is the default. Install rsync on the sender and receiver for rsync-only or paired experiments. Both commands use the experiment's SSH key, known-host checks, port, keepalives and timeout. The unified runner checks rsync availability before running the phases.
+
+From the unified directory:
+
+```bash
+python run_thesis.py --dataset /path/to/data.csv --output-dir /path/to/new-run \
+  --transfer-mode ssh --remote researcher@university-host --ssh-transport both
+```
+
+Select `rsync` to rank representations using rsync delivery, or `scp` for the SCP baseline. Add the existing receiver execution options to measure unpacking and reconstruction on the server. For the standalone Phase 6 shell workflow set `SSH_TRANSPORT=both`. Both standalone Python senders accept `--ssh-transport`.
+
+Phase 2 packages each format once per configured packaging benchmark and sends the resulting artifact with each selected transport. Phase 6 builds each archive and its SHA-256 sidecar once. Paired runs send SCP first and then rsync to independent empty locations. Each transport applies the configured first-trial threshold independently. Fixed order and network load can influence timings. A first trial that needed recovery uses elapsed time through verified publication for the cutoff. A clean first trial uses send time. A new trial starts empty. Only retries of one rsync trial reuse its private staging directory with `--partial-dir=.rsync-partial`. Restarting the pipeline after a process exit starts an incomplete transfer trial again. Remote SHA-256 verification of every delivered file precedes directory publication.
+
+Open **Overview → Verified SCP and rsync measurements**, or see the corresponding table in FINAL_REPORT.md. Compare mean wall time on the same artifact alongside trial count and failed attempts. Wall time includes setup, failed attempts, backoff, successful upload, checksum checking and publication. Successful-send time measures only the successful file-copy command. Phase 2 saves detailed evidence in transport_comparison.csv. The final 04_network_trials.csv contains Phase 6 rows for each measured transport. Package byte counts describe artifact sizes, not traffic on the wire.
+
+New **both** runs compute Phase 2 TOPSIS separately for SCP and rsync using the three compressed formats. The final seven-criterion rankings, sensitivity tables and recommendations are also grouped by transport. Receiver reconstruction uses a common measurement for each byte-identical archive. Historical runs with only SCP evidence retain their SCP rankings. Phase 6 runs receiver reconstruction once on the primary transport's last verified copy. In **rsync** mode that copy and the representation ranking use rsync. New ranking inputs charge the successful upload and failed-attempt/backoff overhead; checksum, packaging and reconstruction are accounted for separately. Older results keep their original meaning. Replay can reuse Phase 1–5 artifacts from the reviewed pre-rsync source version after provenance and checksums pass. Its Phase 2 evidence remains historical; measuring both in Phase 2 requires a new experiment.
+
+The complete source overlay is thesis_v7_rsync_update.zip. The earlier sources are in before_rsync_20261123.zip. Use a separate installation or stop an active experiment before replacing its files. To see interruption and byte reuse on a single computer, run `bash examples/rsync_trial_demo.sh` from thesis_code. To exercise the whole paired pipeline on synthetic data, run `python tests/synthetic_ssh_recovery.py --compare-transports --output-dir /tmp/new-paired-test` from thesis_unified. This test runs real rsync through a local SSH stand-in and substitutes a local copier for SCP. Its timings only validate the measurement workflow.
+
+## Full thesis experiment
+
+In the dashboard select **New experiment → Use thesis experiment settings**, choose the dataset and enter the SSH destination and server decoder settings. This selects all feature sets, dimensions 2, 4, 8 and 16, the original GPU training settings, ten packaging measurements, both transports and both delivery scenarios. Choose CPU if a GPU is unavailable and record that difference in the experiment. The direct-file study sends five Phase 2 files in four balanced blocks (40 deliveries). The archive study sends Parquet, gzip and AE-16 and interrupts the first AE-16 copy in the assigned condition (32 deliveries). Each study uses this experiment's artifacts. The original data must support an AE with 16 components.
+
+For the CLI, add `--paired-transport-studies --transfer-mode ssh --ssh-transport both --k 2 4 8 16` to the experiment arguments. The ordinary six-phase run also supports SCP alone, rsync alone and simulation. Ordinary adaptive trials and the fixed four-block study are reported separately. Paired Phase 2 TOPSIS reuses the packaging means and size reductions from Phase 2 and uses the mean successful copy time of clean matched pairs. Median within-block wall-time differences are separate descriptive results. The final ranking uses verified per-package adaptive trials for each transport. Archive interruption trials do not enter that ranking.

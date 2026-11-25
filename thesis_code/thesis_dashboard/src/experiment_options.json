@@ -1,0 +1,398 @@
+[
+  {
+    "title": "Packaging and transfer trials",
+    "description": "Optional. Defaults retain three packaging measurements and the aligned one-or-10 transfer rule.",
+    "fields": [
+      {
+        "key": "packaging_runs",
+        "label": "Phase 2 packaging runs",
+        "type": "integer",
+        "default": 3,
+        "help": "Fixed repetitions of serialization/compression; does not repeat AE training.",
+        "min": 1,
+        "max": 100
+      },
+      {
+        "key": "phase2_transfer_trials",
+        "label": "Phase 2 maximum transfer trials",
+        "type": "integer",
+        "default": 10,
+        "help": "Total trials including the first when it meets the cutoff.",
+        "min": 1,
+        "max": 100
+      },
+      {
+        "key": "phase2_repeat_threshold_seconds",
+        "label": "Phase 2 first-transfer cutoff (seconds)",
+        "type": "number",
+        "default": 10,
+        "help": "If the first transfer exceeds this duration, stop after one trial.",
+        "min": 1e-06,
+        "max": 86400
+      },
+      {
+        "key": "transfer_trials",
+        "label": "Phase 6 maximum transfer trials",
+        "type": "integer",
+        "default": 10,
+        "help": "Total trials per prepared package; failure retries are separate.",
+        "min": 1,
+        "max": 100
+      },
+      {
+        "key": "phase6_repeat_threshold_seconds",
+        "label": "Phase 6 first-transfer cutoff (seconds)",
+        "type": "number",
+        "default": 10,
+        "help": "For each transport, use send time on a clean first trial or full elapsed time if it required a retry.",
+        "min": 1e-06,
+        "max": 86400
+      }
+    ]
+  },
+  {
+    "title": "Model training and utility evaluation",
+    "description": "Optional. Choose CPU or GPU execution and control training cost. Larger batches and GPU precision can change reconstruction quality; compare the results.",
+    "fields": [
+      {
+        "key": "ae_backend",
+        "label": "AE compute device",
+        "type": "choice",
+        "default": "cpu",
+        "choices": [
+          [
+            "cpu",
+            "CPU (original sklearn)"
+          ],
+          [
+            "gpu",
+            "NVIDIA GPU (CuPy / CUDA)"
+          ]
+        ],
+        "help": "GPU requires compatible CUDA and CuPy on the pipeline host. Unavailable GPUs fail explicitly."
+      },
+      {
+        "key": "ae_batch_size",
+        "label": "AE batch size (rows)",
+        "type": "integer",
+        "default": 256,
+        "min": 1,
+        "max": 1048576,
+        "help": "Try 4096 for GPU experiments. Larger batches reduce optimizer steps per epoch and may need a different epoch budget; check reconstruction quality."
+      },
+      {
+        "key": "ae_cpu_threads",
+        "label": "AE CPU thread limit",
+        "type": "integer",
+        "default": 0,
+        "min": 0,
+        "max": 256,
+        "help": "0 uses library defaults. Applies to CPU training; more threads may not help small networks."
+      },
+      {
+        "key": "ae_progress_interval",
+        "label": "AE progress interval (epochs)",
+        "type": "integer",
+        "default": 10,
+        "min": 1,
+        "max": 10000,
+        "help": "Logs epoch, loss, elapsed time and rough time remaining to the maximum epoch budget."
+      },
+      {
+        "key": "ae_tol",
+        "label": "AE loss improvement tolerance",
+        "type": "number",
+        "default": 0.0001,
+        "help": "Absolute training-loss improvement required to reset the patience counter.",
+        "min": 1e-12,
+        "max": 1
+      },
+      {
+        "key": "ae_patience",
+        "label": "AE patience (epochs)",
+        "type": "integer",
+        "default": 20,
+        "help": "Training stops after more than this many consecutive epochs of insufficient improvement.",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "key": "seed",
+        "label": "Random seed",
+        "type": "integer",
+        "default": 42,
+        "help": "Used for reproducible model fitting and sampling.",
+        "min": 0,
+        "max": 4294967295
+      },
+      {
+        "key": "distance_samples",
+        "label": "Maximum patients for distance evaluation",
+        "type": "integer",
+        "default": 200,
+        "help": "Samples distinct patients for distance and neighbourhood comparisons.",
+        "min": 3,
+        "max": 10000
+      },
+      {
+        "key": "neighbor_k",
+        "label": "Neighbour counts",
+        "type": "integer-list",
+        "default": [
+          5,
+          10
+        ],
+        "help": "Comma-separated positive counts. Include 5 because final TOPSIS uses top-5 overlap.",
+        "min": 1,
+        "max": 1000
+      }
+    ]
+  },
+  {
+    "title": "Feature-selection rules",
+    "description": "Optional. Review correlation deletion and protected columns before changing them.",
+    "fields": [
+      {
+        "key": "missingness_thresholds",
+        "label": "Missingness cutoffs (%)",
+        "type": "percent-list",
+        "default": [
+          80,
+          90,
+          95
+        ],
+        "help": "Comma-separated hourly missingness cutoffs. Clinical-only runs use the highest cutoff.",
+        "min": 1e-06,
+        "max": 100
+      },
+      {
+        "key": "correlation_threshold",
+        "label": "Correlation cutoff (%)",
+        "type": "percent",
+        "default": 95,
+        "help": "Absolute Pearson correlation; used by Phases 1 and 3.",
+        "min": 1e-06,
+        "max": 100
+      },
+      {
+        "key": "phase1_correlation_threshold",
+        "label": "Phase 1 correlation cutoff override (%)",
+        "type": "percent",
+        "default": null,
+        "help": "Leave blank to use the shared correlation cutoff.",
+        "min": 1e-06,
+        "max": 100
+      },
+      {
+        "key": "correlation_action",
+        "label": "Correlated-field action",
+        "type": "choice",
+        "default": "flag",
+        "help": "Flag retains both fields; drop enables supported automatic removal, respecting protected fields.",
+        "choices": [
+          [
+            "flag",
+            "Flag for review (retain both)"
+          ],
+          [
+            "drop",
+            "Drop redundant correlated fields"
+          ]
+        ]
+      },
+      {
+        "key": "min_correlation_observations",
+        "label": "Minimum paired observations",
+        "type": "integer",
+        "default": 200,
+        "help": "Minimum observation support before correlated fields may be removed.",
+        "min": 3,
+        "max": 100000000
+      },
+      {
+        "key": "min_correlation_patients",
+        "label": "Minimum paired patients",
+        "type": "integer",
+        "default": 30,
+        "help": "Minimum patient support before correlated fields may be removed.",
+        "min": 1,
+        "max": 100000000
+      },
+      {
+        "key": "clinically_protected",
+        "label": "Additional protected clinical columns",
+        "type": "text-list",
+        "default": [
+          "Lactate"
+        ],
+        "help": "Comma-separated column names. Blank means no additional clinical columns; structural protections remain.",
+        "blank_means_empty": true
+      }
+    ]
+  },
+  {
+    "title": "Delivery timing scenarios",
+    "description": "Optional. These settings determine which preparation costs enter the delivery comparison.",
+    "fields": [
+      {
+        "key": "delivery_scenarios",
+        "label": "Delivery scenarios",
+        "type": "multi",
+        "default": [
+          "fresh_data",
+          "existing_payload"
+        ],
+        "help": "Select at least one. Existing payload excludes initial preparation costs from its score; it does not skip experimental training.",
+        "choices": [
+          [
+            "fresh_data",
+            "Fresh data"
+          ],
+          [
+            "existing_payload",
+            "Existing payload"
+          ]
+        ]
+      },
+      {
+        "key": "model_reuse_count",
+        "label": "Assumed model reuse count",
+        "type": "integer",
+        "default": 1,
+        "help": "Fresh-data scoring divides training cost by this count. Use more than 1 only when reuse is part of the experiment.",
+        "min": 1,
+        "max": 1000000
+      }
+    ]
+  },
+  {
+    "title": "Simulation settings",
+    "description": "Optional; used only for simulated transfer timings.",
+    "fields": [
+      {
+        "key": "bandwidth_mbps",
+        "label": "Simulated bandwidth (Mbps)",
+        "type": "number",
+        "default": 100,
+        "help": "Idealized bandwidth, not measured SSH throughput.",
+        "min": 1e-06,
+        "max": 1000000
+      }
+    ],
+    "when": "simulated"
+  },
+  {
+    "title": "Decision eligibility and sensitivity",
+    "description": "Optional. Blank limits apply no extra gate; these are experimental limits, not clinical safety standards.",
+    "fields": [
+      {
+        "key": "minimum_feature_retention_pct",
+        "label": "Minimum predictor retention (%)",
+        "type": "percent",
+        "default": null,
+        "help": "Require at least this share of original eligible predictor columns for loss-tolerant rankings.",
+        "min": 0,
+        "max": 100
+      },
+      {
+        "key": "minimum_measurement_retention_pct",
+        "label": "Minimum observed-measurement retention (%)",
+        "type": "percent",
+        "default": null,
+        "help": "Require at least this share of the original non-missing measurements.",
+        "min": 0,
+        "max": 100
+      },
+      {
+        "key": "maximum_new_violation_pct",
+        "label": "Maximum new clinical-screen violations (%)",
+        "type": "percent",
+        "default": null,
+        "help": "Exclude candidates above this rate in loss-tolerant rankings.",
+        "min": 0,
+        "max": 100
+      },
+      {
+        "key": "violation_sensitivity",
+        "label": "Clinical-screen sensitivity cutoffs (%)",
+        "type": "percent-list",
+        "default": [
+          0,
+          0.1,
+          0.5,
+          1,
+          5
+        ],
+        "help": "Comma-separated cutoffs for the sensitivity report. Blank disables this optional report.",
+        "min": 0,
+        "max": 100,
+        "blank_means_empty": true
+      }
+    ]
+  },
+  {
+    "title": "Additional SSH recovery settings",
+    "description": "Optional. These supplement the destination, port, maximum attempts and transfer deadline above.",
+    "fields": [
+      {
+        "key": "ssh_retry_delay",
+        "label": "Initial retry delay (seconds)",
+        "type": "number",
+        "default": 2,
+        "help": "Exponential backoff between transient failures; zero disables waiting.",
+        "min": 0,
+        "max": 86400
+      },
+      {
+        "key": "ssh_connect_timeout",
+        "label": "Connection timeout (seconds)",
+        "type": "integer",
+        "default": 15,
+        "help": "Deadline for establishing an SSH connection.",
+        "min": 1,
+        "max": 86400
+      },
+      {
+        "key": "ssh_command_timeout",
+        "label": "Remote command timeout (seconds)",
+        "type": "integer",
+        "default": 60,
+        "help": "Deadline for setup, checksumming and publication commands.",
+        "min": 1,
+        "max": 86400
+      },
+      {
+        "key": "ssh_keepalive_interval",
+        "label": "Keepalive interval (seconds)",
+        "type": "integer",
+        "default": 15,
+        "help": "Interval between SSH keepalive messages.",
+        "min": 1,
+        "max": 86400
+      },
+      {
+        "key": "ssh_keepalive_count",
+        "label": "Missed keepalives before disconnect",
+        "type": "integer",
+        "default": 3,
+        "help": "Unanswered messages allowed before the connection is considered lost.",
+        "min": 1,
+        "max": 86400
+      }
+    ],
+    "when": "ssh"
+  },
+  {
+    "title": "Execution behaviour",
+    "description": "Optional. Independent failures remain recorded in the final report.",
+    "fields": [
+      {
+        "key": "continue_independent_errors",
+        "label": "Continue independent configurations after a failure",
+        "type": "boolean",
+        "default": true,
+        "help": "Allow other Phase 4/6 configurations to finish when one fails."
+      }
+    ]
+  }
+]

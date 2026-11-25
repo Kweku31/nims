@@ -1,0 +1,24 @@
+{
+  "csv_sha256": "ae673cd33e720ef07bb8391389d1a2f3ee6ca15419f9f6de99f7e93f2ac83852",
+  "source": "PhysioNet Challenge 2019 v1.0.0, Training Set A",
+  "packages": {
+    "gzip": {
+      "filename": "original_gzip_none_native_20261120_050618_520081_UTC.tar",
+      "sha256": "595d0ecf41fc6ac4ab314d7955232571d3ab819b3036705666b91a6fb2ede16b",
+      "sidecar_sha256": "a4109e5b351d03095d72b512d38254a89e1e335a352a6da97b1deca36de70e87",
+      "bytes": 14540800
+    },
+    "parquet": {
+      "filename": "original_parquet_none_native_20261120_050751_871883_UTC.tar",
+      "sha256": "d830e2a3a22ae26901cf6e8407e027a87950d1701e6401ed979db0800df59be9",
+      "sidecar_sha256": "78093ee8a2b26d3c6119e306accfb3b7a1c9f3200f36e5565b56e6823cdd1fa8",
+      "bytes": 7608320
+    },
+    "ae16": {
+      "filename": "original_autoencoder_16_native_20261120_051524_326109_UTC.tar",
+      "sha256": "a1ea57cb46739b4ede345203670c9828b4c85325e94aba21d6460afbf8b1e9f6",
+      "sidecar_sha256": "fb4d4c6cd84e6ad4e6e3e13cb21fb5cf6577a3476d0722c2c4e996cb5be10529",
+      "bytes": 42905600
+    }
+  }
+}
