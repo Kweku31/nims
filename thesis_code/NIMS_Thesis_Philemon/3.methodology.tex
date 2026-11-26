@@ -1,0 +1,972 @@
+% !TeX root = thesis.tex
+\chapter{Approach and Methodology}
+\label{chap:methodolgy}
+\section{Introduction}
+This chapter describes the methods used to investigate dimensionality
+reduction and compression strategies for transferring structured
+clinical data between hospitals and university data centres. It
+discusses the clinical data source and preparation procedures, followed
+by the methods used for baseline profiling, compression benchmarking and
+feature selection. It also presents principal component analysis and the
+autoencoder for dimensionality reduction. Finally, the methods for
+evaluating information preservation, transfer performance, package
+integrity and the selection of a suitable transfer strategy are
+discussed.
+
+\vspace{1cm}
+
+\section{Research Design}\label{research-design}
+
+A quantitative experimental research design is adopted. The
+investigation is comparative because the same clinical dataset is
+processed by a series of reduction and compression methods and the
+resulting representations are evaluated under defined criteria. Each
+experimental alternative is characterised by the input feature set,
+representation method, reduced dimension where applicable, and transfer
+packaging format. The methods are compared at the level of complete
+transferable artifacts rather than compressed numerical coordinates
+alone.
+
+\noindent Let the clinical dataset be represented by
+
+\[
+D=\{(\boldsymbol{x}_i,u_i,t_i,y_i)\}_{i=1}^{n},\tag{3.2.1}
+\]
+
+where \(D\) is the clinical dataset; \(n\) is its number of observation
+rows; \(i=1,\ldots,n\) indexes those rows; \(\boldsymbol{x}_i\) is the
+vector of \(p\) numerical clinical variables recorded for row \(i\)
+(with some values possibly missing); \(\mathbb{R}^{p}\) is the
+\(p\)-dimensional real vector space; \(u_i\) is the corresponding
+patient identifier; \(t_i\) is the zero-based hourly row index
+constructed for the corresponding patient during preparation, rather
+than a timestamp supplied in the PSV file; and \(y_i\) is the outcome
+label.
+
+\noindent Some components of \(\boldsymbol{x}_i\) may be unobserved. A reduction
+method constructs an encoded representation
+
+\[
+\boldsymbol{z}_i=f_{\theta}(\boldsymbol{x}_i), \qquad
+\boldsymbol{z}_i\in\mathbb{R}^{k},\quad k<p,\tag{3.2.2}
+\]
+
+\noindent where \(\boldsymbol{z}_i\) denotes the general \(k\)-dimensional reduced
+representation of observation \(i\); \(f_{\theta}\) is an encoding
+transformation parameterised by \(\theta\); \(\boldsymbol{x}_i\) is its
+original \(p\)-variable input; \(\mathbb{R}^{k}\) is the
+\(k\)-dimensional real vector space; and \(k<p\) requires fewer reduced
+coordinates than input variables. In the method-specific formulations
+below, standardised input values are denoted by \(z_{ij}\), while PCA
+scores and autoencoder bottleneck values receive distinct symbols.
+
+\noindent Where applicable, the reconstruction function is
+\(\hat{\boldsymbol{x}}_i=g_{\phi}(\boldsymbol{z}_i)\), with \(g_{\phi}\)
+denoting the decoder parametrised by \(\phi\) and
+\(\hat{\boldsymbol{x}}_i\) the estimated original-variable vector. The
+design therefore compares both the \emph{transmission benefit} from
+using \(\boldsymbol{z}_i\) and the \emph{information loss} associated
+with \(\hat{\boldsymbol{x}}_i\).
+
+\noindent The experiment consists of six methodological operations:
+characterisation of the input data; measurement of lossless compression
+and transfer baselines; selection of variables; generation of
+lower-dimensional representations; assessment of retained information;
+and packaging and verification of transfer artifacts. The outcomes are
+subsequently integrated using the Technique for Order Preference by
+Similarity to Ideal Solution (TOPSIS).
+
+\section{Data Source and Data Preparation}\label{data-source-and-data-preparation}
+
+\noindent A comparison of transfer methods requires a common starting table. The preparation therefore began with individual patient files and kept the link between each patient, hour and observation when the files were combined.
+
+\subsection{Source of Clinical Data}\label{source-of-clinical-data}
+
+The study uses structured intensive-care clinical data from the
+PhysioNet/\allowbreak Computing in Cardiology Challenge 2019, which was developed
+for research on early sepsis prediction \citep{Reyna2019,Reyna2020}. The selected cohort contains 20,336 patient records,
+supplied as individual pipe-separated value (PSV) files with successive
+hourly clinical observations. The data comprise physiological
+measurements, laboratory results, demographic and administrative
+characteristics, and a sepsis outcome label. The variation in
+measurement frequency, data types and completeness provides a suitable
+basis for examining dimensionality reduction and compression of
+structured clinical records.
+
+\noindent The source distributed the records by patient. Comparing methods on the full cohort required a common table in which the order of observations within each stay remained recoverable.
+
+\subsection{Consolidation of Patient Files and Temporal Indexing}\label{consolidation-of-patient-files-and-temporal-indexing}
+
+The source PSV files were read individually and consolidated into a
+single table. Before consolidation, the preparation procedure verified
+the expected 20,336 patient files, checked that filenames provided
+unique patient identifiers, and confirmed that each file was nonempty
+and contained the expected clinical columns in a consistent order. The
+pipe separator was used to read each file, and the order of observations
+within every patient file was preserved during consolidation.
+
+\noindent Two structural variables were added. The \texttt{patient\_id} variable
+was derived from each PSV filename without its extension, while
+\texttt{time} was constructed as a zero-based row index within that
+patient's file. For patient \(u\) with \(n_u\) hourly records, the
+generated index is \(t_{u,r}=r\), for \(r=0,1,\ldots,n_u-1\). The
+sequence begins at zero for each patient and identifies the successive
+hourly observation positions rather than a timestamp explicitly recorded
+in the original file. The resulting unit of observation is an hourly
+record associated with a particular patient; repeated records belonging
+to the same patient are not interpreted as independent individuals. The
+generated identifiers are retained to maintain the relationship between
+patients and their observations during processing, transfer and
+reconstruction.
+
+\noindent Once the files were combined, the columns had different roles. Patient and time identifiers linked observations, whereas the numerical measurements provided inputs for the reduction methods.
+
+\subsection{Variable Preservation and Numerical Preprocessing}\label{variable-preservation-and-numerical-preprocessing}
+
+Before dimensionality reduction, the dataset is separated into numerical
+predictors and fields requiring exact preservation. For the study
+representation, \texttt{patient\_id}, \texttt{time}, \texttt{Gender},
+\texttt{Unit1}, \texttt{Unit2} and \texttt{SepsisLabel} are retained
+without numerical reconstruction. The remaining eligible numerical
+variables form a matrix \(\boldsymbol{X}\in\mathbb{R}^{n\times p}\). The
+outcome label and the two generated structural fields
+(\texttt{patient\_id} and \texttt{time}) are not used as continuous
+coordinates in PCA or the autoencoder.
+
+\noindent The distinction between variables to be encoded and variables to be
+preserved is necessary because a latent representation may change
+numerical values upon reconstruction. The filename-derived patient
+identifier and generated hourly index must remain linked to their
+corresponding clinical observation, and the original target label must
+not be altered by compression.
+
+\noindent Clinical variables are not measured at every recorded hour. Let
+\(m_{ij}\) denote an observation indicator:
+
+\[
+m_{ij}=
+\begin{cases}
+	1,&x_{ij}\ \text{was originally observed},\\
+	0,&x_{ij}\ \text{was originally missing}.
+\end{cases}\tag{3.3.1}
+\]
+
+\noindent where \(m_{ij}\) is the missingness indicator for numerical variable
+\(j\) in observation \(i\); \(x_{ij}\) denotes that variable's original
+recorded value; \(1\) denotes an originally observed entry; and \(0\)
+denotes an originally missing entry. Here \(i\) indexes observation rows
+and \(j\) indexes numerical variables.
+
+\noindent For fitting the numerical models, a missing entry in column \(j\) is
+replaced by the median of that column, denoted by \(\tilde{x}_j\):
+
+\[
+x^{*}_{ij}=m_{ij}x_{ij}+(1-m_{ij})\tilde{x}_j.\tag{3.3.2}
+\]
+
+\noindent where \(x^*_{ij}\) is the value used for model fitting after imputation;
+\(m_{ij}\) is the observation indicator in Equation (3.3.1); \(x_{ij}\)
+is the originally observed measurement when \(m_{ij}=1\); and
+\(\tilde{x}_j\) is the median of the observed values in numerical column
+\(j\). The expression is interpreted piecewise: use \(x_{ij}\) if
+observed and \(\tilde{x}_j\) otherwise.
+
+\noindent Median imputation provides a deterministic numerical input and is less
+sensitive to extreme values than replacement by the arithmetic mean. The
+original observation mask is stored separately from the imputed matrix.
+After reconstruction, the mask is reapplied so that missing observations
+remain missing in the recovered table.
+
+\noindent The numerical variables have different units and magnitudes. For
+example, heart rate is measured in beats per minute and blood pressure
+in millimetres of mercury. To prevent variables with large numerical
+scales from disproportionately influencing PCA or the autoencoder loss
+function, the imputed columns are standardised:
+
+\[
+z_{ij}=\frac{x^{*}_{ij}-\mu_j}{s_j},\tag{3.3.3}
+\]
+
+\noindent where \(z_{ij}\) is the standardised value for observation \(i\) and
+variable \(j\); \(x^*_{ij}\) is the imputed value; \(\mu_j\) is the
+fitted mean of imputed column \(j\); and \(s_j\) is its fitted standard
+deviation, replaced by a safe positive scale if it would otherwise be
+zero.
+
+\noindent Denote the standardised matrix by \(\boldsymbol{Z}\). The same fitted
+centring and scaling parameters are applied during reconstruction.
+
+\section{Phase 1: Baseline Data Profiling}\label{phase-1-baseline-data-profiling}
+
+The data are first characterised to determine their structural and
+statistical properties. The recorded attributes include the number of
+rows and columns, numerical and categorical data types, original file
+size, approximate in-memory footprint, cardinality, frequency of zeros,
+missingness and pairwise dependence \citep{Kahn2016}.
+
+\subsection{Missingness, cardinality and sparsity}\label{missingness-cardinality-and-sparsity}
+
+Let \(n\) be the number of hourly observations and \(m_{ij}\) the
+observation indicator defined in Section 3.3. For variable \(j\), the
+percentage of missing hourly values is
+
+\[
+M_j=\frac{n-\sum_{i=1}^{n}m_{ij}}{n}\times100.\tag{3.4.1}
+\]
+
+\noindent where \(M_j\) is the hourly missingness percentage of variable \(j\);
+\(n\) is the total number of observation rows; \(m_{ij}\) equals \(1\)
+for an observed value and \(0\) for a missing value; and summing the
+indicators over the \(n\) rows counts the observed values. The factor
+\(100\) converts the missing fraction to a percentage.
+
+\noindent Cardinality is the number \(c_j\) of distinct observed values of
+variable \(j\). A normalised cardinality measure is \(c_j/n\). For
+numerical measurements, a zero-frequency measure is computed by counting
+observed entries equal to zero and dividing by the total number of rows.
+Zero values and missing values are recorded separately because a genuine
+zero measurement is not equivalent to an unobserved entry.
+
+\noindent These counts describe each field separately. Possible redundancy between two measurements requires examining the rows on which both were observed.
+
+\subsection{Dependence between variables}\label{dependence-between-variables}
+
+Pairwise relationships are described by Pearson's product-moment
+correlation and Spearman's rank correlation. For two numerical variables
+\(X\) and \(Y\) observed on \(q\) common rows, Pearson's coefficient is
+
+\[
+r_{XY}=
+\frac{\sum_{i=1}^{q}(x_i-\bar{x})(y_i-\bar{y})}
+{\sqrt{\sum_{i=1}^{q}(x_i-\bar{x})^2}
+	\sqrt{\sum_{i=1}^{q}(y_i-\bar{y})^2}}.\tag{3.4.2}
+\]
+
+\noindent where \(r_{XY}\) is Pearson's sample correlation between variables \(X\)
+and \(Y\); \(q\) is the number of rows with both variables observed;
+\(x_i\) and \(y_i\) are their paired values in row \(i\); \(\bar{x}\)
+and \(\bar{y}\) are the means of those \(q\) paired observations; and
+\(\sum\) denotes summation over the paired rows.
+
+\noindent Pearson correlation describes the strength and direction of linear
+association. Spearman's coefficient is calculated as the Pearson
+correlation of the corresponding ranks:
+
+\[
+\rho_s=\operatorname{Corr}\!\bigl(R(X),R(Y)\bigr).\tag{3.4.3}
+\]
+
+\noindent where \(\rho_s\) is Spearman's rank-correlation coefficient; \(R(X)\)
+and \(R(Y)\) are the ranked observed values of variables \(X\) and
+\(Y\), using tied ranks where required; and \(\operatorname{Corr}\)
+denotes Pearson correlation computed on those ranks.
+
+\noindent It describes monotonic association and can capture some relationships
+that are not well represented by a straight line. Distance correlation
+provides an additional descriptive measure of more general statistical
+dependence. Correlations are calculated on the available paired
+observations, with identifiers excluded from the clinical dependence
+matrix. Values of \(|r_{XY}|\geq0.95\) are used to identify pairs for
+redundancy review, not as automatic proof that a variable is clinically
+unnecessary.
+
+\section{Phase 2: Baseline Compression and Transfer Benchmarking}\label{phase-2-baseline-compression-and-transfer-benchmarking}
+
+\noindent The first transfer benchmark kept the full table intact. Preparing several lossless files from the same observations allowed writing time, file size and network copy time to be measured separately.
+
+\subsection{Lossless compression techniques}\label{lossless-compression-techniques}
+
+Three lossless representation formats are evaluated: gzip-compressed
+CSV, Zstandard-compressed CSV and Apache Parquet. Gzip and Zstandard
+apply lossless compression to serialised tabular data. Parquet stores
+data by column and supports efficient typed encoding and compression.
+The selected compression methods preserve the information represented in
+their respective input tables. For the same source table, the methods
+therefore provide a reference against which the size and recovery
+consequences of PCA and autoencoder representations may be assessed.
+
+\noindent Let \(B_0\) be the byte count of the reference file and \(B_c\) that of
+the resulting representation. The compression ratio and percentage size
+reduction are
+
+\[
+\operatorname{CR}=\frac{B_0}{B_c},
+\qquad
+R_B=100\left(1-\frac{B_c}{B_0}\right)\%.\tag{3.5.1}
+\]
+
+\noindent where \(\operatorname{CR}\) is the dimensionless compression ratio;
+\(R_B\) is the percentage reduction in stored or transmitted bytes;
+\(B_0\) is the byte count of the chosen reference representation; and
+\(B_c\) is the byte count of the candidate representation. The
+comparison uses the same definition of included package overhead for all
+candidates.
+
+\noindent Here the transmitted-byte measure is based on the complete transport
+artifact, including associated metadata and checksum information, rather
+than on latent coordinates or compressed table bytes in isolation. A
+method with a large compression ratio is not necessarily the preferred
+method when substantial preparation or reconstruction time is required.
+
+\subsection{Transfer timing and throughput}\label{transfer-timing-and-throughput}
+
+For the baseline benchmark, elapsed wall-clock time is recorded for
+lossless serialisation, file transfer and checksum verification.
+Observed transfer time is measured using Secure Copy Protocol (SCP) over
+a configured SSH connection. Model fitting, encoding and reconstruction
+times are evaluated in the subsequent methodological phases. Repeated
+timing trials for a fixed artifact provide estimates of central tendency
+and variation. This follows the benchmarking principle that performance
+should be assessed using both execution time and compressed size rather
+than compression ratio alone \citep{Kryukov2020}.
+
+\noindent For \(r\) repeated timings \(t_1,\ldots,t_r\), the sample mean and
+standard deviation are
+
+\[
+\bar{t}=\frac{1}{r}\sum_{j=1}^{r}t_j,\qquad
+s_t=\sqrt{\frac{1}{r-1}\sum_{j=1}^{r}(t_j-\bar{t})^2},
+\quad r>1.\tag{3.5.2}
+\]
+
+\noindent where \(t_j\) is the duration in seconds of timing repetition \(j\);
+\(r\) is the number of repeated trials; \(\bar{t}\) is their arithmetic
+mean; and \(s_t\) is the sample standard deviation of the trial
+durations. The standard deviation formula requires \(r>1\).
+
+\noindent The throughput achieved by an artifact with \(B\) transmitted bytes in
+\(t\) seconds is
+
+\[
+Q=\frac{8B}{10^6t}\quad\text{Mbit/s}.\tag{3.5.3}
+\]
+
+\noindent where \(Q\) is achieved data-transfer throughput in megabits per second
+(Mbit/s); \(B\) is the transmitted artifact size in bytes; \(t\) is the
+measured transmission duration in seconds; the factor \(8\) converts
+bytes to bits; and \(10^6\) converts bits to megabits.
+
+\noindent Where a measured transfer is unavailable, an ideal transmission estimate
+may be computed from an assumed bandwidth \(\beta\):
+
+\[
+t_{\mathrm{ideal}}=\frac{8B}{10^6\beta}.\tag{3.5.4}
+\]
+
+\noindent where \(t_{\mathrm{ideal}}\) is the idealised transfer time in seconds;
+\(B\) is the artifact size in bytes; and \(\beta\) is the assumed data
+rate in megabits per second (Mbit/s). The factors \(8\) and \(10^6\)
+convert units, and the estimate excludes measured networking overhead.
+
+\noindent The initial timings described the files on one transport. To compare transports under similar link conditions, the same file was then sent by both methods within each block.
+
+\subsection{Paired transfers of the baseline files}
+\noindent The five files retained from the original Phase Two benchmark were used to compare SCP with rsync on the same route to KNUST. The saved SHA-256 digests identified the files before transfer. Each block called for both methods to send each file directly to a fresh directory. The file order rotated across four blocks, and each transport went first twice for each file. This gave equal replication to the large CSV files and the smaller compressed files. Packaging was performed in the original benchmark and incurred no further cost in this comparison.
+
+\noindent Two durations were recorded for each delivery. Copy time covered the successful transfer command. Time to verified delivery also included creation of the receiving directory, remote checksum verification and publication of the verified file. For each file and endpoint, rsync time minus SCP time was calculated within each block. The median of these differences describes the typical advantage across matched transfers. A block contributed to a file's timing comparison only when both transfers passed remote verification on their first attempt. For the paired baseline, the three compressed formats were ranked separately under SCP and rsync. TOPSIS assigned equal weights to percentage size reduction (benefit), mean packaging time (cost) and mean copy time (cost). Size and packaging measurements came from the same original benchmark for both transports. Mean copy time was calculated from the verified matched trials of the transport being ranked.
+
+\section{Phase 3: Feature Selection}\label{phase-3-feature-selection}
+
+\noindent An hourly laboratory series can be sparse even when the test was ordered for many patients. The selection rules therefore considered both the fraction of missing rows and the proportion of patients with a recorded value.
+
+\subsection{Missingness-based selection}\label{missingness-based-selection}
+
+Feature selection is applied before numerical projection to determine
+the effect of removing columns that provide little observed information.
+For an hourly missingness threshold \(\tau\), define the preliminary
+retained-variable set
+
+\[
+\mathcal{S}_{\tau}=\{j:M_j\leq100\tau\}.\tag{3.6.1}
+\]
+
+\noindent where \(\mathcal{S}_{\tau}\) is the set of retained numerical variable
+indices; \(j\) indexes a candidate variable; \(M_j\) is its hourly
+missingness percentage from Equation (3.4.1); and \(\tau\) is the
+allowed missingness proportion, for example \(0.95\) for a \(95\%\)
+threshold.
+
+\noindent The study compares \(\tau=0.80\), \(0.90\) and \(0.95\), with a
+reference selection that does not apply the hourly-missingness
+threshold. These are experimental selection settings rather than
+medically prescribed completeness limits.
+
+\noindent A long admission contributes more hourly rows to the missingness calculation than a short admission. Counting each patient once gives a second measure of how widely a test was used.
+
+\subsection{Patient-coverage criterion}\label{patient-coverage-criterion}
+
+Hourly missingness and patient coverage measure different properties. A
+variable may be missing on many hourly rows while still having been
+measured at least once for a substantial number of patients. Let \(U\)
+denote the set of distinct patients and let \(c_j\) denote the number of
+patients with at least one recorded value of variable \(j\). Patient
+coverage is
+
+\[
+C_j=\frac{c_j}{|U|}\times100,\qquad
+c_j=\sum_{u\in U}\mathbf{1}\!
+\left(\exists i:u_i=u\ \land\ m_{ij}=1\right).\tag{3.6.2}
+\]
+
+\noindent where \(C_j\) is the patient-coverage percentage of variable \(j\);
+\(c_j\) is the number of distinct patients who have at least one
+observed value of that variable; \(U\) is the set of patient identifiers
+and \(|U|\) is its size; \(u\) identifies a patient in \(U\); \(u_i\)
+identifies the patient associated with observation \(i\); \(m_{ij}\) is
+the original observation indicator; \(\exists i\) means that at least
+one suitable observation exists; \(\land\) means `and'; and
+\(\mathbf{1}(\cdot)\) equals \(1\) when its condition is true and \(0\)
+otherwise.
+
+\noindent In addition to missingness-based filtering, a clinical-review variant is constructed using a configurable minimum patient-coverage threshold and explicit preservation of selected clinically relevant variables, including lactate. The patient-coverage threshold may be varied across experimental configurations to examine its influence on feature retention. The ordinary and clinical-review selection variants are evaluated using the same underlying dataset.
+
+\noindent A variable with at most one distinct observed value contains no
+empirical variation and can be identified for removal when not
+explicitly protected. Exact duplicates are identified through equality
+of complete column values, including their missing-value positions. High
+pairwise Pearson correlation is treated as evidence of potential
+redundancy and is flagged for review. Patient identifiers, time indices
+and the outcome label are preserved according to their structural roles.
+The outcome of feature selection is a lower-column-count data table
+whose retained measurements preserve their original values.
+
+\section{Phase 4: Dimensionality
+	Reduction}\label{phase-4-dimensionality-reduction}
+
+\noindent For each retained feature set, the study encoded the numerical measurements in a smaller number of coordinates. Comparing a linear projection with a learned nonlinear mapping at the same feasible width made it possible to examine what each recovered.
+
+\subsection{Principal Component Analysis}\label{sec:pca-method}
+
+Principal Component Analysis is a linear transformation that projects
+the standardised numerical data onto orthogonal directions of maximum
+variance \citep{Jolliffe2016}. Let
+\(\boldsymbol{Z}\in\mathbb{R}^{n\times p}\) be the standardised matrix
+and let its sample covariance matrix be
+
+\[
+\boldsymbol{S}=\frac{1}{n-1}\boldsymbol{Z}^{\mathsf T}\boldsymbol{Z},\tag{3.7.1}
+\]
+
+\noindent where \(\boldsymbol{S}\) is the \(p\times p\) sample covariance matrix;
+\(\boldsymbol{Z}\) is the \(n\times p\) centred, standardised data
+matrix; \(n\) is the number of rows; and superscript \(\mathsf{T}\)
+denotes matrix transposition. The factor \(1/(n-1)\) is the usual
+sample-covariance divisor.
+
+\noindent The standardisation step centres the numerical variables. The principal
+directions are obtained by solving the eigenvalue problem
+
+\[
+\boldsymbol{S}\boldsymbol{v}_j=\lambda_j\boldsymbol{v}_j,
+\qquad j=1,\ldots,p,\tag{3.7.2}
+\]
+
+\noindent where \(\boldsymbol{S}\) is the covariance matrix in Equation (3.7.1);
+\(\boldsymbol{v}_j\) is the \(j\)th eigenvector (principal direction);
+\(\lambda_j\) is its corresponding eigenvalue (variance along that
+direction); \(j\) indexes the principal components; and \(p\) is the
+number of numerical input variables, and \(\lambda_1\geq\lambda_2\geq\cdots\geq\lambda_p\geq0\). The
+eigenvector \(\boldsymbol{v}_1\) maximises the variance of the projected
+data under the unit-length constraint:
+
+\[
+\max_{\|\boldsymbol{v}\|_2=1}
+\boldsymbol{v}^{\mathsf T}\boldsymbol{S}\boldsymbol{v}.\tag{3.7.3}
+\]
+
+\noindent where \(\boldsymbol{v}\) is a candidate projection direction;
+\(\|\boldsymbol{v}\|_2\) is its Euclidean length; the condition
+\(\|\boldsymbol{v}\|_2=1\) restricts the direction to unit length;
+\(\boldsymbol{S}\) is the covariance matrix; superscript \(\mathsf{T}\)
+indicates transpose; and \(\max\) selects the direction with the largest
+projected variance.
+
+\noindent Successive components maximise remaining variance subject to
+orthogonality to preceding directions. Writing
+\(\boldsymbol{V}_k=[\boldsymbol{v}_1,\dots,\boldsymbol{v}_k]\), the
+reduced representation is
+
+\[
+\boldsymbol{T}_k=\boldsymbol{Z}\boldsymbol{V}_k,
+\qquad \boldsymbol{T}_k\in\mathbb{R}^{n\times k}.\tag{3.7.4}
+\]
+
+\noindent where \(\boldsymbol{T}_k\) is the \(n\times k\) matrix of PCA scores;
+\(\boldsymbol{Z}\) is the \(n\times p\) standardised input matrix;
+\(\boldsymbol{V}_k\) is the \(p\times k\) matrix whose columns are the
+first \(k\) eigenvectors; \(n\) and \(p\) are the row and input-variable
+counts; and \(k\) is the number of retained principal components.
+
+\noindent An approximate reconstruction in standardised coordinates is
+
+\[
+\widehat{\boldsymbol{Z}}=\boldsymbol{T}_k\boldsymbol{V}_k^{\mathsf T}.\tag{3.7.5}
+\]
+
+\noindent where \(\widehat{\boldsymbol{Z}}\) denotes the approximately
+reconstructed standardised data matrix; \(\boldsymbol{T}_k\) is the
+retained PCA score matrix; \(\boldsymbol{V}_k\) contains the first \(k\)
+eigenvectors; and superscript \(\mathsf{T}\) denotes transpose. The hat
+distinguishes reconstructed values from the original \(\boldsymbol{Z}\).
+
+\noindent The inverse of the standardisation transformation returns estimated
+clinical measurements to their original units. PCA explained-variance
+retention is
+
+\[
+\operatorname{EVR}(k)=
+\frac{\sum_{j=1}^{k}\lambda_j}{\sum_{j=1}^{p}\lambda_j}.\tag{3.7.6}
+\]
+
+\noindent where \(\operatorname{EVR}(k)\) is the fraction of total PCA variance
+explained by the first \(k\) components; \(\lambda_j\) is the eigenvalue
+of component \(j\); \(k\) is the retained component count; and \(p\) is
+the total number of numerical input variables. The numerator and
+denominator sum the retained and total eigenvalues, respectively.
+
+\noindent For a fixed \(k\), the projection minimises the squared Euclidean
+reconstruction error among rank-\(k\) linear approximations of the
+centred matrix. The experiments considered \(k\in\{2,4,8,16\}\) where feasible to examine
+the trade-off between representation size and information retention.
+
+\noindent The same bottleneck width can also be imposed without requiring orthogonal directions. A second model learned both the encoding and a decoder from the prepared table.
+
+\subsection{Nonlinear Autoencoder}\label{nonlinear-autoencoder}
+
+A nonlinear autoencoder is a feed-forward neural network designed to
+reproduce its input through a low-dimensional bottleneck \citep{Hinton2006}. The encoder transforms each standardised
+observation \(\boldsymbol{z}_i\in\mathbb{R}^{p}\) into a latent vector
+\(\boldsymbol{h}_i\in\mathbb{R}^{k}\):
+
+\[
+\boldsymbol{h}_i=f_{\boldsymbol{\theta}}(\boldsymbol{z}_i).\tag{3.7.7}
+\]
+
+\noindent where \(\boldsymbol{h}_i\) is the \(k\)-dimensional bottleneck (latent)
+vector for observation \(i\); \(f_{\boldsymbol{\theta}}\) is the
+autoencoder's fitted encoder with parameters \(\boldsymbol{\theta}\);
+and \(\boldsymbol{z}_i\) is the \(p\)-dimensional standardised input
+row, distinct from the generic reduced-vector notation in Equation
+(3.2.2).
+
+\noindent A decoder maps the latent vector back to the original feature dimension:
+
+\[
+\widehat{\boldsymbol{z}}_i=
+g_{\boldsymbol{\phi}}(\boldsymbol{h}_i).\tag{3.7.8}
+\]
+
+\noindent where \(\widehat{\boldsymbol{z}}_i\) is the reconstructed standardised
+input for observation \(i\); \(g_{\boldsymbol{\phi}}\) is the decoder
+with fitted parameters \(\boldsymbol{\phi}\); and \(\boldsymbol{h}_i\)
+is the encoded \(k\)-dimensional bottleneck vector from Equation
+(3.7.7).
+
+\noindent For a network layer \(\ell\) with weight matrix
+\(\boldsymbol{W}^{(\ell)}\), bias \(\boldsymbol{b}^{(\ell)}\) and
+activation function \(\sigma\), the output is
+
+\[
+\boldsymbol{a}^{(\ell)}
+=\sigma\left(
+\boldsymbol{W}^{(\ell)}\boldsymbol{a}^{(\ell-1)}
++\boldsymbol{b}^{(\ell)}
+\right).\tag{3.7.9}
+\]
+
+\noindent where \(\boldsymbol{a}^{(\ell)}\) is the output of neural-network layer
+\(\ell\); \(\boldsymbol{a}^{(\ell-1)}\) is the preceding layer's output;
+\(\boldsymbol{W}^{(\ell)}\) is the matrix of connection weights;
+\(\boldsymbol{b}^{(\ell)}\) is the bias vector; and \(\sigma\) is the
+activation function applied elementwise.
+
+\noindent The hidden units use the rectified linear activation
+\(\sigma(a)=\max(0,a)\). The autoencoder has the symmetric configuration
+
+\[
+p\ \longrightarrow\ 32\ \longrightarrow\ k\
+\longrightarrow\ 32\ \longrightarrow\ p,\tag{3.7.10}
+\]
+
+\noindent where \(p\) is the number of standardised numerical input features and
+reconstructed output features; each \(32\) denotes a hidden layer with
+\(32\) neurons; and \(k\) is the bottleneck dimension, selected from
+\(\{2,4,8,16\}\) where feasible. Arrows indicate successive encoder and decoder layers.
+
+\noindent Model parameters are estimated by minimising the mean squared
+reconstruction loss:
+
+\[
+\mathcal{L}(\boldsymbol{\theta},\boldsymbol{\phi})
+=\frac{1}{np}\sum_{i=1}^{n}
+\left\|
+\boldsymbol{z}_i-
+g_{\boldsymbol{\phi}}\!\left(
+f_{\boldsymbol{\theta}}(\boldsymbol{z}_i)
+\right)\right\|_2^2.\tag{3.7.11}
+\]
+
+\noindent where \(\mathcal{L}\) is the mean squared reconstruction loss;
+\(\boldsymbol{\theta}\) and \(\boldsymbol{\phi}\) are encoder and
+decoder parameters; \(n\) is the number of observations; \(p\) is the
+number of standardised input features; \(\boldsymbol{z}_i\) is the
+original standardised input row; \(f_{\boldsymbol{\theta}}\) and
+\(g_{\boldsymbol{\phi}}\) are the encoder and decoder; and
+\(\|\cdot\|_2^2\) is the squared Euclidean norm of the reconstruction
+error.
+
+\noindent Training uses the Adam optimiser with an upper limit of 500 iterations
+and a fixed random seed of 42. For the results in Chapter 4, PCA ran on
+the CPU and the autoencoder was fitted on an NVIDIA Quadro P2000 with
+Max-Q Design using CuPy, 32-bit floating-point arithmetic and batches
+of 4,096 rows. The training-loss improvement tolerance was \(10^{-4}\)
+and patience was 20 epochs. On the original feature set, the fits used
+404, 260, 273 and 179 epochs for \(k=2,4,8,16\), respectively.
+Encoding and receiver reconstruction ran on the CPU. The fitted encoder generates the
+lower-dimensional values. The fitted decoder parameters accompany the
+transmitted representation, enabling the receiving institution to
+recover approximate measurements without independently fitting another
+network. The autoencoder is nonlinear because compositions of its
+hidden-layer transformations are not restricted to one linear
+projection.
+
+\noindent The encoded PCA scores and autoencoder bottleneck values are stored with
+the parameters needed for inverse transformation, the names and order of
+original variables, the exact-pass-through columns and the original
+observation mask. Latent arrays use a compact floating-point
+representation. In evaluating size reduction, the byte count therefore
+includes both the encoded observations and their required reconstruction
+information. This is necessary for a fair comparison with lossless
+formats that transmit a directly recoverable dataset. PCA and the
+autoencoder encode each hourly observation as an individual numerical
+vector; although the generated time index is transmitted unchanged,
+neither method explicitly models the difference between successive hours
+or uses the preceding row as an input.
+
+\section{Phase 5: Evaluation of Information
+	Preservation}\label{phase-5-evaluation-of-information-preservation}
+
+\noindent A researcher may need an individual recorded value, the relationship between similar patients, or the set of variables available for a later analysis. Each use calls for a different check on the recovered table.
+
+\subsection{Numerical reconstruction accuracy}\label{numerical-reconstruction-accuracy}
+
+Reconstruction accuracy is measured by comparing original observed
+numerical values with estimates produced by the PCA and autoencoder
+decoders. Let
+
+\[
+\Omega=\{(i,j):m_{ij}=1\}\tag{3.8.1}
+\]
+
+\noindent where \(\Omega\) is the set of index pairs for originally observed
+numerical entries; \(i\) indexes rows; \(j\) indexes encoded clinical
+variables; and \(m_{ij}=1\) identifies an originally observed
+measurement according to Equation (3.3.1).
+
+\noindent Mean absolute error and root-mean-square error are computed as
+
+\[
+\operatorname{MAE}=
+\frac{1}{|\Omega|}
+\sum_{(i,j)\in\Omega}|x_{ij}-\hat{x}_{ij}|,\tag{3.8.2}
+\]
+
+\noindent where \(\operatorname{MAE}\) is mean absolute error; \(\Omega\) is the
+observed-entry index set; \(|\Omega|\) is the number of entries in that
+set; \(x_{ij}\) and \(\hat{x}_{ij}\) are the original and reconstructed
+values for variable \(j\) at row \(i\); and \(|\cdot|\) denotes the
+absolute value. The error is expressed in the corresponding measurement
+units when computed per variable.
+
+\[
+\operatorname{RMSE}=
+\sqrt{\frac{1}{|\Omega|}
+	\sum_{(i,j)\in\Omega}(x_{ij}-\hat{x}_{ij})^2}.\tag{3.8.3}
+\]
+
+\noindent where \(\operatorname{RMSE}\) is root-mean-square error; \(\Omega\) and
+\(|\Omega|\) are the set and count of originally observed entries;
+\(x_{ij}\) and \(\hat{x}_{ij}\) are original and reconstructed
+measurements; \(\sum\) adds the squared errors; and the square root
+converts squared differences back to the original units when the metric
+is computed per variable.
+
+\noindent The reported reconstruction-based coefficient of determination
+additionally compares standardised errors against the observed variation
+in each variable:
+
+\[
+R^2_{\mathrm{obs}}=
+1-
+\frac{\sum_j\sum_{i\in\Omega_j}
+	\left(\frac{x_{ij}-\hat{x}_{ij}}{s_j}\right)^2}
+{\sum_j\sum_{i\in\Omega_j}
+	\left(\frac{x_{ij}-\bar{x}_j}{s_j}\right)^2}.\tag{3.8.4}
+\]
+
+\noindent where \(R^2_{\mathrm{obs}}\) is the reconstruction-based coefficient of
+determination on originally observed entries; \(\Omega_j\) is the set of
+rows originally observed for variable \(j\); \(x_{ij}\) and
+\(\hat{x}_{ij}\) are original and reconstructed measurements; \(s_j\) is
+the fitted scale for variable \(j\); \(\bar{x}_j\) is the mean of its
+originally observed values; and the sums extend over evaluated variables
+\(j\) and their observed rows. The numerator is the standardised
+reconstruction sum of squares and the denominator is the corresponding
+observed total sum of squares.
+
+\noindent This score measures how much observed standardised variation is retained
+by reconstruction. It is distinguished from the PCA eigenvalue-based
+explained-variance ratio, since the two quantities need not coincide for
+all modelling and missing-data conditions.
+
+\noindent Small errors in individual values can still change which records resemble one another. The next comparison therefore treats each sampled record as a point in the common feature space.
+
+\subsection{Preservation of geometric relationships}\label{preservation-of-geometric-relationships}
+
+For the geometric evaluation, at most 200 patients are sampled
+reproducibly using random seed 42, with one observation selected for
+each sampled patient. This restricts pairwise-distance computations
+without altering the dataset used for dimensionality reduction. In the
+common standardised feature space, pairwise Euclidean distance is
+
+\[
+d_{ab}=\sqrt{\sum_{j=1}^{p}(z_{aj}-z_{bj})^2}.\tag{3.8.5}
+\]
+
+\noindent where \(d_{ab}\) is the Euclidean distance between sampled observations
+\(a\) and \(b\); \(z_{aj}\) and \(z_{bj}\) are their standardised values
+for variable \(j\) in a common input-feature space; and \(p\) is the
+number of variables used in that distance calculation. The square root
+of summed squared coordinate differences defines Euclidean distance.
+
+\noindent Distance preservation is assessed by correlating the vector of original
+pairwise distances with the corresponding vector after reconstruction.
+The neighbourhood preservation measure also compares the sets of nearest
+observations. For the \(K\) nearest neighbours of observation \(i\),
+write \(N_K(i)\) for the original set and \(\hat N_K(i)\) for its
+reconstructed counterpart. Their overlap is
+
+\[
+O_K(i)=
+\frac{|N_K(i)\cap\hat N_K(i)|}{K}.\tag{3.8.6}
+\]
+
+\noindent where \(O_K(i)\) is the fraction of the \(K\) nearest neighbours of
+sampled observation \(i\) preserved after reconstruction; \(N_K(i)\) is
+the set of its \(K\) nearest original observations; \(\hat N_K(i)\) is
+the corresponding set calculated from reconstructed measurements;
+\(|\cdot|\) denotes the number of elements in a set; and \(\cap\)
+denotes set intersection. The observation itself is excluded from its
+neighbour sets.
+
+\noindent Average overlap across sampled observations is reported for \(K=5\) and
+\(K=10\). This characterises whether the representation substantially
+changes relative proximity in the selected measurement space. The
+analysis uses individual observation vectors and does not evaluate the
+preservation of hour-to-hour temporal trajectories.
+
+\noindent Both preceding checks apply to the variables available for reconstruction. A separate comparison with the source is needed to account for measurements removed before the model was fitted.
+
+\subsection{Feature and measurement preservation}\label{feature-and-measurement-preservation}
+
+Feature retention is evaluated as the proportion of original numerical
+predictors retained in the transferred representation's input feature
+set:
+
+\[
+F_{\mathrm{ret}}=
+100\frac{p_{\mathrm{selected}}}{p_{\mathrm{original}}}.\tag{3.8.7}
+\]
+
+\noindent where \(F_{\mathrm{ret}}\) is the percentage of numerical clinical
+predictors retained after feature selection; \(p_{\mathrm{selected}}\)
+is their number in the selected feature set; and
+\(p_{\mathrm{original}}\) is their number in the original source feature
+set. The factor \(100\) expresses the ratio as a percentage.
+
+\noindent Observed-measurement retention is calculated from the proportion of
+originally observed numerical cells belonging to retained variables. In
+addition, a screening procedure records reconstructed vital-sign values
+newly outside predefined numerical plausibility bounds. These criteria
+describe how the representation affects the available information and
+provide inputs for the final decision method.
+
+\section{Phase 6: Transfer-Oriented Packaging and Verification}\label{phase-6-transfer-oriented-packaging-and-verification}
+
+\noindent A receiver needs both the payload and the information required to read it. This phase followed each package from assembly at the sender through verification and recovery at the destination.
+
+\subsection{Package construction and integrity verification}\label{package-construction-and-integrity-verification}
+
+The transfer procedure assembles the selected representation into a
+package containing the data artifact, relevant model or decoder
+parameters, a manifest, an account of transformations, field information
+and cryptographic checksums. A SHA-256 digest is calculated over the
+bytes of each protected artifact. If \(H\) denotes the SHA-256 hash
+function and \(F_s\) and \(F_r\) denote the sent and received files,
+integrity is checked through
+
+\[
+H(F_s)=H(F_r).\tag{3.9.1}
+\]
+
+\noindent where \(H(\cdot)\) is the SHA-256 hash function; \(F_s\) is the artifact
+at the sending location; and \(F_r\) is the received artifact. Equality
+of their digests is used to verify byte integrity, not to establish
+clinical accuracy.
+
+\noindent A mismatch indicates that the received bytes are not identical to the
+bytes used to calculate the expected checksum, and the artifact is
+rejected for recovery. SHA-256 is defined by the NIST Secure Hash
+Standard (FIPS 180-4) \citep{NIST2015}. Successful byte-integrity verification and
+successful numerical reconstruction are assessed separately, because
+exact package delivery does not imply that a lossy representation
+reproduces every original clinical value.
+
+\noindent A verified checksum establishes that the expected bytes arrived. The receiving analyst must still extract the package and recover the table, and both operations take time.
+
+\subsection{Complete-delivery and computation cost}\label{complete-delivery-and-computation-cost}
+
+Measured and idealised transfer durations are distinguished throughout
+the evaluation. For a candidate method, the time required to produce and
+recover a transferable representation is considered through a
+complete-delivery estimate,
+
+\[
+T_{\mathrm{delivery}}=
+T_{\mathrm{package}}+
+T_{\mathrm{transmit}}+
+T_{\mathrm{verify}}+
+T_{\mathrm{unpack}}+
+T_{\mathrm{recover}}.\tag{3.9.2}
+\]
+
+\noindent where \(T_{\mathrm{delivery}}\) is the combined delivery-time estimate;
+\(T_{\mathrm{package}}\) is serialisation and package creation time;
+\(T_{\mathrm{transmit}}\) is file-transfer time (observed or separately
+labelled estimated); \(T_{\mathrm{verify}}\) is checksum-verification
+time; \(T_{\mathrm{unpack}}\) is archive extraction time; and
+\(T_{\mathrm{recover}}\) is decompression or reconstruction time. All
+terms are measured in seconds.
+
+\noindent For dimensionality-reduction models, the initial fitting cost is
+considered separately. If a fitted model can be reused across \(q\)
+deliveries, its amortised contribution is \(T_{\mathrm{fit}}/q\). Thus,
+
+\[
+T_{\mathrm{effective}}=
+T_{\mathrm{delivery}}+
+\frac{T_{\mathrm{fit}}}{q}.\tag{3.9.3}
+\]
+
+\noindent where \(T_{\mathrm{effective}}\) is effective delivery time in seconds;
+\(T_{\mathrm{delivery}}\) is the combined time from Equation (3.9.2);
+\(T_{\mathrm{fit}}\) is the time spent fitting the PCA or autoencoder
+model; and \(q\) is the assumed number of deliveries over which that
+fitting cost is shared (\(q\geq1\)).
+
+\noindent In the reference comparative configuration, \(q=1\), meaning the fitting
+cost is attributed to a single transfer. All timing components are
+recorded with their measurement locations and network mode.
+
+\noindent The timing model assumes that transfer eventually succeeds. A paired experiment examined how much extra time an interruption introduced and whether the receiver could reuse a partial archive.
+
+\subsection{Paired SCP and rsync follow-up}\label{sec:paired-method}
+The sender reused the original-feature Parquet, gzip and 16-component autoencoder (AE-16) archives. The archive and sidecar hashes identified the exact packages from the earlier experiment. Four consecutive blocks covered the same workstation-to-KNUST route. In each block, both transports delivered each of the three archives over SSH to a new destination. Each transport also delivered AE-16 with one deliberate interruption. The use of repeated measurements follows the benchmarking rationale of \citet{Kalibera2013}. Each condition had two SCP-first and two rsync-first blocks, giving 24 uninterrupted and eight interrupted deliveries.
+
+For the interrupted condition, the sender closed the first copy connection once its outgoing protocol stream had forwarded 21,452,800 bytes, half the AE-16 archive size. This counter was upstream of SSH encryption. SCP began a fresh copy on retry. Rsync could use the partial file retained in the staging directory for that trial. Both transports had the same allowance of three attempts and an initial retry delay of two seconds. A new trial started with an empty destination.
+
+The clock ran from the start of the delivery attempt until the receiver verified the archive and sidecar against their SHA-256 hashes and made the verified directory available. It included time spent on failed attempts and retry delays. The archives already existed at the sender, and the clock stopped before unpacking or reconstruction. For each condition, rsync time minus SCP time was calculated within each block and the four differences were summarised by their median. All scheduled deliveries counted towards the completion totals. These observations were analysed separately from the original delivery-cost rankings. The accompanying reproduction archive contains the observations, code and checksums needed to regenerate the paired tables.
+
+\section{Integrated Multicriteria Decision Analysis Using TOPSIS}\label{integrated-multicriteria-decision-analysis-using-topsis}
+
+The performance of a transfer strategy depends on more than one
+quantity. Smaller files may require greater training or reconstruction
+effort, while more accurate representations may require greater
+transmission volume. The Technique for Order Preference by Similarity to
+Ideal Solution (TOPSIS), developed by \cite{Hwang1981} and surveyed by \cite{Behzadian2012}, is used to
+combine the performance criteria into a transparent ranking of
+alternatives.
+
+\noindent Let \(\boldsymbol{A}=[a_{ij}]\) be an \(m\times d\) decision matrix,
+where \(m\) is the number of eligible transfer configurations and \(d\)
+is the number of decision criteria. The evaluation includes total
+transmitted bytes, effective delivery time, reconstruction-based
+retained variation, nearest-neighbour preservation, clinical-predictor
+retention, observed-measurement retention and the percentage of new
+range-screening violations. Byte count, time and violations are cost
+criteria, while the remaining variables are benefit criteria.
+
+\noindent The decision values are normalised by
+
+\[
+r_{ij}=\frac{a_{ij}}{\sqrt{\sum_{i=1}^{m}a_{ij}^2}},\tag{3.10.1}
+\]
+
+\noindent where \(r_{ij}\) is the vector-normalised TOPSIS score of decision
+alternative \(i\) on criterion \(j\) (not Pearson's correlation);
+\(a_{ij}\) is the corresponding original criterion value; \(m\) is the
+number of eligible alternatives; and the summation from \(i=1\) to
+\(i=m\) runs over all eligible alternatives for the same criterion and weighted to produce
+
+\[
+v_{ij}=w_jr_{ij},
+\qquad w_j\ge0,\qquad\sum_{j=1}^{d}w_j=1.\tag{3.10.2}
+\]
+
+\noindent where \(v_{ij}\) is the weighted normalised score of alternative \(i\)
+on criterion \(j\); \(r_{ij}\) is the normalised score from Equation
+(3.10.1); \(w_j\) is the nonnegative importance weight of criterion
+\(j\); and \(d\) is the total number of decision criteria. The weights
+sum to one.
+
+\noindent The positive ideal value \(v_j^+\) is the most desirable observed value
+for criterion \(j\), and the negative ideal value \(v_j^-\) is the least
+desirable. Their definitions depend on whether the criterion is a
+benefit or a cost. The Euclidean distances of alternative \(i\) from the
+ideals are
+
+\[
+D_i^+=\sqrt{\sum_{j=1}^{d}(v_{ij}-v_j^+)^2},
+\qquad
+D_i^-=\sqrt{\sum_{j=1}^{d}(v_{ij}-v_j^-)^2}.\tag{3.10.3}
+\]
+
+\noindent where \(D_i^+\) and \(D_i^-\) are the Euclidean distances of alternative
+\(i\) from the positive and negative ideal solutions; \(v_{ij}\) is its
+weighted normalised score on criterion \(j\); \(v_j^+\) and \(v_j^-\)
+are the best and worst criterion values selected according to benefit or
+cost direction; and \(d\) is the number of decision criteria.
+
+\noindent Relative closeness to the positive ideal is
+
+\[
+C_i=\frac{D_i^-}{D_i^++D_i^-},
+\qquad 0\le C_i\le1.\tag{3.10.4}
+\]
+
+\noindent where \(C_i\) is the TOPSIS relative-closeness coefficient of
+alternative \(i\); \(D_i^+\) and \(D_i^-\) are its distances from the
+positive and negative ideals from Equation (3.10.3); and a larger
+\(C_i\) denotes a more preferred alternative under the specified
+eligible candidate set and weights. The coefficient lies between \(0\)
+and \(1\) whenever the denominator is nonzero.
+
+\noindent Alternatives are ordered from highest to lowest \(C_i\). Different weighting profiles are considered to examine how rankings respond to changes in the relative importance assigned to transfer efficiency and information retention.
+
+\noindent Rankings are calculated for alternatives with comparable input feature
+sets and transfer evidence. Separate fidelity requirements distinguish
+exact preservation of the complete original table, exact preservation of
+selected columns, and representations that permit reconstruction error.
+This avoids treating a reduced clinical feature set as equivalent to the
+complete source merely because its remaining columns can be
+reconstructed or transferred accurately.
+
+\section{Chapter Summary}\label{sec:methods-summary}
+
+The methodology combines baseline profiling, lossless compression
+benchmarking, feature selection, PCA and autoencoder dimensionality
+reduction, checks on information preservation, and transfer packaging
+with integrity verification. Experiment settings, fitted parameters and
+random seeds are retained to support reproducibility. The resulting
+measurements are compared using TOPSIS, while the quantitative findings
+and their interpretation are presented in Chapter Four.

@@ -1,0 +1,49 @@
+% !TeX root = thesis.tex
+\chapter{Introduction}\label{chap:introduction}
+
+\section{Background}\label{background}
+\noindent The use of information technology in healthcare has increased the amount of clinical data generated and stored by hospitals. Electronic health records, laboratory information systems and patient monitors hold observations on diagnoses, medicines, investigations and treatment outcomes. Hospitals collect these records primarily for patient care, but the same observations can support medical research and health planning. Their use in research requires care. A patient may have a heart rate recorded every hour and a laboratory measurement recorded only once during an admission. Such differences in the frequency and completeness of observations affect how the records can be prepared and interpreted \citep{Shickel2018,Tang2020}.
+
+\noindent Where a university undertakes research in collaboration with a hospital, the records may need to be transferred to a university data centre. The resources required depend on the number of patients and observations, the way the records are stored, and the bandwidth available between the two institutions \citep{Lee2026}. One approach is to reduce the number of variables. Principal component analysis (PCA) represents the data through components that capture variation in the original variables \citep{Jolliffe2016}. Autoencoders learn a representation through a neural network and can capture nonlinear relationships \citep{Hinton2006}. Their application to intensive care records illustrates the potential of this approach for clinical time series \citep{Merkelbach2023}.
+
+\noindent A second approach is to change how the same observations are stored. A table can be written as a comma-separated values (CSV) file, compressed with gzip or Zstandard, or stored by column in Apache Parquet \citep{Deutsch1996,Collet2021,Zeng2023}. These choices affect how much the sender must transmit and how much work is needed to produce and read the file. A smaller file can take longer to prepare, even when it crosses the network more quickly \citep{Kryukov2020}.
+
+\section{Motivation}\label{Motivation}
+\noindent The motivation for this study arose from a practical concern in sharing clinical records. The sending institution bears the cost of preparing the data, while the receiving research team needs observations it can still interpret. Omitting an infrequently recorded laboratory variable, for example, also removes the measurements for the patients who received that investigation. Equally, time saved on transmission can be spent fitting a model before a fresh dataset is ready to send. It is therefore useful to examine the demands on both institutions alongside the information retained for analysis.
+
+\section{Problem Statement}\label{problem_statement}
+\noindent Previous work addresses different parts of this problem. FIDDLE, developed by \citet{Tang2020}, prepares structured clinical records for machine learning. \citet{LeeShinLee2025} studied the sharing of PCA-reduced data between computing nodes using a network intrusion dataset. Studies of compression and columnar storage have examined file size and processing performance \citep{Kryukov2020,Zeng2023,Lee2026}. A question remains for clinical data sharing. Once preparation, transmission and recovery are counted, which representations offer a worthwhile saving, and which observations or relationships are lost in obtaining it? The study examined the proposition that the smallest representation need not give the shortest delivery time once preparation and recovery are included. The choice of transfer method raises a related question about how long the receiver must wait for an intact file, particularly if a connection breaks during transmission.
+
+\section{Objectives}\label{Objectives}
+\noindent The receiving analyst needs to know which observations will be available and how soon the table can be used. These two requirements informed the general objective and its four specific objectives.
+
+\subsection{General Objective}
+\noindent The aim of this study was to evaluate how dimensionality reduction and compression affect the size, verified delivery cost and information content of structured clinical data sent to a university data centre.
+
+\noindent The specific objectives follow the records from the first profile of the cohort to recovery of the table at the university server.
+
+\subsection{Specific Objectives}
+\noindent The specific objectives were
+\begin{enumerate}
+\item To characterise dimensionality, sparsity, missingness, cardinality and storage requirements of the dataset.
+\item To compare feature selection, dimensionality reduction models and lossless file representations in terms of size, preparation time and preservation of recorded information.
+\item To evaluate package integrity and receiver recovery using manifests and checksums, and to compare verified delivery with different transfer modes under uninterrupted and interrupted transfer.
+\item To recommend transfer configurations for the evaluated setting according to the receiver's fidelity requirements, the state of preparation of the payload and the measured delivery costs.
+\end{enumerate}
+
+\section{Outline of Methodology}\label{Outline of Methodology}
+\noindent The study followed an experimental approach using de-identified hourly patient records from Training Set A of the PhysioNet sepsis challenge \citep{Reyna2019}. A workstation represented the clinical data source, and a server at the Kwame Nkrumah University of Science and Technology (KNUST), Kumasi, served as the receiver. This arrangement allowed the transfer to be measured on a university link while the source data remained available to other researchers.
+
+\noindent The first phase established the dimensions, data types, missingness, cardinality and storage requirements of the cohort. The second compared the original and rewritten CSV files with gzip, Parquet and Zstandard. File preparation and transmission were timed separately. The third phase examined missingness, patient coverage and relationships among variables to identify candidates for removal and to distinguish them from variables selected for retention.
+
+\noindent The fourth phase applied PCA and autoencoders to obtain lower-dimensional representations. The fifth examined the quality of reconstruction on observed values, the extent to which neighbouring records remained similar and the occurrence of values outside the specified clinical ranges. In the sixth phase, manifests and checksums accompanied the packages so that the receiver could verify and recover their contents. The analysis distinguished data prepared afresh from payloads already available for dispatch. Paired experiments compared secure copy (SCP) and rsync on the five baseline files and on prepared archives. For the largest archive, the comparison also examined delivery after a controlled interruption.
+
+\section{Tools Used for Documentation}
+\noindent Python was used to prepare the data, conduct the experiments and produce the tables and figures. The thesis was typeset in Latex.
+%\LaTeX.
+
+\section{Justification of Study}\label{Justification of Study}
+\noindent A research team receiving clinical records needs to know what has arrived and what the sender left out. A checksum can confirm that a file arrived intact, while a manifest can identify variables removed before transfer. Neither tells the analyst whether the remaining observations are adequate for a particular study. By examining preservation of the recorded information alongside storage and delivery costs, this work provides a basis for choosing a representation that suits the intended analysis and the resources available to the collaborating institutions.
+
+\section{Chapter Summary}\label{Chapter Summary}
+\noindent This chapter introduced the problem of sharing structured clinical records between hospitals and university data centres. It set out the objectives and the experimental approach used to examine the trade-offs between reducing data size, completing delivery and retaining information for research. Chapter~\ref{chap:guide} reviews the clinical data preparation, dimensionality reduction and compression studies on which the investigation draws.

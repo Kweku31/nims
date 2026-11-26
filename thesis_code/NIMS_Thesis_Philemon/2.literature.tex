@@ -1,0 +1,212 @@
+% !TeX root = thesis.tex
+\chapter{Literature Review}\label{chap:guide}
+\section{Introduction}\label{introduction}
+
+This chapter reviews studies on dimensionality reduction and compression of structured clinical data. It discusses the characteristics and preprocessing of electronic health records, followed by feature selection, principal component analysis and autoencoders. It also examines lossless compression and node-to-node data sharing. Finally, the chapter compares existing studies and discusses the research gap that motivates the present study.
+
+\section{Structured Clinical Data and Preprocessing}\label{structured-clinical-data-and-preprocessing}
+
+Electronic health records (EHRs) contain demographic information, vital
+signs, laboratory results and other observations collected during
+patient care. These data can be high-dimensional, incomplete and
+heterogeneous, with repeated measurements recorded at different times.
+Such characteristics complicate both analytical use and the preparation
+of consistent data for exchange \citep{Shickel2018,Hong2018}. The
+PhysioNet/Computing in Cardiology Challenge 2019 dataset, described by
+\citet{Reyna2020}, provides an example of structured, hourly
+intensive-care measurements with differing patterns of observation.
+
+\noindent Data preprocessing is therefore an important step before dimensionality
+reduction. \citet{Ferrao2016} proposed a roadmap for converting
+structured clinical records into analysis-ready matrices, highlighting
+feature definitions, missing values, repeated observations and
+integration of data elements. Similarly, \citet{Kahn2016} emphasised the
+need to assess the completeness and consistency of EHR data intended for
+secondary research.
+
+\noindent \citet{Tang2020} developed FIDDLE, a flexible preprocessing pipeline
+that filters infrequent variables, transforms clinical observations into
+features and removes uninformative or redundant features. Their
+evaluation demonstrated the usefulness of systematic preprocessing for
+clinical prediction across two ICU databases. However, FIDDLE primarily
+addresses the preparation of features for machine learning; it does not
+directly evaluate the cost of packaging and transferring those features
+between institutions. These studies establish the importance of data
+quality and reproducible preprocessing, but do not resolve the question
+of how much clinical information can be retained in a smaller
+transferable dataset.
+
+\noindent In a study of inpatient deterioration, \citet{Sun2024} examined twelve laboratory measurements. Seven were missing in roughly nine out of ten instances. The authors compared ways of representing whether a test had been ordered as well as the value obtained. Their design helps explain why a sparse laboratory column merits review before removal. Once the column is dropped, a receiving analyst loses both its recorded values and the ability to identify the occasions on which it was measured.
+
+\section{Dimensionality Reduction of Clinical Data}\label{dimensionality-reduction-of-clinical-data}
+
+Dimensionality reduction represents data using fewer variables or
+coordinates. In structured clinical data, the principal approaches
+considered in this study are feature selection, principal component
+analysis (PCA) and autoencoders. They differ in whether original
+clinical variables remain directly accessible and in the forms of
+dependence they can represent.
+
+\subsection{Feature Selection}\label{feature-selection}
+
+Feature selection reduces dimensionality by retaining a subset of the
+original variables. Selection criteria may be based on missingness,
+patient coverage, variability, redundancy or relevance to an analytical
+task. Its main advantage for clinical transfer is that retained
+measurements preserve their original meanings and units. However,
+filtering a variable solely because it is rarely observed could discard
+an infrequent but clinically informative laboratory measurement.
+
+\noindent \citet{Hernandez2023} combined feature reduction with long short-term
+memory networks for antimicrobial-resistance prediction. Their results
+showed that selecting fewer variables could improve prediction in that
+setting. Nevertheless, the evaluation focused on predictive performance
+rather than the storage or transmission size of the resulting clinical
+records. This distinction motivates examining feature retention
+alongside transferable file size, rather than using prediction accuracy
+as the only measure of reduction quality.
+
+\noindent Feature selection leaves gaps in the list of variables available to the receiver. Projection offers another possibility because several measurements can contribute to each coordinate sent.
+
+\subsection{Principal Component Analysis}\label{principal-component-analysis}
+
+PCA is a linear dimensionality-reduction technique that transforms
+correlated variables into orthogonal components ordered by the variance
+they explain. \citet{Jolliffe2016} describe its statistical foundations
+and its role in obtaining compact representations while retaining
+substantial variation in the input data. PCA is computationally
+established and offers a transparent way of controlling the number of
+retained components.
+
+\noindent A limitation is that large explained variance does not necessarily imply
+preservation of every clinically important measurement. PCA can also
+reconstruct numerical measurements only approximately when components
+are discarded. Moreover, a transferable PCA representation must include
+the fitted transformation and sufficient metadata for decoding.
+Consequently, the number of components alone is not an adequate measure
+of the complete transfer cost.
+
+\noindent PCA restricts the recovered records to a linear subspace. Learning a nonlinear mapping extends the range of relationships that can be represented at the same dimension.
+
+\subsection{Autoencoders}\label{autoencoders}
+
+Autoencoders use an encoder and decoder to learn a lower-dimensional
+representation from which input measurements can be reconstructed.
+Unlike linear PCA, an autoencoder with nonlinear activation functions
+can learn nonlinear relationships between variables. \citet{Hinton2006}
+demonstrated the potential of neural networks for compact data
+representations.
+
+\noindent In clinical applications, \citet{Jun2019} combined a variational
+autoencoder with uncertainty-aware imputation for mortality prediction
+on EHR data. \citet{Landi2020} used a convolutional autoencoder to
+obtain patient representations for disease stratification, showing that
+learned representations can retain information useful for clinical
+analysis. These studies support the value of nonlinear representation
+learning; however, their principal evaluation targets were imputation,
+prediction or clustering. \citet{Merkelbach2023} also used a recurrent autoencoder to study subgroups in intensive care records. These studies did not establish whether an encoded
+clinical dataset, including its trained decoder and supporting
+information, would be smaller or faster to transmit than an
+appropriately compressed original dataset.
+
+\noindent A reconstruction can also be assessed against a task that the receiver intends to perform. \citet{Guan2026} reconstructed twelve-lead electrocardiograms from three leads and evaluated both waveform error and performance on a cardiac classification task. Those signals differ from hourly ICU tables, but the distinction between the two tests carries over. A high reconstruction score for the sepsis table warrants a further question about whether the same records would support a specified patient-level analysis.
+
+\section{Compression and Transfer of Clinical
+	Data}\label{compression-and-transfer-of-clinical-data}
+
+Dimensionality reduction and lossless compression address different
+aspects of dataset size. Dimensionality reduction changes the
+representation and may introduce reconstruction error. Lossless
+compression reduces the number of bytes required to store an existing
+representation without intentionally changing its information. Methods
+such as gzip and Zstandard \citep{Deutsch1996,Collet2021} can be compared with column-oriented storage
+formats such as Parquet, which may use internal encoding and
+compression. Parquet is a file format rather than a single compression
+algorithm, so comparisons must consider the complete file written and
+the preservation of data types and missing values. Work on large clinical datasets has also examined Parquet as part of end-to-end processing \citep{Lee2026}.
+
+\noindent \citet{Hong2018} identified data storage, interoperability and sharing
+among the challenges associated with healthcare big data. From a
+transfer perspective, a smaller payload is beneficial only if the
+required metadata, missingness indicators, numerical transformation
+parameters and any decoder are included in the size calculation.
+Compression and decompression time, file-read time and network
+transmission time also contribute to overall delivery performance. For
+research use, the recovered dataset must retain patient-to-observation
+associations and provide a means of verifying package integrity. These
+considerations suggest evaluating complete transferable artifacts
+instead of numerical representations in isolation.
+
+\noindent \citet{Liu2025} benchmarked analytical storage formats across several workloads and found that the cost of decoding could offset some of the benefit of reading fewer bytes. This matters when defining the endpoint of a clinical transfer. A small file saves network traffic, but the receiver may still have to spend time decoding it before the observations are usable. Measuring preparation, copying and recovery separately makes that trade-off visible.
+
+\section{Dimensionality Reduction for Node-to-Node Data Sharing}\label{dimensionality-reduction-for-node-to-node-data-sharing}
+
+\citet{LeeShinLee2025} proposed a PCA-based method for data sharing between
+nodes operating with non-identically distributed data. The transmitting
+node reduces the dimensionality of its data before sharing the
+representation with another node. The authors reported improved memory
+efficiency under selected configurations, including an approximately
+42-fold improvement when using a single principal component. Their
+experiments used the UNSW-NB15 network-intrusion dataset, rather than
+clinical records.
+
+\noindent This study is relevant because it places dimensionality reduction
+directly within a data-sharing process, rather than treating it solely
+as a preprocessing step for prediction. Nevertheless, its reported
+memory efficiency is not equivalent to a measured reduction in
+end-to-end hospital-to-university transfer time. Its privacy findings
+are also specific to its evaluation setting and do not constitute a
+general guarantee that PCA anonymises clinical data. A clinical transfer
+study must additionally consider missing observations, feature
+interpretability, reconstructability and the overhead of a complete data
+package.
+
+\noindent \citet{Zheng2024} measured Globus throughput with integrity checking and examined how dividing files into chunks affected delivery on high-bandwidth scientific facilities. The scale differs from a workstation sending data to KNUST, but the experiment illustrates why a transfer result needs a clearly defined endpoint. A further practical question is how much of the first attempt the receiver can use if the connection breaks.
+
+\subsection{Completing a transfer after an interruption}
+A receiver may already hold part of a file when a connection fails. The rsync algorithm locates blocks that match data at the receiver and sends the material needed to complete the file \citep{TridgellMackerras1996}. This suggests a reason to retain a partial archive for the next attempt. For a first upload to an empty directory there is no earlier copy to use. The distinction matters when comparing SCP and rsync on a working link and on a link interrupted during the same upload.
+
+\section{Critical Comparison of Existing Studies}\label{critical-comparison-of-existing-studies}
+
+The selected studies demonstrate complementary strengths, but they
+generally evaluate preprocessing effectiveness, analytical utility or
+data sharing separately. Table~\ref{tab:ch2-comparison} summarises the distinctions most
+relevant to the present research.
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.18\textwidth}>{\raggedright\arraybackslash}p{0.34\textwidth}>{\raggedright\arraybackslash}p{0.40\textwidth}@{}}
+	\caption{Comparison of selected studies relevant to clinical-data reduction and transfer}\label{tab:ch2-comparison}\\
+	\toprule
+	Study & Main contribution & Aspect not evaluated for the present problem \\
+	\midrule
+	\endfirsthead
+	\toprule
+	Study & Main contribution & Aspect not evaluated for the present problem \\
+	\midrule
+	\endhead
+	\bottomrule
+	\endfoot
+	\citet{Ferrao2016} & Framework for preparing structured clinical records & Transfer size and transmission performance \\
+	\citet{Tang2020} & Reproducible clinical feature extraction and filtering & Complete transfer-package overhead \\
+	\citet{Hernandez2023} & Feature reduction for clinical prediction & Byte-level transfer cost and reconstruction \\
+	\citet{Landi2020} & Autoencoder-based EHR representation learning & Comparison with lossless file transfer \\
+	\citet{Sun2024} & Used laboratory observation patterns in inpatient prediction & Consequences of dropping sparse columns from a shared extract \\
+    \citet{Guan2026} & Assessed ECG reconstruction with waveform and classification measures & Recovery of incomplete hourly clinical tables \\
+    \citet{Liu2025} & Measured encoding and reading costs across analytical formats & Verified delivery of a clinical table to a remote receiver \\
+    \citet{Zheng2024} & Tested file chunking and integrity checking for high-speed scientific transfers & Recovery after an interrupted clinical archive upload on the KNUST route \\
+    \citet{LeeShinLee2025} & PCA-based node-to-node data sharing & Longitudinal ICU data and clinical information preservation \\
+\end{longtable}
+
+
+\noindent The evidence suggests that good analytical performance is not
+sufficient, by itself, to establish transfer efficiency. A clinically
+useful compression strategy should be assessed across several
+dimensions: final file size, processing and transmission time,
+recoverability of original fields, numerical reconstruction quality and
+preservation of the dataset's structure. Where these criteria compete, a
+multicriteria comparison provides a structured basis for choosing among
+alternatives \citep{Behzadian2012}.
+
+\section{Chapter Summary}\label{sec:literature-summary}
+
+This chapter reviewed studies on structured clinical data and the methods used to prepare and reduce these data for analysis and transfer. The earlier sections discussed the characteristics and preprocessing of electronic health records, followed by feature selection, principal component analysis and autoencoders. The chapter also examined lossless compression, node-to-node data sharing and the findings of related studies. The comparison of these studies highlighted the need to assess transfer efficiency alongside the preservation of clinical information. The methodology adopted in the present study is described in the following chapter.
+

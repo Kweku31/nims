@@ -1,0 +1,259 @@
+\documentclass[nimsghana,MS,gradschool]{nimsthesis}
+%\documentclass[nimsghana,twoside,bind]{nimsthesis}
+% Use the second for a single-spaced copy suitable for duplex printing
+% and binding.
+
+% Other useful options (there are more options documented in Chapter 2):
+%  * draft -- don't actually include images, print a black bar on overful
+%             hboxes
+%  * MS    -- Format for a Master's Thesis.  
+%-------------------------------------------------
+\usepackage{etex}
+\usepackage{natbib}
+\usepackage{pgfplots}
+\usepackage[utf8]{inputenc}
+\pgfplotsset{compat=newest}
+\pgfplotsset{plot coordinates/math parser=false}
+% \pgfplotsset{
+%     every non boxed x axis/.style={
+%         xtick align=center,
+%         enlarge x limits=true,
+%         x axis line style={line width=0.8pt, -latex}
+% },
+%     every boxed x axis/.style={}, enlargelimits=false
+% }
+% \pgfplotsset{
+%     every non boxed y axis/.style={
+%         ytick align=center,
+%         enlarge y limits=true,
+%         y axis line style={line width=0.8pt, -latex}
+% },
+%     every boxed y axis/.style={}, enlargelimits=false
+% }
+% \usetikzlibrary{
+%   arrows.meta,
+%   intersections,
+% }
+
+% \usetikzlibrary{arrows.meta}
+% -------------------------------------------------
+
+
+\usepackage{url}
+% \usepackage{hyperref}
+% Useful packages for dissertation writing:
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{color}
+\usepackage{bm}
+% \usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{mathabx}
+\usepackage{multirow}
+\usepackage{setspace}
+\usepackage{textcomp}
+\usepackage{tabularx}
+\usepackage{adjustbox}
+
+
+%borrowed from SIAM
+\usepackage{textcomp}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage{algorithm}
+\usepackage{rotating}
+\usepackage{hhline}
+\usepackage{subfig}
+\usepackage{pdflscape}
+\usepackage{longtable,booktabs,array} 
+% \usepackage{subcaption}
+% \usepackage[thinlines]{easytable}
+\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+
+% \usepackage[nottoc,notlof,notlot]{tocbibind} 
+\renewcommand{\bibname}{REFERENCES}
+% \usepackage{cite}  % If you include this, hyperlink cites will
+% break.  It's nice to use this package if your bibstyle
+% sorts entries by order-of-use, rather than
+% alphabetically (as plain does).
+
+%Theorem, Lemma, etc. environments
+\newtheorem{theorem}{Theorem}%[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{result}[theorem]{Result}
+
+% Personal commands and abbreviations.
+%Define and personal commands here
+\theoremstyle{plain}
+\newtheorem{quest}{Quest}
+\newtheorem{question}[quest]{Question}
+\newtheorem{conj}{Conj}
+\newtheorem{definition}{Definition}
+\newtheorem{conjecture}[conj]{Conjecture}
+\newtheorem{assum}{Assum}
+\newtheorem{assumption}[assum]{Assumption}
+\newtheorem{exsus}{Exsus}
+\newtheorem{excursus}[exsus]{Excursus} %Excursus(noun) means a detailed discusssion of a particular point in a book, usually in an appendix
+
+\theoremstyle{definition}
+\newtheorem{defines}{Defines}
+\newtheorem{nota}{Nota}
+\newtheorem{notation}[nota]{Notation}
+\newtheorem{cond}{Cond}
+\newtheorem{condition}[cond]{Condition}
+\newtheorem{exam}{Exam}
+\newtheorem{example}[exam]{Example}
+\newtheorem{into}{Into}
+% \newtheorem{introduction}[into]{Introduction}
+
+\theoremstyle{remark}
+\newtheorem{rema}{Rema}
+\newtheorem{remark}[rema]{Remark}
+\include{header}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\numberwithin{theorem}{section}
+\numberwithin{quest}{section}        % Numbers theorems "x.y" where x
+\numberwithin{conj}{section}          % is the section number, y is the
+\numberwithin{assum}{section}	     % theorem number
+\numberwithin{defines}{section}
+\numberwithin{nota}{section}
+\numberwithin{cond}{section}
+\numberwithin{exam}{section}
+\numberwithin{into}{section}
+\numberwithin{rema}{section}
+
+\numberwithin{equation}{section}
+
+% Personal commands and abbreviations.
+%Define and personal commands here
+
+%Graphics Path to find your pictures
+\graphicspath{{./images/}}
+
+
+%-----------------------------------------------------------------------------%
+% PREAMBLE 
+%-----------------------------------------------------------------------------%
+\author{Philemon Rockson}
+\title{Efficient Dimensionality Reduction and
+	Compression Strategies for Large-Scale
+	Clinical Data Transfer Between Hospitals and
+	University Data Centers.}
+%\department{MATHEMATICS} % Appears as Department of \department
+\program{Scientific Computing and Industrial Modeling}
+
+\university{Kwame~Nkrumah~University~of~Science~And~Technology}
+\institute{National Institute for Mathematical Sciences - Ghana,}
+\college{Science} % Appears as College of \department
+\faculty{Faculty of Physical and Computational Science}
+\department{Mathematics} % Appears as Department of \department
+\program{Scientific Computing and Industrial Modeling}
+\supervisor{Prof. Peter Amoako-Yirenkyi}
+
+\date{2026} % Anything but the year is ignored.
+\monthofsubmission{November}
+
+% Copyright text.  If undefined, default is 'All rights reserved'
+% (Example sets the text to a hyperlinked Creative Commons Licence)
+\copyrighttext{ All rights reserved except the rights granted by the\\
+	\href{http://creativecommons.org/licenses/by-nc/3.0/us/}
+	{Creative Commons Attribution-Noncommercial Licence}
+}
+
+%-----------------------------------------------------------------------------%
+% HYPERREF: plain black hypertext references for ref's and cite's.
+%-----------------------------------------------------------------------------%
+\usepackage[pdftex, pdfusetitle, plainpages=false, 
+letterpaper, bookmarks, bookmarksnumbered,
+colorlinks, linkcolor=black, citecolor=black,
+filecolor=black, urlcolor=black]
+{hyperref}
+
+\usepackage[left,mathlines]{lineno} %for line numbering	
+\begin{document}
+	
+	%-----------------------------------------------------------------------------%
+	% TITLE PAGE -- provides UMI abstract title page & copyright if appropriate
+	%-----------------------------------------------------------------------------%
+	\maketitle
+	
+	%-----------------------------------------------------------------------------%
+	%DECLARATION -- Required.
+	%-----------------------------------------------------------------------------%
+	%\pagenumbering{roman}
+	%\setcounter{page}{0}
+	\include{{./Prethesis/declaration}}
+	
+	\linenumbers
+	%-----------------------------------------------------------------------------%
+	%ABSTRACT -- included file should start with '\abstract'.
+	%-----------------------------------------------------------------------------%
+	\include{{./Prethesis/abstract}}
+	
+	\tableofcontents
+	%-----------------------------------------------------------------------------%
+	% FRONTMATTER -- ToC is required, LoT and LoF are required if you have any
+	%tables or figures, respectively. List of Abbreviations and Symbols is 
+	% optional.
+	%-----------------------------------------------------------------------------%
+	\listoftables	% If you have any tables, automatically generated
+	\listoffigures	% If you have any figures, automatically generated
+	
+	%-----------------------------------------------------------------------------%
+	%DEDICATION -- OPTIONAL.  Put the text inside the braces.
+	%(Long 'dedications' probably belong in the acknowledgements)
+	%-----------------------------------------------------------------------------%
+	\include{{./Prethesis/dedication}}
+	
+	%-----------------------------------------------------------------------------%
+	%ACKNOWLEDGEMENTS -- included file should start with '\acknowledgements'
+	%-----------------------------------------------------------------------------%
+	\include{{./Prethesis/acknowledgements}}
+	
+	%==============================================================================
+	\include{{./Prethesis/listofabbr}} % List of %Abbreviations. Start file with '\abbreviations'
+	%-----------------------------------------------------------------------------%
+	%
+	% MAIN BODY OF THESES
+	%-----------------------------------------------------------------------------%
+	\include{{1.introduction}} %\
+	\include{{2.literature}}
+	\include{{3.methodology}}
+	\include{{4.results}}
+	%\include{{5.discussion}}
+	\include{{5.conclusion}}
+	%==============================================================================
+	
+	%-----------------------------------------------------------------------------%
+	% APPENDICES -- OPTIONAL. These are just chapters enumerated by Appendix A,
+	%                Appendix B, Appendix C...
+	%-----------------------------------------------------------------------------%
+% 	\appendix
+	%\include{{6.appendix}} % Start with '\chapter{Title}'
+	%You can always add more appendices here if you want
+	
+	%-----------------------------------------------------------------------------%
+	% BIBLIOGRAPHY -- uncomment \nocite{*} to include items in 'mybib.bib' file
+	% that aren't cited in the text.
+	%-----------------------------------------------------------------------------%
+	%\nocite{*}
+	% Bibliography entries are maintained in references.tex.
+	\cleardoublepage
+	\normalbaselines %Fixes spacing of bibliography
+	\addcontentsline{toc}{chapter}{REFERENCES} %adds Bibliography to your table of contents
+	\input{references}
+	%-----------------------------------------------------------------------------%
+	
+	%-----------------------------------------------------------------------------%
+	% BIOGRAPHY -- Start file with '\biography'.  Mandatory for Ph.D.
+	%-----------------------------------------------------------------------------%
+	% % \include{{./8.Biography/biography}}
+	
+	%-----------------------------------------------------------------------------
+	% You're done :)
+\end{document}
+
+

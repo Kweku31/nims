@@ -1,0 +1,17 @@
+% !TeX root = thesis.tex
+\chapter{Conclusions and Recommendations}\label{conclusion}
+\section{Conclusions}
+For the cohort studied, an efficient transfer depended on which measurements the receiver required, whether a payload already existed, and how an interrupted upload would be completed. Profiling showed why the first decision matters. A missingness filter could remove more than half the predictors while saving only about a third of the rewritten CSV. Lossless compression preserved the values in the columns sent. PCA and the autoencoder offered smaller representations at some settings, but introduced reconstruction error and, particularly for the autoencoder, a fitting cost.
+
+All 82 feasible package configurations passed the configured receiver recovery checks. In direct transfers of the five baseline files, Parquet had the shortest median copy time with both SCP and rsync. The direction of the transport advantage varied across files and paired blocks. The archive comparison on the KNUST route showed that both SCP and rsync could complete a deliberately interrupted AE-16 transfer. Rsync reached verified publication sooner in all four interrupted pairs. The evidence supports choosing a representation and a transport separately.
+
+\section{Recommendations for research data transfers}
+\begin{enumerate}
+\item Where the receiving team requires the full set of recorded values, begin with a lossless representation. Parquet is a useful first benchmark. Compare it with gzip on the intended route and include the time required to produce a usable file at the receiver.
+\item Before removing a variable, agree with the receiving analyst which observations may be omitted. Record excluded columns, the missingness rule and any protected variables in the manifest. A checksum can establish that the selected file arrived intact, but it cannot recover an omitted measurement.
+\item Where approximate reconstruction is acceptable, compare PCA and autoencoders at the same feasible dimension. Examine errors on observed values as well as neighbourhood overlap and the exploratory range screens. Charge fitting and encoding when the payload is created for that delivery.
+\item For a large prepared archive on a link where an upload may be interrupted, retain partial data for an rsync retry and verify the completed archive and sidecar before release. SCP remains a reasonable choice for the small uninterrupted transfers examined here.
+\end{enumerate}
+
+\section{Further work}
+A useful extension would repeat the paired transfers on routes from participating hospitals, at different times of day and with several interruption points. Varying the patient count while holding the representation and transport fixed would test how delivery cost grows with cohort size. A separate clinical study could compare the original and reconstructed data on a prespecified patient-level task, with patient-level separation and clinical review. Direct feature aggregation, repeated use of a trained encoder and integration with a receiving institution's routine data systems also warrant study.

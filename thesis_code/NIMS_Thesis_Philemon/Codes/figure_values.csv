@@ -1,0 +1,42 @@
+"metric","group","value"
+"file_bytes","Source CSV",75688701
+"file_bytes","Rewritten CSV",77550287
+"file_bytes","CSV + gzip",14573101
+"file_bytes","Parquet",9166970
+"file_bytes","CSV + Zstd",14671822
+"packaging_mean_seconds","Source CSV",0
+"packaging_mean_seconds","Rewritten CSV",18.4692575409019
+"packaging_mean_seconds","CSV + gzip",21.9157728376987
+"packaging_mean_seconds","Parquet",0.614674341199861
+"packaging_mean_seconds","CSV + Zstd",17.5953732708978
+"transfer_mean_seconds","Source CSV",32.4246925920015
+"transfer_mean_seconds","Rewritten CSV",36.4803964080056
+"transfer_mean_seconds","CSV + gzip",9.08764296210138
+"transfer_mean_seconds","Parquet",7.72354252530204
+"transfer_mean_seconds","CSV + Zstd",7.9705312850012
+"retained","FS_00_no_missingness_filter",39
+"retained","FS_80_missingness",13
+"retained","FS_80_clinical_review",28
+"retained","FS_90_missingness",19
+"retained","FS_90_clinical_review",31
+"retained","FS_95_missingness",29
+"retained","FS_95_clinical_review",32
+"r2","PCA 16",0.676278815760024
+"r2","PCA 2",0.258500788105307
+"r2","PCA 4",0.344841731188893
+"r2","PCA 8",0.548159699497174
+"r2","AE 16",0.906672757441629
+"r2","AE 2",0.444085114425302
+"r2","AE 4",0.589331331774679
+"r2","AE 8",0.814976174175526
+"fresh_seconds","gzip",27.1569273299829
+"fresh_seconds","Zstd",48.1820286220027
+"fresh_seconds","Parquet",29.7216808528916
+"fresh_seconds","PCA 16",75.2965428669995
+"fresh_seconds","PCA 2",25.1460143386954
+"fresh_seconds","PCA 4",30.231103069993
+"fresh_seconds","PCA 8",47.1652610359888
+"fresh_seconds","AE 16",390.787340339011
+"fresh_seconds","AE 2",649.670119247981
+"fresh_seconds","AE 4",485.162269656998
+"fresh_seconds","AE 8",468.298502821985
